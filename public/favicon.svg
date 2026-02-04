@@ -1,0 +1,41 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="256" height="256" fill="url(#bgGradient)" rx="32"/>
+  
+  <!-- Border -->
+  <rect width="256" height="256" fill="none" stroke="#60a5fa" stroke-width="2" rx="32"/>
+  
+  <!-- Portfolio/Briefcase -->
+  <g>
+    <!-- Top handle -->
+    <path d="M 85 80 Q 85 60 128 60 Q 171 60 171 80" 
+          stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    
+    <!-- Main briefcase body -->
+    <rect x="65" y="80" width="126" height="90" rx="8" 
+          stroke="#ffffff" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Front divider line -->
+    <line x1="128" y1="80" x2="128" y2="170" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+    
+    <!-- Left compartment details -->
+    <rect x="75" y="100" width="40" height="25" rx="4"
+          stroke="#ffffff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Right compartment details -->
+    <rect x="141" y="100" width="40" height="25" rx="4"
+          stroke="#ffffff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Bottom accent line -->
+    <line x1="70" y1="155" x2="186" y2="155" stroke="#60a5fa" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+  </g>
+</svg>
+</svg>
