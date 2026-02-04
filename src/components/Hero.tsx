@@ -77,7 +77,7 @@ export function Hero({  github, linkedin }: HeroProps) {
             <span>LinkedIn</span>
           </a>
           <a
-            href="/src/cv/WSL.pdf"
+            href="./src/cv/WSL.pdf"
             download="Waddimi_Saint-Louis_CV.pdf"
             className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg ${
               isDark
