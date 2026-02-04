@@ -1,0 +1,146 @@
+{
+  "hero": {
+    "title": "Waddimi Saint-Louis",
+    "subtitle": "Ingeniero de Sistemas | Desarrollador Full Stack",
+    "summary": "Ingeniero de Sistemas con 5 años de experiencia en desarrollo fullstack. Actualmente en ProDoctivity, entregando soluciones escalables en frontend y backend mientras mentoreo desarrolladores junior. Experto en construir APIs robustas, interfaces responsivas e impulsar el crecimiento del equipo a través del liderazgo técnico e innovación.",
+    "email": "Correo",
+    "call": "Llamar"
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "keyResponsibilities": "Responsabilidades Clave:",
+    "technologies": "Tecnologías:",
+    "jobs": {
+      "higherbit": {
+        "title": "Desarrollador Fullstack & Líder Técnico",
+        "company": "Higher Bit Solutions",
+        "period": "Sept 2025 - Actual",
+        "description": "Higher Bit Solutions es una startup que ofrece soluciones personalizadas de tecnología, IA y automatización. Como Ingeniero Full-Stack y Líder Técnico, construyo sistemas de extremo a extremo, lidero decisiones técnicas, mentoreo desarrolladores y aseguro soluciones escalables, seguras y de alto rendimiento.",
+        "tasks": [
+          "Lideré la hoja de ruta técnica, revisiones de PR y mentoría para desarrolladores junior",
+          "Diseñé arquitecturas de extremo a extremo usando Django, Node.js, React, Postgres y AWS",
+          "Construí APIs escalables con paginación, transacciones, validaciones y cobertura de pruebas",
+          "Desarrollé dashboards complejos e interfaces de administración (React/Next.js)",
+          "Gestioné infraestructura AWS: ECS/ECR, RDS, S3, CloudFront, Cognito, VPC, IAM",
+          "Implementé pipelines CI/CD, monitoreo y despliegues automatizados",
+          "Colaboré con stakeholders para definir requisitos y asegurar alineación empresarial"
+        ]
+      },
+      "prodoctivity": {
+        "title": "Desarrollador Fullstack",
+        "company": "ProDoctivity SRL",
+        "period": "Abril 2023 - Actual",
+        "description": "ProDoctivity Cloud es una solución integral de gestión empresarial que transforma las operaciones tradicionales a través de la digitalización y automatización de procesos. La plataforma optimiza los flujos de trabajo documentales, mejorando significativamente la eficiencia organizacional.",
+        "tasks": [
+          "Desarrollo de aplicaciones full stack usando React, TypeScript, Node, Docker y MongoDB",
+          "Diseño y construcción de Microservicios para soportar procesos de negocio e integración con ERP",
+          "Proporcionar asistencia a colegas en caso de dudas o consultas",
+          "Supervisar y guiar a pasantes que se unen al equipo de programación, ofreciendo seguimiento constante y asesoría técnica"
+        ]
+      },
+      "imarket": {
+        "title": "Desarrollador Fullstack - Freelancer",
+        "company": "IMarket",
+        "period": "Nov 2024 - Mayo 2025",
+        "description": "Plataforma de software diseñada para gestionar diferentes aspectos administrativos y contables de pequeñas y medianas empresas.",
+        "tasks": [
+          "Desarrollo de APIs RESTful para comunicación entre cliente y servidor",
+          "Implementación de lógica de negocio y validaciones",
+          "Creación de modelos, migraciones y consultas de base de datos",
+          "Optimización de rendimiento en operaciones críticas",
+          "Creación de componentes reutilizables e interfaces de usuario responsivas"
+        ]
+      },
+      "freelancer": {
+        "title": "Desarrollador Web - Freelancer",
+        "company": "Varias Plataformas",
+        "period": "Nov 2020 - Abril 2023",
+        "description": "Proyectos freelance gestionados a través de varias plataformas como Upwork, Workana, entre otras.",
+        "tasks": [
+          "Transformar diseños y mockups en sitios funcionales usando HTML, CSS, JS/TS y frameworks",
+          "Desarrollar módulos SPA y PWA de front-end con tecnologías progresivas",
+          "Integrar datos entre front-end y back-end usando Node.js, .NET, C# y bases de datos",
+          "Convertir diseños gráficos en código limpio con herramientas y frameworks modernos",
+          "Mantener y optimizar sitios web, asegurando velocidad, accesibilidad y compatibilidad"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "title": "Proyectos Personales",
+    "keyFeatures": "Características Clave:",
+    "techStack": "Stack Tecnológico:",
+    "downloadCV": "Descargar CV",
+    "items": {
+      "ownorbit": {
+        "name": "OwnOrbit (MVP)",
+        "date": "Mayo 2025",
+        "description": "MVP de una plataforma escalable de gestión de alquileres de propiedades desarrollada con arquitectura de microservicios (Node.js, TypeScript, gRPC, Docker), integrando un frontend React/React Native. Este es un proyecto comercial privado - el código no puede ser compartido públicamente.",
+        "tasks": [
+          "Diseñé e implementé la arquitectura global, aplicando SOLID y Clean Architecture",
+          "Desarrollé microservicios Node.js/TypeScript, entornos Dockerizados y configuración lista para CI/CD",
+          "Construí interfaces web y móviles responsivas con React, React Native, Expo y Tailwind CSS",
+          "Establecí estándares de calidad de código (ESLint, Jest, commitlint) y paquetes compartidos reutilizables"
+        ]
+      },
+      "virtualwallet": {
+        "name": "Virtual Wallet",
+        "date": "Dic 2024 - Ene 2025",
+        "description": "Solución de billetera virtual que permite la gestión de clientes, pagos y recargas. Implementada bajo una arquitectura de microservicios con frontend desarrollado en React, proporcionando una plataforma escalable para transacciones digitales.",
+        "tasks": [
+          "Diseñé e implementé una arquitectura hexagonal para microservicios independientes",
+          "Desarrollé API Gateway para orquestar comunicación entre servicios y frontend",
+          "Construí microservicio de base de datos con operaciones CRUD completas (clientes, pagos, recargas, balance)",
+          "Implementé autenticación segura, validaciones y manejo de errores",
+          "Desarrollé frontend React con gestión de estado y formularios dinámicos",
+          "Creé endpoints RESTful bien documentados con estructura de respuesta estándar",
+          "Integré MongoDB Atlas y configuré CI/CD con Docker"
+        ]
+      },
+      "stockhex": {
+        "name": "StockHex",
+        "date": "Oct 27, 2024",
+        "description": "Aplicación de inventario diseñada para gestionar eficiente y escalablemente los productos y recursos de una empresa, proporcionando seguimiento detallado de stock, movimientos y actualizaciones de artículos en tiempo real. Basada en arquitectura hexagonal, el sistema está organizado en capas independientes."
+      }
+    }
+  },
+  "skills": {
+    "title": "Habilidades Técnicas",
+    "categories": {
+      "coreStack": "Stack Principal",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Bases de Datos",
+      "cloudDevops": "Cloud & DevOps",
+      "architecture": "Arquitectura",
+      "toolsAi": "Herramientas & IA",
+      "softSkills": "Habilidades Blandas"
+    }
+  },
+  "education": {
+    "aws": "AWS Certified Cloud Practitioner - En Curso",
+    "title": "Educación",
+    "degree": "Ingeniería de Sistemas",
+    "institution": "Universidad Tecnológica de Santiago (UTESA)",
+    "period": "2017 - 2024",
+    "languages": "Idiomas",
+    "certifications": "Certificaciones",
+    "languagesList": {
+      "spanish": "Español",
+      "english": "Inglés",
+      "native": "Nativo (C2)",
+      "intermediate": "Intermedio (B1)"
+    }
+  },
+  "footer": {
+    "letsConnect": "Conectemos",
+    "connectMessage": "No dudes en contactarme para colaboraciones o simplemente una charla amigable",
+    "copyright": "© {{year}} Waddimi Saint-Louis. Todos los derechos reservados."
+  },
+  "nav": {
+    "lightMode": "Modo Claro",
+    "darkMode": "Modo Oscuro",
+    "switchToEnglish": "Switch to English",
+    "switchToSpanish": "Cambiar a Español"
+  }
+}

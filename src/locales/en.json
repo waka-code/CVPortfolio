@@ -1,0 +1,146 @@
+{
+  "hero": {
+    "title": "Waddimi Saint-Louis",
+    "subtitle": "System Engineer | Full Stack Developer",
+    "summary": "Systems Engineer with 5 years of experience in fullstack development. Currently at ProDoctivity, delivering scalable solutions across frontend and backend while mentoring junior developers. Skilled in building robust APIs, responsive interfaces, and driving team growth through technical leadership and innovation.",
+    "email": "Email",
+    "call": "Call"
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "keyResponsibilities": "Key Responsibilities:",
+    "technologies": "Technologies:",
+    "jobs": {
+      "higherbit": {
+        "title": "Fullstack Developer & Technical Lead",
+        "company": "Higher Bit Solutions",
+        "period": "Sept 2025 - Current",
+        "description": "Higher Bit Solutions is a startup delivering custom tech, AI, and automation solutions. As a Full-Stack Engineer and Technical Lead, I build end-to-end systems, lead technical decisions, mentor developers, and ensure scalable, secure, high-performance solutions.",
+        "tasks": [
+          "Led technical roadmap, PR reviews, and mentoring for junior devs",
+          "Designed end-to-end architectures using Django, Node.js, React, Postgres, and AWS",
+          "Built scalable APIs with pagination, transactions, validations, and test coverage",
+          "Developed complex dashboards and admin interfaces (React/Next.js)",
+          "Managed AWS infrastructure: ECS/ECR, RDS, S3, CloudFront, Cognito, VPC, IAM",
+          "Implemented CI/CD pipelines, monitoring, and automated deployments",
+          "Collaborated with stakeholders to define requirements and ensure business alignment"
+        ]
+      },
+      "prodoctivity": {
+        "title": "Fullstack Developer",
+        "company": "ProDoctivity SRL",
+        "period": "April 2023 - Current",
+        "description": "ProDoctivity Cloud is a comprehensive business management solution that transforms traditional operations through process digitization and automation. The platform optimizes document workflows, significantly improving organizational efficiency.",
+        "tasks": [
+          "Develop full stack applications using React, TypeScript, Node, Docker and MongoDB",
+          "Design and build Micro-services to support business processes and integration with ERP",
+          "Provide assistance to colleagues in case of doubts or queries",
+          "Supervise and guide interns joining the programming team, offering constant follow-up and technical advice"
+        ]
+      },
+      "imarket": {
+        "title": "Fullstack Developer - Freelancer",
+        "company": "IMarket",
+        "period": "Nov 2024 - May 2025",
+        "description": "Software platform designed to manage different administrative and accounting aspects of small and medium-sized companies.",
+        "tasks": [
+          "Development of RESTful APIs for communication between client and server",
+          "Implementation of business logic and validations",
+          "Creation of models, migrations, and database queries",
+          "Performance optimization in critical operations",
+          "Creation of reusable components and responsive user interfaces"
+        ]
+      },
+      "freelancer": {
+        "title": "Web Developer - Freelancer",
+        "company": "Various Platforms",
+        "period": "Nov 2020 - April 2023",
+        "description": "Freelance projects managed through various platforms such as Upwork, Workana, among others.",
+        "tasks": [
+          "Transform designs and mockups into functional sites using HTML, CSS, JS/TS, and frameworks",
+          "Develop front-end SPA and PWA modules with progressive technologies",
+          "Integrate data between front-end and back-end using Node.js, .NET, C#, and databases",
+          "Convert graphic designs into clean code with modern tools and frameworks",
+          "Maintain and optimize websites, ensuring speed, accessibility and compatibility"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "title": "Personal Projects",
+    "keyFeatures": "Key Features:",
+    "techStack": "Tech Stack:",
+    "downloadCV": "Download CV",
+    "items": {
+      "ownorbit": {
+        "name": "OwnOrbit (MVP)",
+        "date": "May 2025",
+        "description": "MVP of a scalable property rental management platform developed with a microservices architecture (Node.js, TypeScript, gRPC, Docker), integrating a React/React Native frontend. This is a private commercial project - code cannot be shared publicly.",
+        "tasks": [
+          "Designed and implemented the global architecture, applying SOLID and Clean Architecture",
+          "Developed Node.js/TypeScript microservices, Dockerized environments, and CI/CD-ready setup",
+          "Built responsive web and mobile interfaces with React, React Native, Expo, and Tailwind CSS",
+          "Established code quality standards (ESLint, Jest, commitlint) and reusable shared packages"
+        ]
+      },
+      "virtualwallet": {
+        "name": "Virtual Wallet",
+        "date": "Dec 2024 - Jan 2025",
+        "description": "Virtual wallet solution that enables client management, payments, and recharges. Implemented under a microservices architecture with a React-developed frontend, providing a scalable platform for digital transactions.",
+        "tasks": [
+          "Designed and implemented hexagonal architecture for independent microservices",
+          "Developed API Gateway to orchestrate communication between services and frontend",
+          "Built database microservice with complete CRUD operations (clients, payments, recharges, balance)",
+          "Implemented secure authentication, validations, and error handling",
+          "Developed React frontend with state management and dynamic forms",
+          "Created well-documented RESTful endpoints with standard response structure",
+          "Integrated MongoDB Atlas and configured CI/CD with Docker"
+        ]
+      },
+      "stockhex": {
+        "name": "StockHex",
+        "date": "Oct 27, 2024",
+        "description": "Inventory application designed to efficiently and scalably manage a company's products and resources, providing detailed tracking of stock, movements and item updates in real time. Based on a hexagonal architecture, the system is organized in independent layers."
+      }
+    }
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "categories": {
+      "coreStack": "Core Stack",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Databases",
+      "cloudDevops": "Cloud & DevOps",
+      "architecture": "Architecture",
+      "toolsAi": "Tools & AI",
+      "softSkills": "Soft Skills"
+    }
+  },
+  "education": {
+    "aws": "AWS Certified Cloud Practitioner - Ongoing",
+    "title": "Education",
+    "degree": "System Engineering",
+    "institution": "Universidad Tecnológica de Santiago (UTESA)",
+    "period": "2017 - 2024",
+    "languages": "Languages",
+    "certifications": "Certifications",
+    "languagesList": {
+      "spanish": "Spanish",
+      "english": "English",
+      "native": "Native (C2)",
+      "intermediate": "Intermediate (B1)"
+    }
+  },
+  "footer": {
+    "letsConnect": "Let's Connect",
+    "connectMessage": "Feel free to reach out for collaborations or just a friendly chat",
+    "copyright": "© {{year}} Waddimi Saint-Louis. All rights reserved."
+  },
+  "nav": {
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "switchToEnglish": "Switch to English",
+    "switchToSpanish": "Cambiar a Español"
+  }
+}
