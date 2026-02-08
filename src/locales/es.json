@@ -71,7 +71,32 @@
     "keyFeatures": "Características Clave:",
     "techStack": "Stack Tecnológico:",
     "downloadCV": "Descargar CV",
+    "viewMore": "Ver Más",
+    "viewLess": "Ver Menos",
     "items": {
+      "marfil": {
+        "name": "Marfil Platform - Higher Bit Solutions",
+        "date": "Sept 2025",
+        "description": "Plataforma ERP enfocada en la gestión administrativa, contable y operativa de empresas, con módulos especializados en gestión de proyectos estructurales, control de inventario, cotizaciones, reportes y automatización de procesos internos. Diseñada específicamente para los sectores de construcción e infraestructura, destaca por su flexibilidad y adaptabilidad a flujos de trabajo de ingeniería estructural.",
+        "tasks": [
+          "Diseño y construcción de interfaces web para módulos de gestión de proyectos estructurales",
+          "Implementación de formularios, tablas y dashboards dinámicos con alta interactividad para seguimiento de estructuras",
+          "Integración de servicios backend mediante APIs REST para sincronización de datos en tiempo real",
+          "Desarrollo de componentes UI reutilizables y mantenimiento de consistencia del sistema de diseño en todos los módulos"
+        ]
+      },
+      "hemisferio": {
+        "name": "Hemisferio Platform - Higher Bit Solutions",
+        "date": "Feb 2026",
+        "description": "Plataforma integral para la gestión operativa y comercial de empresas de servicios e instalaciones. Permite gestionar clientes, catálogos de productos y materias primas, proyectos, cotizaciones, ventas rápidas, planificación de tareas, historial de operaciones, reportes y flujos de aprobación. Incluye dashboards, gestión de usuarios y roles, y automatización de procesos clave.",
+        "tasks": [
+          "Desarrollo de servicios backend usando Django y PostgreSQL",
+          "Implementación de lógica de negocio, validaciones y consultas complejas de base de datos",
+          "Diseño y optimización de modelos relacionales para operaciones a gran escala",
+          "Construcción de APIs RESTful con autenticación, paginación y manejo de errores adecuados",
+          "Configuración de infraestructura AWS y pipelines de despliegue"
+        ]
+      },
       "ownorbit": {
         "name": "OwnOrbit (MVP)",
         "date": "Mayo 2025",

@@ -23,10 +23,21 @@ export function Hero({  github, linkedin }: HeroProps) {
       }`}
     >
       <div className="max-w-4xl mx-auto text-center">
+        <div
+          className={`flex justify-center mb-6 ${
+            isVisible ? 'animate-fade-in-up' : 'opacity-0'
+          }`}
+        >
+          <img
+            src="/wsl.jpeg"
+            alt="Waddimi Saint-Louis"
+            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover ring-4 ring-blue-500 shadow-2xl hover:ring-blue-400 transition-all hover:scale-105"
+          />
+        </div>
         <h1
           className={`text-5xl md:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r text-gradient-animate ${
             isDark ? 'from-blue-400 via-cyan-300 to-blue-400' : 'from-blue-600 via-blue-400 to-blue-600'
-          } ${isVisible ? 'animate-blur-in' : 'opacity-0'}`}
+          } ${isVisible ? 'animate-blur-in delay-200' : 'opacity-0'}`}
         >
           {t('hero.title')}
         </h1>

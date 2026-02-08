@@ -37,7 +37,7 @@ function AppContent() {
             : ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Angular', 'Vue.js', 'Node.js', '.NET', 'MongoDB', 'PostgreSQL'],
   }));
 
-  const projectKeys = ['ownorbit', 'virtualwallet', 'stockhex'] as const;
+  const projectKeys = ['marfil', 'hemisferio', 'ownorbit', 'virtualwallet', 'stockhex'] as const;
 
   const projects = projectKeys.map((key) => ({
     name: t(`projects.items.${key}.name`),
@@ -45,16 +45,27 @@ function AppContent() {
     description: t(`projects.items.${key}.description`),
     tasks: key !== 'stockhex' ? (t(`projects.items.${key}.tasks`, { returnObjects: true }) as string[]) : undefined,
     technologies:
-      key === 'ownorbit'
-        ? ['Node.js', 'TypeScript', 'Express.js', 'Docker', 'NGINX', 'React', 'React Native', 'Expo', 'Tailwind CSS', 'Jest']
-        : key === 'virtualwallet'
-          ? ['Node.js', 'TypeScript', 'Express.js', 'MongoDB', 'React', 'Docker', 'Microservices', 'REST APIs', 'JWT', 'Postman']
-          : ['.NET 8', 'C#', 'SQL Server', 'JWT', 'Swagger', 'Docker'],
-    link: key === 'ownorbit' 
+      key === 'marfil'
+        ? ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'REST APIs', 'Responsive Design']
+        : key === 'hemisferio'
+          ? ['Python', 'Django', 'PostgreSQL', 'REST APIs', 'AWS', 'Docker', 'CI/CD']
+          : key === 'ownorbit'
+            ? ['Node.js', 'TypeScript', 'Express.js', 'Docker', 'NGINX', 'React', 'React Native', 'Expo', 'Tailwind CSS', 'Jest']
+            : key === 'virtualwallet'
+              ? ['Node.js', 'TypeScript', 'Express.js', 'MongoDB', 'React', 'Docker', 'Microservices', 'REST APIs', 'JWT', 'Postman']
+              : ['.NET 8', 'C#', 'SQL Server', 'JWT', 'Swagger', 'Docker'],
+    link: key === 'ownorbit'
       ? 'https://preview--renta-pulse.lovable.app/'
       : key === 'virtualwallet'
         ? 'https://github.com/waka-code/wallet'
-        : 'https://github.com/waka-code/StockHex',
+        : key === 'stockhex'
+          ? 'https://github.com/waka-code/StockHex'
+          : undefined,
+    images: key === 'marfil' || key === 'hemisferio'
+      ? key === 'marfil'
+        ? '/marfil/'
+        : '/hemisferio/'
+      : undefined,
   }));
 
   const skillCategories = [

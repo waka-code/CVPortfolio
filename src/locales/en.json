@@ -71,7 +71,32 @@
     "keyFeatures": "Key Features:",
     "techStack": "Tech Stack:",
     "downloadCV": "Download CV",
+    "viewMore": "View More",
+    "viewLess": "View Less",
     "items": {
+      "marfil": {
+        "name": "Marfil Platform - Higher Bit Solutions",
+        "date": "Sept 2025",
+        "description": "ERP platform focused on administrative, accounting, and operational management for companies, with specialized modules for structural project management, inventory control, quotes, reports, and internal process automation. Designed specifically for construction and infrastructure sectors, it stands out for its flexibility and adaptability to structural engineering workflows.",
+        "tasks": [
+          "Design and build web interfaces for structural project management modules",
+          "Implement forms, tables, and dynamic dashboards with high interactivity for structure tracking",
+          "Integrate backend services via REST APIs for real-time data synchronization",
+          "Develop reusable UI components and maintain design system consistency across modules"
+        ]
+      },
+      "hemisferio": {
+        "name": "Hemisferio Platform - Higher Bit Solutions",
+        "date": "Feb 2026",
+        "description": "Comprehensive platform for the operational and commercial management of service and installation companies. It allows you to manage customers, product and raw material catalogs, projects, quotes, quick sales, task planning, operation history, reports, and approval flows. It includes dashboards, user and role management, and key process automation.",
+        "tasks": [
+          "Develop backend services using Django and PostgreSQL",
+          "Implement business logic, validations, and complex database queries",
+          "Design and optimize relational models for large-scale operations",
+          "Build RESTful APIs with proper authentication, pagination, and error handling",
+          "Configure AWS infrastructure and deployment pipelines"
+        ]
+      },
       "ownorbit": {
         "name": "OwnOrbit (MVP)",
         "date": "May 2025",

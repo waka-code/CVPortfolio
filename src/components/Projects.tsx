@@ -1,7 +1,9 @@
-import { Code2, Github, ExternalLink, Download } from 'lucide-react';
+import { Code2, Github, ExternalLink, Download, ChevronDown, ChevronUp } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
+import { ProjectImageGallery } from './ProjectImageGallery';
+import { useState } from 'react';
 
 interface Project {
   name: string;
@@ -10,6 +12,7 @@ interface Project {
   tasks?: string[];
   technologies: string[];
   link?: string;
+  images?: string;
 }
 
 interface ProjectsProps {
@@ -20,6 +23,18 @@ export function Projects({ projects }: ProjectsProps) {
   const { elementRef, isVisible } = useScrollAnimation();
   const { t } = useTranslation();
   const { isDark } = useTheme();
+  const [visibleCount, setVisibleCount] = useState(2);
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+
+  const displayedProjects = projects.slice(0, visibleCount);
+
+  const handleShowMore = () => {
+    setVisibleCount((prev) => Math.min(prev + 3, projects.length));
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount(2);
+  };
 
   return (
     <section
@@ -44,8 +59,8 @@ export function Projects({ projects }: ProjectsProps) {
             href="./src/cv/WSL.pdf"
             download="Waddimi_Saint-Louis_CV.pdf"
             className={`btn-animate flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
-              isDark 
-                ? 'bg-slate-900 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300' 
+              isDark
+                ? 'bg-slate-900 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
                 : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
             }`}
           >
@@ -54,19 +69,35 @@ export function Projects({ projects }: ProjectsProps) {
           </a>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className={`card-hover rounded-xl p-8 border ${
-                isVisible ? 'animate-scale-in' : 'opacity-0'
-              } ${
-                isDark
-                  ? 'bg-slate-900 border-slate-700 hover:border-blue-500'
-                  : 'bg-white border-slate-200 hover:border-blue-300'
-              }`}
-              style={{ animationDelay: `${index * 150}ms` }}
-            >
+        <div className="grid md:grid-cols-2 gap-8 projects-grid">
+          {displayedProjects.map((project, index) => {
+            const isNewlyVisible = index >= 2 && isVisible;
+            return (
+              <div
+                key={index}
+                className={`relative card-hover rounded-xl p-8 border overflow-hidden ${
+                  isVisible
+                    ? isNewlyVisible
+                      ? 'animate-fade-in-slide-up'
+                      : 'animate-scale-in'
+                    : 'opacity-0'
+                } ${
+                  isDark
+                    ? 'bg-slate-900 border-slate-700 hover:border-none'
+                    : 'bg-white border-slate-200 hover:border-none'
+                } ${project.images ? 'cursor-pointer' : ''}`}
+                style={{
+                  animationDelay: isNewlyVisible ? `${(index - 2) * 100}ms` : `${index * 150}ms`,
+                }}
+                onMouseEnter={() => project.images && setHoveredProject(project.images)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+              {project.images && (
+                <ProjectImageGallery
+                  projectFolder={project.images}
+                  isHovering={hoveredProject === project.images}
+                />
+              )}
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3
@@ -147,8 +178,36 @@ export function Projects({ projects }: ProjectsProps) {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
+
+        {projects.length > 2 && (
+          <div className="flex justify-center mt-12">
+            <button
+              onClick={visibleCount === 2 ? handleShowMore : handleShowLess}
+              className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg border transition-colors ${
+                isDark
+                  ? 'bg-slate-900 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
+                  : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
+              }`}
+            >
+              {visibleCount > 2 ? (
+                <>
+                  <ChevronUp size={20} />
+                  <span className="font-medium">{t('projects.viewLess')}</span>
+                </>
+              ) : (
+                <>
+                  <ChevronDown size={20} />
+                  <span className="font-medium">
+                    {t('projects.viewMore')} ({Math.min(3, projects.length - visibleCount)})
+                  </span>
+                </>
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
