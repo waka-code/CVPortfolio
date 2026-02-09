@@ -65,8 +65,8 @@ function AppContent() {
           : undefined,
     images: key === 'marfil' || key === 'hemisferio'
       ? key === 'marfil'
-        ? '/marfil/'
-        : '/hemisferio/'
+        ? `${import.meta.env.BASE_URL}marfil/`
+        : `${import.meta.env.BASE_URL}hemisferio/`
       : undefined,
   }));
 

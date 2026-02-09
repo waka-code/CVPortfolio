@@ -24,7 +24,7 @@ export function HeaderNav() {
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
           <img
-            src="/wsl.jpeg"
+            src={`${import.meta.env.BASE_URL}wsl.jpeg`}
             alt="Waddimi Saint-Louis"
             className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-500 hover:ring-blue-400 transition-all"
           />

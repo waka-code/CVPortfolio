@@ -29,7 +29,7 @@ export function Hero({  github, linkedin }: HeroProps) {
           }`}
         >
           <img
-            src="/wsl.jpeg"
+            src={`${import.meta.env.BASE_URL}wsl.jpeg`}
             alt="Waddimi Saint-Louis"
             className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover ring-4 ring-blue-500 shadow-2xl hover:ring-blue-400 transition-all hover:scale-105"
           />
@@ -88,7 +88,7 @@ export function Hero({  github, linkedin }: HeroProps) {
             <span>LinkedIn</span>
           </a>
           <a
-            href="/WSL.pdf"
+            href={`${import.meta.env.BASE_URL}WSL.pdf`}
             download="Waddimi_Saint-Louis_CV.pdf"
             className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg ${
               isDark
