@@ -1,5 +1,5 @@
 import { X, Eye, Edit3, Copy, Check, Send, Key, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
@@ -13,20 +13,65 @@ interface BlogEditorProps {
 
 type PublishStatus = 'idle' | 'publishing' | 'success' | 'error';
 
+interface EditorState {
+  title: string;
+  subtitle: string;
+  tags: string;
+  content: string;
+  showPreview: boolean;
+  copied: boolean;
+  publishStatus: PublishStatus;
+  statusMessage: string;
+  showTokenInput: boolean;
+  tokenInput: string;
+  publishLang: 'es' | 'en' | 'both';
+}
+
+type EditorAction =
+  | { type: 'SET_FIELD'; field: keyof EditorState; value: any }
+  | { type: 'TOGGLE_PREVIEW' }
+  | { type: 'TOGGLE_TOKEN_INPUT' }
+  | { type: 'SET_COPIED'; value: boolean }
+  | { type: 'SET_PUBLISH_STATUS'; status: PublishStatus; message: string }
+  | { type: 'RESET_FORM' };
+
+const initialState: EditorState = {
+  title: '',
+  subtitle: '',
+  tags: '',
+  content: '',
+  showPreview: false,
+  copied: false,
+  publishStatus: 'idle',
+  statusMessage: '',
+  showTokenInput: false,
+  tokenInput: '',
+  publishLang: 'es',
+};
+
+function editorReducer(state: EditorState, action: EditorAction): EditorState {
+  switch (action.type) {
+    case 'SET_FIELD':
+      return { ...state, [action.field]: action.value };
+    case 'TOGGLE_PREVIEW':
+      return { ...state, showPreview: !state.showPreview };
+    case 'TOGGLE_TOKEN_INPUT':
+      return { ...state, showTokenInput: !state.showTokenInput };
+    case 'SET_COPIED':
+      return { ...state, copied: action.value };
+    case 'SET_PUBLISH_STATUS':
+      return { ...state, publishStatus: action.status, statusMessage: action.message };
+    case 'RESET_FORM':
+      return { ...initialState, showTokenInput: state.showTokenInput };
+    default:
+      return state;
+  }
+}
+
 export function BlogEditor({ isOpen, onClose }: BlogEditorProps) {
   const { isDark } = useTheme();
   const { i18n } = useTranslation();
-  const [title, setTitle] = useState('');
-  const [subtitle, setSubtitle] = useState('');
-  const [tags, setTags] = useState('');
-  const [content, setContent] = useState('');
-  const [showPreview, setShowPreview] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [publishStatus, setPublishStatus] = useState<PublishStatus>('idle');
-  const [statusMessage, setStatusMessage] = useState('');
-  const [showTokenInput, setShowTokenInput] = useState(false);
-  const [tokenInput, setTokenInput] = useState('');
-  const [publishLang, setPublishLang] = useState<'es' | 'en' | 'both'>('es');
+  const [state, dispatch] = useReducer(editorReducer, initialState);
 
   if (!isOpen) return null;
 
@@ -45,52 +90,55 @@ export function BlogEditor({ isOpen, onClose }: BlogEditorProps) {
   };
 
   const today = new Date().toISOString().split('T')[0];
-  const slug = generateSlug(title);
-  const tagsArray = tags
+  const slug = generateSlug(state.title);
+  const tagsArray = state.tags
     .split(',')
-    .map((t) => t.trim().toLowerCase())
+    .map((t: string) => t.trim().toLowerCase())
     .filter(Boolean);
 
   const generateMarkdown = () => {
     const tagsJson = tagsArray.length > 0 ? JSON.stringify(tagsArray) : '[]';
     return `---
-title: "${title}"
-subtitle: "${subtitle}"
+title: "${state.title}"
+subtitle: "${state.subtitle}"
 date: "${today}"
 slug: "${slug}"
 tags: ${tagsJson}
 ---
 
-${content}
+${state.content}
 `;
   };
 
   const handleSaveToken = () => {
-    if (tokenInput.trim()) {
-      setGitHubToken(tokenInput.trim());
-      setTokenInput('');
-      setShowTokenInput(false);
+    if (state.tokenInput.trim()) {
+      setGitHubToken(state.tokenInput.trim());
+      dispatch({ type: 'SET_FIELD', field: 'tokenInput', value: '' });
+      dispatch({ type: 'TOGGLE_TOKEN_INPUT' });
     }
   };
 
   const handleRemoveToken = () => {
     clearGitHubToken();
-    setShowTokenInput(false);
-    setTokenInput('');
+    dispatch({ type: 'SET_FIELD', field: 'showTokenInput', value: false });
+    dispatch({ type: 'SET_FIELD', field: 'tokenInput', value: '' });
   };
 
   const handlePublish = async () => {
     if (!hasToken) {
-      setShowTokenInput(true);
+      dispatch({ type: 'SET_FIELD', field: 'showTokenInput', value: true });
       return;
     }
 
-    setPublishStatus('publishing');
-    setStatusMessage(isEs ? 'Publicando artículo...' : 'Publishing article...');
+    dispatch({
+      type: 'SET_PUBLISH_STATUS',
+      status: 'publishing',
+      message: isEs ? 'Publicando artículo...' : 'Publishing article...'
+    });
 
     const md = generateMarkdown();
     const filename = `${slug}.md`;
-    const langs = publishLang === 'both' ? ['es', 'en'] : [publishLang];
+    const langs = state.publishLang === 'both' ? ['es', 'en'] : [state.publishLang];
 
     let allSuccess = true;
     const results: string[] = [];
@@ -112,35 +160,33 @@ ${content}
     }
 
     if (allSuccess) {
-      setPublishStatus('success');
-      setStatusMessage(
-        isEs
+      dispatch({
+        type: 'SET_PUBLISH_STATUS',
+        status: 'success',
+        message: isEs
           ? `Artículo publicado. GitHub Actions desplegará automáticamente.\n${results.join('\n')}`
           : `Article published. GitHub Actions will deploy automatically.\n${results.join('\n')}`
-      );
+      });
     } else {
-      setPublishStatus('error');
-      setStatusMessage(results.join('\n'));
+      dispatch({
+        type: 'SET_PUBLISH_STATUS',
+        status: 'error',
+        message: results.join('\n')
+      });
     }
   };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(generateMarkdown());
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    dispatch({ type: 'SET_COPIED', value: true });
+    setTimeout(() => dispatch({ type: 'SET_COPIED', value: false }), 2000);
   };
 
   const handleReset = () => {
-    setTitle('');
-    setSubtitle('');
-    setTags('');
-    setContent('');
-    setShowPreview(false);
-    setPublishStatus('idle');
-    setStatusMessage('');
+    dispatch({ type: 'RESET_FORM' });
   };
 
-  const isValid = title.trim() !== '' && content.trim() !== '';
+  const isValid = state.title.trim() !== '' && state.content.trim() !== '';
 
   const inputClass = `w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${
     isDark
@@ -168,7 +214,7 @@ ${content}
           </h2>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setShowTokenInput(!showTokenInput)}
+              onClick={() => dispatch({ type: 'TOGGLE_TOKEN_INPUT' })}
               className={`p-2 rounded-lg transition-colors ${
                 hasToken
                   ? 'text-green-400 hover:bg-slate-800'
@@ -181,17 +227,17 @@ ${content}
               <Key size={20} />
             </button>
             <button
-              onClick={() => setShowPreview(!showPreview)}
+              onClick={() => dispatch({ type: 'TOGGLE_PREVIEW' })}
               className={`p-2 rounded-lg transition-colors ${
-                showPreview
+                state.showPreview
                   ? 'bg-blue-600 text-white'
                   : isDark
                     ? 'hover:bg-slate-800 text-slate-300'
                     : 'hover:bg-slate-100 text-slate-700'
               }`}
-              title={showPreview ? 'Edit' : 'Preview'}
+              title={state.showPreview ? 'Edit' : 'Preview'}
             >
-              {showPreview ? <Edit3 size={20} /> : <Eye size={20} />}
+              {state.showPreview ? <Edit3 size={20} /> : <Eye size={20} />}
             </button>
             <button
               onClick={onClose}
@@ -205,7 +251,7 @@ ${content}
         </div>
 
         {/* Token Configuration */}
-        {showTokenInput && (
+        {state.showTokenInput && (
           <div className={`mb-6 p-4 rounded-lg border ${
             isDark ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-200'
           }`}>
@@ -239,8 +285,8 @@ ${content}
               <div className="flex gap-2">
                 <input
                   type="password"
-                  value={tokenInput}
-                  onChange={(e) => setTokenInput(e.target.value)}
+                  value={state.tokenInput}
+                  onChange={(e) => dispatch({ type: 'SET_FIELD', field: 'tokenInput', value: e.target.value })}
                   placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
                   className={`flex-1 px-3 py-2 rounded-lg border text-sm ${
                     isDark
@@ -251,7 +297,7 @@ ${content}
                 />
                 <button
                   onClick={handleSaveToken}
-                  disabled={!tokenInput.trim()}
+                  disabled={!state.tokenInput.trim()}
                   className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isEs ? 'Guardar' : 'Save'}
@@ -267,55 +313,55 @@ ${content}
         )}
 
         {/* Status Message */}
-        {publishStatus !== 'idle' && (
+        {state.publishStatus !== 'idle' && (
           <div className={`mb-4 p-4 rounded-lg flex items-start gap-3 ${
-            publishStatus === 'publishing'
+            state.publishStatus === 'publishing'
               ? isDark ? 'bg-blue-900/30 border border-blue-800' : 'bg-blue-50 border border-blue-200'
-              : publishStatus === 'success'
+              : state.publishStatus === 'success'
                 ? isDark ? 'bg-green-900/30 border border-green-800' : 'bg-green-50 border border-green-200'
                 : isDark ? 'bg-red-900/30 border border-red-800' : 'bg-red-50 border border-red-200'
           }`}>
-            {publishStatus === 'publishing' && <Loader2 size={18} className="animate-spin text-blue-400 mt-0.5 shrink-0" />}
-            {publishStatus === 'success' && <CheckCircle2 size={18} className="text-green-400 mt-0.5 shrink-0" />}
-            {publishStatus === 'error' && <AlertCircle size={18} className="text-red-400 mt-0.5 shrink-0" />}
+            {state.publishStatus === 'publishing' && <Loader2 size={18} className="animate-spin text-blue-400 mt-0.5 shrink-0" />}
+            {state.publishStatus === 'success' && <CheckCircle2 size={18} className="text-green-400 mt-0.5 shrink-0" />}
+            {state.publishStatus === 'error' && <AlertCircle size={18} className="text-red-400 mt-0.5 shrink-0" />}
             <p className={`text-sm whitespace-pre-line ${
-              publishStatus === 'publishing'
+              state.publishStatus === 'publishing'
                 ? isDark ? 'text-blue-300' : 'text-blue-700'
-                : publishStatus === 'success'
+                : state.publishStatus === 'success'
                   ? isDark ? 'text-green-300' : 'text-green-700'
                   : isDark ? 'text-red-300' : 'text-red-700'
             }`}>
-              {statusMessage}
+              {state.statusMessage}
             </p>
           </div>
         )}
 
         {/* Preview Mode */}
-        {showPreview ? (
+        {state.showPreview ? (
           <div>
             <div className={`mb-4 p-4 rounded-lg text-sm ${
               isDark ? 'bg-slate-800 text-slate-400' : 'bg-slate-50 text-slate-600'
             }`}>
               <span className="font-medium">{isEs ? 'Archivo' : 'File'}:</span>{' '}
-              <code>src/blog/{publishLang === 'both' ? 'es & en' : publishLang}/{slug || 'slug'}.md</code>
+              <code>src/blog/{state.publishLang === 'both' ? 'es & en' : state.publishLang}/{slug || 'slug'}.md</code>
             </div>
 
             <div className={`rounded-lg p-6 border ${
               isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'
             }`}>
               <h1 className={`text-3xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                {title || (isEs ? 'Sin título' : 'Untitled')}
+                {state.title || (isEs ? 'Sin título' : 'Untitled')}
               </h1>
-              {subtitle && (
+              {state.subtitle && (
                 <p className={`text-lg mb-3 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                  {subtitle}
+                  {state.subtitle}
                 </p>
               )}
               <div className={`flex items-center gap-3 mb-4 text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                 <span>{today}</span>
                 {tagsArray.length > 0 && (
                   <div className="flex flex-wrap gap-1">
-                    {tagsArray.map((tag) => (
+                    {tagsArray.map((tag: string) => (
                       <span key={tag} className={`px-2 py-0.5 rounded-full text-xs ${
                         isDark ? 'bg-slate-700 text-slate-300' : 'bg-slate-100 text-slate-700'
                       }`}>
@@ -331,7 +377,7 @@ ${content}
                   : 'prose-headings:text-slate-900 prose-p:text-slate-700 prose-a:text-blue-600'
               }`}>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {content || (isEs ? '*Escribe contenido para ver la vista previa...*' : '*Write content to see the preview...*')}
+                  {state.content || (isEs ? '*Escribe contenido para ver la vista previa...*' : '*Write content to see the preview...*')}
                 </ReactMarkdown>
               </article>
             </div>
@@ -345,12 +391,12 @@ ${content}
               </label>
               <input
                 type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={state.title}
+                onChange={(e) => dispatch({ type: 'SET_FIELD', field: 'title', value: e.target.value })}
                 placeholder={isEs ? 'Mi artículo increíble' : 'My awesome article'}
                 className={inputClass}
               />
-              {title && (
+              {state.title && (
                 <p className={`text-xs mt-1 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
                   Slug: {slug}
                 </p>
@@ -363,8 +409,8 @@ ${content}
               </label>
               <input
                 type="text"
-                value={subtitle}
-                onChange={(e) => setSubtitle(e.target.value)}
+                value={state.subtitle}
+                onChange={(e) => dispatch({ type: 'SET_FIELD', field: 'subtitle', value: e.target.value })}
                 placeholder={isEs ? 'Breve descripción del artículo' : 'Brief article description'}
                 className={inputClass}
               />
@@ -376,8 +422,8 @@ ${content}
               </label>
               <input
                 type="text"
-                value={tags}
-                onChange={(e) => setTags(e.target.value)}
+                value={state.tags}
+                onChange={(e) => dispatch({ type: 'SET_FIELD', field: 'tags', value: e.target.value })}
                 placeholder="react, typescript, tutorial"
                 className={inputClass}
               />
@@ -392,9 +438,9 @@ ${content}
                 {(['es', 'en', 'both'] as const).map((lang) => (
                   <button
                     key={lang}
-                    onClick={() => setPublishLang(lang)}
+                    onClick={() => dispatch({ type: 'SET_FIELD', field: 'publishLang', value: lang })}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      publishLang === lang
+                      state.publishLang === lang
                         ? 'bg-blue-600 text-white'
                         : isDark
                           ? 'bg-slate-800 text-slate-300 hover:bg-slate-700'
@@ -412,8 +458,8 @@ ${content}
                 {isEs ? 'Contenido (Markdown) *' : 'Content (Markdown) *'}
               </label>
               <textarea
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
+                value={state.content}
+                onChange={(e) => dispatch({ type: 'SET_FIELD', field: 'content', value: e.target.value })}
                 placeholder={isEs
                   ? '# Mi Artículo\n\nEscribe tu contenido en markdown aquí...\n\n## Sección\n\n- Punto 1\n- Punto 2'
                   : '# My Article\n\nWrite your markdown content here...\n\n## Section\n\n- Point 1\n- Point 2'
@@ -431,16 +477,16 @@ ${content}
         }`}>
           <button
             onClick={handlePublish}
-            disabled={!isValid || publishStatus === 'publishing'}
+            disabled={!isValid || state.publishStatus === 'publishing'}
             className={`btn-animate flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium transition-colors ${
-              isValid && publishStatus !== 'publishing'
+              isValid && state.publishStatus !== 'publishing'
                 ? 'bg-blue-600 hover:bg-blue-500 text-white'
                 : isDark
                   ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
                   : 'bg-slate-100 text-slate-400 cursor-not-allowed'
             }`}
           >
-            {publishStatus === 'publishing'
+            {state.publishStatus === 'publishing'
               ? <Loader2 size={18} className="animate-spin" />
               : <Send size={18} />
             }
@@ -460,8 +506,8 @@ ${content}
                   : 'border-slate-100 text-slate-400 cursor-not-allowed'
             }`}
           >
-            {copied ? <Check size={18} /> : <Copy size={18} />}
-            {copied
+            {state.copied ? <Check size={18} /> : <Copy size={18} />}
+            {state.copied
               ? (isEs ? 'Copiado' : 'Copied')
               : (isEs ? 'Copiar MD' : 'Copy MD')
             }

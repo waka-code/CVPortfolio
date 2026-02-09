@@ -3,71 +3,108 @@ import { BlogEditor } from './BlogEditor';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
-import { useState, useEffect, useMemo } from 'react';
+import { useReducer, useEffect, useMemo } from 'react';
 import { loadBlogArticles, BlogArticle } from '../utils/blogLoader';
 import { useBlogLikes } from '../hooks/useBlogLikes';
+import { formatDate } from '../utils/formatDate';
+
+interface BlogState {
+  articles: BlogArticle[];
+  searchTerm: string;
+  selectedTag: string;
+  visibleCount: number;
+  showEditor: boolean;
+}
+
+type BlogAction =
+  | { type: 'SET_ARTICLES'; articles: BlogArticle[] }
+  | { type: 'SET_SEARCH_TERM'; term: string }
+  | { type: 'SET_SELECTED_TAG'; tag: string }
+  | { type: 'SET_VISIBLE_COUNT'; count: number }
+  | { type: 'INCREASE_VISIBLE_COUNT'; increment: number }
+  | { type: 'TOGGLE_EDITOR' }
+  | { type: 'SET_EDITOR'; value: boolean };
+
+const initialState: BlogState = {
+  articles: [],
+  searchTerm: '',
+  selectedTag: 'all',
+  visibleCount: 4,
+  showEditor: false,
+};
+
+function blogReducer(state: BlogState, action: BlogAction): BlogState {
+  switch (action.type) {
+    case 'SET_ARTICLES':
+      return { ...state, articles: action.articles };
+    case 'SET_SEARCH_TERM':
+      return { ...state, searchTerm: action.term };
+    case 'SET_SELECTED_TAG':
+      return { ...state, selectedTag: action.tag };
+    case 'SET_VISIBLE_COUNT':
+      return { ...state, visibleCount: action.count };
+    case 'INCREASE_VISIBLE_COUNT':
+      return { ...state, visibleCount: state.visibleCount + action.increment };
+    case 'TOGGLE_EDITOR':
+      return { ...state, showEditor: !state.showEditor };
+    case 'SET_EDITOR':
+      return { ...state, showEditor: action.value };
+    default:
+      return state;
+  }
+}
 
 export function Blog() {
   const { elementRef, isVisible } = useScrollAnimation();
   const { t, i18n } = useTranslation();
   const { isDark } = useTheme();
-  const [articles, setArticles] = useState<BlogArticle[]>([]);
+  const [state, dispatch] = useReducer(blogReducer, initialState);
   const { likes, toggleLike, hasLiked } = useBlogLikes();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTag, setSelectedTag] = useState<string>('all');
-  const [visibleCount, setVisibleCount] = useState(4);
-  const [showEditor, setShowEditor] = useState(false);
 
   useEffect(() => {
     const loadedArticles = loadBlogArticles(i18n.language);
-    setArticles(loadedArticles);
+    dispatch({ type: 'SET_ARTICLES', articles: loadedArticles });
   }, [i18n.language]);
 
   // Get all unique tags
   const allTags = useMemo(() => {
     const tagsSet = new Set<string>();
-    articles.forEach(article => {
-      article.tags?.forEach(tag => tagsSet.add(tag));
+    state.articles.forEach((article: BlogArticle) => {
+      article.tags?.forEach((tag: string) => tagsSet.add(tag));
     });
     return Array.from(tagsSet).sort();
-  }, [articles]);
+  }, [state.articles]);
 
   // Filter articles by search and tag
   const filteredArticles = useMemo(() => {
-    return articles.filter(article => {
-      const matchesSearch = searchTerm === '' ||
-        article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.subtitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.content.toLowerCase().includes(searchTerm.toLowerCase());
+    return state.articles.filter((article: BlogArticle) => {
+      const matchesSearch = state.searchTerm === '' ||
+        article.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+        article.subtitle.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+        article.content.toLowerCase().includes(state.searchTerm.toLowerCase());
 
-      const matchesTag = selectedTag === 'all' ||
-        article.tags?.includes(selectedTag);
+      const matchesTag = state.selectedTag === 'all' ||
+        article.tags?.includes(state.selectedTag);
 
       return matchesSearch && matchesTag;
     });
-  }, [articles, searchTerm, selectedTag]);
+  }, [state.articles, state.searchTerm, state.selectedTag]);
 
-  const displayedArticles = filteredArticles.slice(0, visibleCount);
+  const displayedArticles = filteredArticles.slice(0, state.visibleCount);
 
   const handleArticleClick = (slug: string) => {
     window.location.hash = `blog/${slug}`;
   };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString(i18n.language === 'es' ? 'es-ES' : 'en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+  const handleShowMore = () => {
+    dispatch({
+      type: 'SET_VISIBLE_COUNT',
+      count: Math.min(state.visibleCount + 4, filteredArticles.length)
     });
   };
 
-  const handleShowMore = () => {
-    setVisibleCount(prev => Math.min(prev + 4, filteredArticles.length));
-  };
-
   const handleShowLess = () => {
-    setVisibleCount(4);
+    dispatch({ type: 'SET_VISIBLE_COUNT', count: 4 });
   };
 
   return (
@@ -90,7 +127,7 @@ export function Blog() {
             </h2>
           </div>
           <button
-            onClick={() => setShowEditor(true)}
+            onClick={() => dispatch({ type: 'SET_EDITOR', value: true })}
             className={`btn-animate flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
               isDark
                 ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
@@ -102,7 +139,7 @@ export function Blog() {
           </button>
         </div>
 
-        <BlogEditor isOpen={showEditor} onClose={() => setShowEditor(false)} />
+        <BlogEditor isOpen={state.showEditor} onClose={() => dispatch({ type: 'SET_EDITOR', value: false })} />
 
         {/* Search and Filters */}
         <div className={`mb-8 space-y-4 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
@@ -114,8 +151,8 @@ export function Blog() {
             <input
               type="text"
               placeholder={t('blog.search')}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              value={state.searchTerm}
+              onChange={(e) => dispatch({ type: 'SET_SEARCH_TERM', term: e.target.value })}
               className={`w-full pl-10 pr-4 py-3 rounded-lg border transition-colors ${
                 isDark
                   ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-400 focus:border-blue-500'
@@ -129,9 +166,9 @@ export function Blog() {
             <div className="flex flex-wrap gap-2 items-center">
               <Tag className={isDark ? 'text-slate-400' : 'text-slate-600'} size={20} />
               <button
-                onClick={() => setSelectedTag('all')}
+                onClick={() => dispatch({ type: 'SET_SELECTED_TAG', tag: 'all' })}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedTag === 'all'
+                  state.selectedTag === 'all'
                     ? 'bg-blue-600 text-white'
                     : isDark
                       ? 'bg-slate-800 text-slate-300 hover:bg-slate-700'
@@ -140,12 +177,12 @@ export function Blog() {
               >
                 {t('blog.allTags')}
               </button>
-              {allTags.map(tag => (
+              {allTags.map((tag: string) => (
                 <button
                   key={tag}
-                  onClick={() => setSelectedTag(tag)}
+                  onClick={() => dispatch({ type: 'SET_SELECTED_TAG', tag })}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                    selectedTag === tag
+                    state.selectedTag === tag
                       ? 'bg-blue-600 text-white'
                       : isDark
                         ? 'bg-slate-800 text-slate-300 hover:bg-slate-700'
@@ -164,7 +201,7 @@ export function Blog() {
             isDark ? 'text-slate-400' : 'text-slate-600'
           }`}>
             <p className="text-lg">
-              {searchTerm || selectedTag !== 'all'
+              {state.searchTerm || state.selectedTag !== 'all'
                 ? 'No se encontraron artículos con esos filtros.'
                 : t('blog.noArticles')}
             </p>
@@ -172,7 +209,7 @@ export function Blog() {
         ) : (
           <>
             <div className="grid md:grid-cols-2 gap-8">
-              {displayedArticles.map((article, index) => {
+              {displayedArticles.map((article: BlogArticle, index: number) => {
                 const isNewlyVisible = index >= 4 && isVisible;
                 return (
                   <article
@@ -230,7 +267,7 @@ export function Blog() {
                     {/* Tags */}
                     {article.tags && article.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {article.tags.map(tag => (
+                        {article.tags.map((tag: string) => (
                           <span
                             key={tag}
                             className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -240,7 +277,7 @@ export function Blog() {
                             }`}
                             onClick={(e) => {
                               e.stopPropagation();
-                              setSelectedTag(tag);
+                              dispatch({ type: 'SET_SELECTED_TAG', tag });
                             }}
                           >
                             {tag}
@@ -282,14 +319,14 @@ export function Blog() {
             {filteredArticles.length > 4 && (
               <div className="flex justify-center mt-12">
                 <button
-                  onClick={visibleCount > 4 ? handleShowLess : handleShowMore}
+                  onClick={state.visibleCount > 4 ? handleShowLess : handleShowMore}
                   className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg border transition-colors ${
                     isDark
                       ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
                       : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
                   }`}
                 >
-                  {visibleCount > 4 ? (
+                  {state.visibleCount > 4 ? (
                     <>
                       <ChevronUp size={20} />
                       <span className="font-medium">{t('blog.viewLess')}</span>
@@ -298,7 +335,7 @@ export function Blog() {
                     <>
                       <ChevronDown size={20} />
                       <span className="font-medium">
-                        {t('blog.viewMore')} ({Math.min(4, filteredArticles.length - visibleCount)})
+                        {t('blog.viewMore')} ({Math.min(4, filteredArticles.length - state.visibleCount)})
                       </span>
                     </>
                   )}

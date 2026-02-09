@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { loadBlogArticles, BlogArticle } from '../utils/blogLoader';
 import { useBlogLikes } from '../hooks/useBlogLikes';
+import { formatDate } from '../utils/formatDate';
 
 export function BlogPost() {
   const { isDark } = useTheme();
@@ -52,15 +53,6 @@ export function BlogPost() {
 
   const handleClose = () => {
     window.location.hash = '';
-  };
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString(i18n.language === 'es' ? 'es-ES' : 'en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
   };
 
   return (

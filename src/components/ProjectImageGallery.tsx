@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useReducer, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProjectImageGalleryProps {
@@ -6,18 +6,59 @@ interface ProjectImageGalleryProps {
   isHovering: boolean;
 }
 
+interface GalleryState {
+  images: string[];
+  currentIndex: number;
+  showGallery: boolean;
+  isLoading: boolean;
+}
+
+type GalleryAction =
+  | { type: 'SET_IMAGES'; images: string[] }
+  | { type: 'SET_CURRENT_INDEX'; index: number }
+  | { type: 'NEXT_IMAGE'; totalImages: number }
+  | { type: 'PREV_IMAGE'; totalImages: number }
+  | { type: 'SET_SHOW_GALLERY'; value: boolean }
+  | { type: 'SET_LOADING'; value: boolean }
+  | { type: 'RESET_GALLERY' };
+
+const initialState: GalleryState = {
+  images: [],
+  currentIndex: 0,
+  showGallery: false,
+  isLoading: true,
+};
+
+function galleryReducer(state: GalleryState, action: GalleryAction): GalleryState {
+  switch (action.type) {
+    case 'SET_IMAGES':
+      return { ...state, images: action.images };
+    case 'SET_CURRENT_INDEX':
+      return { ...state, currentIndex: action.index };
+    case 'NEXT_IMAGE':
+      return { ...state, currentIndex: (state.currentIndex + 1) % action.totalImages };
+    case 'PREV_IMAGE':
+      return { ...state, currentIndex: (state.currentIndex - 1 + action.totalImages) % action.totalImages };
+    case 'SET_SHOW_GALLERY':
+      return { ...state, showGallery: action.value };
+    case 'SET_LOADING':
+      return { ...state, isLoading: action.value };
+    case 'RESET_GALLERY':
+      return { ...state, showGallery: true, currentIndex: 0 };
+    default:
+      return state;
+  }
+}
+
 export function ProjectImageGallery({ projectFolder, isHovering }: ProjectImageGalleryProps) {
-  const [images, setImages] = useState<string[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [showGallery, setShowGallery] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [state, dispatch] = useReducer(galleryReducer, initialState);
 
   useEffect(() => {
     let isMounted = true;
 
     // Try to load images with sequential naming (1.png, 2.png, etc.)
     const loadImages = async () => {
-      setIsLoading(true);
+      dispatch({ type: 'SET_LOADING', value: true });
       const imageExtensions = ['png', 'jpg', 'jpeg', 'webp'];
       const loadedImages: string[] = [];
 
@@ -62,8 +103,8 @@ export function ProjectImageGallery({ projectFolder, isHovering }: ProjectImageG
       }
 
       if (isMounted) {
-        setImages(loadedImages);
-        setIsLoading(false);
+        dispatch({ type: 'SET_IMAGES', images: loadedImages });
+        dispatch({ type: 'SET_LOADING', value: false });
       }
     };
 
@@ -75,30 +116,29 @@ export function ProjectImageGallery({ projectFolder, isHovering }: ProjectImageG
   }, [projectFolder]);
 
   useEffect(() => {
-    if (isHovering && images.length > 0) {
-      setShowGallery(true);
-      setCurrentIndex(0);
+    if (isHovering && state.images.length > 0) {
+      dispatch({ type: 'RESET_GALLERY' });
     } else {
-      setShowGallery(false);
+      dispatch({ type: 'SET_SHOW_GALLERY', value: false });
     }
-  }, [isHovering, images.length]);
+  }, [isHovering, state.images.length]);
 
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    dispatch({ type: 'NEXT_IMAGE', totalImages: state.images.length });
   };
 
   const prevImage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    dispatch({ type: 'PREV_IMAGE', totalImages: state.images.length });
   };
 
   const closeGallery = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setShowGallery(false);
+    dispatch({ type: 'SET_SHOW_GALLERY', value: false });
   };
 
-  if (!showGallery || images.length === 0) {
+  if (!state.showGallery || state.images.length === 0) {
     return null;
   }
 
@@ -116,7 +156,7 @@ export function ProjectImageGallery({ projectFolder, isHovering }: ProjectImageG
       </button>
 
       <div className="relative w-full h-full p-4 flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
-        {isLoading ? (
+        {state.isLoading ? (
           <div className="flex items-center justify-center">
             <div className="text-white text-sm">Cargando imágenes...</div>
           </div>
@@ -124,14 +164,14 @@ export function ProjectImageGallery({ projectFolder, isHovering }: ProjectImageG
           <>
             <div className="relative w-full flex-1 flex items-center justify-center">
               <img
-                src={images[currentIndex]}
-                alt={`Project screenshot ${currentIndex + 1}`}
+                src={state.images[state.currentIndex]}
+                alt={`Project screenshot ${state.currentIndex + 1}`}
                 className="max-w-full max-h-full object-contain rounded-lg"
                 loading="eager"
               />
             </div>
 
-            {images.length > 1 && (
+            {state.images.length > 1 && (
               <>
                 <button
                   onClick={prevImage}
@@ -150,15 +190,15 @@ export function ProjectImageGallery({ projectFolder, isHovering }: ProjectImageG
                 </button>
 
                 <div className="flex justify-center gap-2 mt-3 mb-2">
-                  {images.map((_, index) => (
+                  {state.images.map((_: string, index: number) => (
                     <button
                       key={index}
                       onClick={(e) => {
                         e.stopPropagation();
-                        setCurrentIndex(index);
+                        dispatch({ type: 'SET_CURRENT_INDEX', index });
                       }}
                       className={`h-1.5 rounded-full transition-all ${
-                        index === currentIndex ? 'bg-white w-6' : 'bg-white/40 hover:bg-white/60 w-1.5'
+                        index === state.currentIndex ? 'bg-white w-6' : 'bg-white/40 hover:bg-white/60 w-1.5'
                       }`}
                       aria-label={`Go to image ${index + 1}`}
                     />
@@ -168,7 +208,7 @@ export function ProjectImageGallery({ projectFolder, isHovering }: ProjectImageG
             )}
 
             <div className="text-center text-white/70 text-xs">
-              {currentIndex + 1} / {images.length}
+              {state.currentIndex + 1} / {state.images.length}
             </div>
           </>
         )}
