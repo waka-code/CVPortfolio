@@ -1,4 +1,4 @@
-![1770590097336](image/README/1770590097336.png)![1770590098795](image/README/1770590098795.png)# CV Portfolio - Waddimi Saint-Louis
+# CV Portfolio - Waddimi Saint-Louis
 
 Portfolio web personal desarrollado con React, TypeScript, Tailwind CSS y Vite.
 
