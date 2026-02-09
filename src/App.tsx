@@ -1,6 +1,8 @@
 import { Hero } from './components/Hero';
 import { Experience } from './components/Experience';
 import { Projects } from './components/Projects';
+import { Blog } from './components/Blog';
+import { BlogPost } from './components/BlogPost';
 import { Skills } from './components/Skills';
 import { Education } from './components/Education';
 import { Footer } from './components/Footer';
@@ -96,9 +98,11 @@ function AppContent() {
       <Hero {...personalInfo} />
       <Experience jobs={jobs} />
       <Projects projects={projects} />
+      <Blog />
       <Skills skillCategories={skillCategories} />
       <Education {...education} />
       <Footer {...personalInfo} />
+      <BlogPost />
     </div>
   );
 }

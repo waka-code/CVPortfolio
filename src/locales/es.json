@@ -167,5 +167,18 @@
     "darkMode": "Modo Oscuro",
     "switchToEnglish": "Switch to English",
     "switchToSpanish": "Cambiar a Español"
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Leer Más",
+    "noArticles": "Aún no hay artículos. ¡Vuelve pronto!",
+    "publishedOn": "Publicado el",
+    "likes": "Me gusta",
+    "minRead": "min de lectura",
+    "search": "Buscar artículos...",
+    "viewMore": "Ver Más",
+    "viewLess": "Ver Menos",
+    "allTags": "Todos",
+    "filterByTag": "Filtrar por etiqueta"
   }
 }

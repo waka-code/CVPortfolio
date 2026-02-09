@@ -267,3 +267,11 @@ html {
 .fixed.z-50 * {
   outline: none !important;
 }
+
+/* Blog article preview truncation */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
