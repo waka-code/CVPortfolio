@@ -3,10 +3,9 @@ import { BlogEditor } from './BlogEditor';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { loadBlogArticles, BlogArticle } from '../utils/blogLoader';
 import { useBlogLikes } from '../hooks/useBlogLikes';
-import { getGitHubToken } from '../utils/githubApi';
 
 export function Blog() {
   const { elementRef, isVisible } = useScrollAnimation();
@@ -18,28 +17,6 @@ export function Blog() {
   const [selectedTag, setSelectedTag] = useState<string>('all');
   const [visibleCount, setVisibleCount] = useState(4);
   const [showEditor, setShowEditor] = useState(false);
-  const [isOwner, setIsOwner] = useState(() => !!getGitHubToken());
-
-  // Secret shortcut: Ctrl+Shift+B opens editor with token config
-  const handleSecretShortcut = useCallback((e: KeyboardEvent) => {
-    if (e.ctrlKey && e.shiftKey && e.key === 'B') {
-      e.preventDefault();
-      setShowEditor(true);
-      setIsOwner(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleSecretShortcut);
-    return () => window.removeEventListener('keydown', handleSecretShortcut);
-  }, [handleSecretShortcut]);
-
-  // Re-check token when editor closes
-  useEffect(() => {
-    if (!showEditor) {
-      setIsOwner(!!getGitHubToken());
-    }
-  }, [showEditor]);
 
   useEffect(() => {
     const loadedArticles = loadBlogArticles(i18n.language);
@@ -112,19 +89,17 @@ export function Blog() {
               {t('blog.title')}
             </h2>
           </div>
-          {isOwner && (
-            <button
-              onClick={() => setShowEditor(true)}
-              className={`btn-animate flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
-                isDark
-                  ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
-                  : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
-              }`}
-            >
-              <PlusCircle size={20} />
-              <span className="font-medium">{i18n.language === 'es' ? 'Nuevo Artículo' : 'New Article'}</span>
-            </button>
-          )}
+          <button
+            onClick={() => setShowEditor(true)}
+            className={`btn-animate flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
+              isDark
+                ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
+                : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
+            }`}
+          >
+            <PlusCircle size={20} />
+            <span className="font-medium">{i18n.language === 'es' ? 'Nuevo Artículo' : 'New Article'}</span>
+          </button>
         </div>
 
         <BlogEditor isOpen={showEditor} onClose={() => setShowEditor(false)} />
