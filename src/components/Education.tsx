@@ -1,7 +1,13 @@
-import { GraduationCap, Languages } from 'lucide-react';
+import { GraduationCap, Languages, X } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
+import { useState, useEffect } from 'react';
+
+interface CertificateImage {
+  name: string;
+  image: string;
+}
 
 interface EducationProps {
   degree: string;
@@ -9,12 +15,24 @@ interface EducationProps {
   period: string;
   languages: { language: string; level: string }[];
   certifications: string[];
+  certificateImages?: CertificateImage[];
 }
 
-export function Education({ degree, institution, period, languages, certifications }: EducationProps) {
+export function Education({ degree, institution, period, languages, certifications, certificateImages }: EducationProps) {
   const { elementRef, isVisible } = useScrollAnimation();
   const { t } = useTranslation();
   const { isDark } = useTheme();
+  const [selectedCert, setSelectedCert] = useState<CertificateImage | null>(null);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedCert(null);
+    };
+    if (selectedCert) {
+      window.addEventListener('keydown', handleEscape);
+      return () => window.removeEventListener('keydown', handleEscape);
+    }
+  }, [selectedCert]);
 
   return (
     <section
@@ -73,6 +91,34 @@ export function Education({ degree, institution, period, languages, certificatio
                   </li>
                 ))}
               </ul>
+
+              {certificateImages && certificateImages.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {certificateImages.map((cert) => (
+                    <button
+                      key={cert.name}
+                      onClick={() => setSelectedCert(cert)}
+                      className={`group relative overflow-hidden rounded-lg border-2 transition-all duration-200 hover:scale-105 hover:shadow-lg ${
+                        isDark
+                          ? 'border-slate-600 hover:border-blue-500'
+                          : 'border-slate-200 hover:border-blue-400'
+                      }`}
+                      title={`${t('education.viewCertificate')} - ${cert.name}`}
+                    >
+                      <img
+                        src={cert.image}
+                        alt={`${cert.name} certificate`}
+                        className="w-20 h-14 object-cover"
+                      />
+                      <div className={`absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity ${
+                        isDark ? 'bg-black/60' : 'bg-black/40'
+                      }`}>
+                        <span className="text-white text-xs font-medium">{t('education.viewCertificate')}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
@@ -119,6 +165,31 @@ export function Education({ degree, institution, period, languages, certificatio
           </div>
         </div>
       </div>
+
+      {selectedCert && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-fade-in-up"
+          onClick={() => setSelectedCert(null)}
+        >
+          <div className="relative max-w-4xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setSelectedCert(null)}
+              className="absolute -top-10 right-0 p-2 text-white/80 hover:text-white transition-colors"
+              aria-label="Close"
+            >
+              <X size={24} />
+            </button>
+            <img
+              src={selectedCert.image}
+              alt={`${selectedCert.name} certificate`}
+              className="max-w-full max-h-[85vh] object-contain rounded-lg"
+            />
+            <p className="text-center text-white/80 mt-3 text-sm font-medium">
+              {selectedCert.name}
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

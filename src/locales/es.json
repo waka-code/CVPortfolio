@@ -67,7 +67,7 @@
     }
   },
   "projects": {
-    "title": "Proyectos Personales",
+    "title": "Proyectos",
     "keyFeatures": "Características Clave:",
     "techStack": "Stack Tecnológico:",
     "downloadCV": "Descargar CV",
@@ -150,6 +150,7 @@
     "period": "2017 - 2024",
     "languages": "Idiomas",
     "certifications": "Certificaciones",
+    "viewCertificate": "Ver Certificado",
     "languagesList": {
       "spanish": "Español",
       "english": "Inglés",

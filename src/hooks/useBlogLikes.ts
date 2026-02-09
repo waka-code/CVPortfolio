@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { database } from '../config/firebase';
+import { ref, onValue, runTransaction } from 'firebase/database';
 
 interface LikesData {
   [slug: string]: number;
@@ -8,62 +10,60 @@ interface LikedArticles {
   [slug: string]: boolean;
 }
 
-const LIKES_KEY = 'blog_likes';
 const LIKED_ARTICLES_KEY = 'blog_liked_articles';
 
 export function useBlogLikes() {
   const [likes, setLikes] = useState<LikesData>({});
   const [likedArticles, setLikedArticles] = useState<LikedArticles>({});
 
-  // Load from localStorage on mount
+  // Load user's liked state from localStorage (tracks which articles THIS user liked)
   useEffect(() => {
     try {
-      const storedLikes = localStorage.getItem(LIKES_KEY);
-      const storedLiked = localStorage.getItem(LIKED_ARTICLES_KEY);
-
-      if (storedLikes) {
-        setLikes(JSON.parse(storedLikes));
-      }
-      if (storedLiked) {
-        setLikedArticles(JSON.parse(storedLiked));
+      const stored = localStorage.getItem(LIKED_ARTICLES_KEY);
+      if (stored) {
+        setLikedArticles(JSON.parse(stored));
       }
     } catch (error) {
-      console.error('Error loading likes from localStorage:', error);
+      console.error('Error loading liked articles from localStorage:', error);
     }
   }, []);
 
+  // Listen to Firebase Realtime Database for shared like counts
+  useEffect(() => {
+    const likesRef = ref(database, 'likes');
+    const unsubscribe = onValue(likesRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        setLikes(data);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const toggleLike = (slug: string) => {
-    setLikes((prev) => {
-      const currentLikes = prev[slug] || 0;
-      const isLiked = likedArticles[slug];
-      const newLikes = {
-        ...prev,
-        [slug]: isLiked ? currentLikes - 1 : currentLikes + 1,
-      };
+    const isLiked = likedArticles[slug];
+    const likeRef = ref(database, `likes/${slug}`);
 
-      try {
-        localStorage.setItem(LIKES_KEY, JSON.stringify(newLikes));
-      } catch (error) {
-        console.error('Error saving likes to localStorage:', error);
+    // Atomic update in Firebase to prevent race conditions
+    runTransaction(likeRef, (currentValue: number | null) => {
+      if (currentValue === null) {
+        return isLiked ? 0 : 1;
       }
-
-      return newLikes;
+      return isLiked ? Math.max(0, currentValue - 1) : currentValue + 1;
+    }).catch((error) => {
+      console.error('Firebase like transaction failed:', error);
     });
 
-    setLikedArticles((prev) => {
-      const newLiked = {
-        ...prev,
-        [slug]: !prev[slug],
-      };
+    // Update local liked state (tracks if THIS user has liked)
+    const newLiked = { ...likedArticles, [slug]: !isLiked };
+    setLikedArticles(newLiked);
 
-      try {
-        localStorage.setItem(LIKED_ARTICLES_KEY, JSON.stringify(newLiked));
-      } catch (error) {
-        console.error('Error saving liked articles to localStorage:', error);
-      }
-
-      return newLiked;
-    });
+    try {
+      localStorage.setItem(LIKED_ARTICLES_KEY, JSON.stringify(newLiked));
+    } catch (error) {
+      console.error('Error saving liked articles to localStorage:', error);
+    }
   };
 
   const hasLiked = (slug: string): boolean => {

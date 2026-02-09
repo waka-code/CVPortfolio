@@ -64,7 +64,6 @@ export function ProjectImageGallery({ projectFolder, isHovering }: ProjectImageG
       if (isMounted) {
         setImages(loadedImages);
         setIsLoading(false);
-        console.log(`✅ Loaded ${loadedImages.length} images from ${projectFolder}`, loadedImages);
       }
     };
 

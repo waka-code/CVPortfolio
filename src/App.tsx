@@ -90,6 +90,11 @@ function AppContent() {
       { language: t('education.languagesList.english'), level: t('education.languagesList.intermediate') },
     ],
     certifications: ['Node.js', 'React', 'MongoDB', `${t('education.aws')}`],
+    certificateImages: [
+      { name: 'Node.js', image: `${import.meta.env.BASE_URL}certificado/node.jpg` },
+      { name: 'MongoDB', image: `${import.meta.env.BASE_URL}certificado/mongo.jpg` },
+      { name: 'React', image: `${import.meta.env.BASE_URL}certificado/react.png` },
+    ],
   };
 
   return (

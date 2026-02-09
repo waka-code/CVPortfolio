@@ -11,8 +11,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.app.json"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.57.4",
     "@tailwindcss/typography": "^0.5.19",
+    "firebase": "^12.9.0",
     "gray-matter": "^4.0.3",
     "i18next": "^25.7.2",
     "lucide-react": "^0.344.0",
