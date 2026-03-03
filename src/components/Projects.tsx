@@ -38,6 +38,7 @@ export function Projects({ projects }: ProjectsProps) {
 
   return (
     <section
+      id="projects"
       ref={elementRef}
       className={`py-20 px-4 transition-colors duration-300 ${
         isDark ? 'bg-slate-800' : 'bg-slate-50'

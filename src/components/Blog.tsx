@@ -109,6 +109,7 @@ export function Blog() {
 
   return (
     <section
+      id="blog"
       ref={elementRef}
       className={`py-20 px-4 transition-colors duration-300 ${
         isDark ? 'bg-slate-900' : 'bg-white'

@@ -36,6 +36,7 @@ export function Education({ degree, institution, period, languages, certificatio
 
   return (
     <section
+      id="education"
       ref={elementRef}
       className={`py-20 px-4 transition-colors duration-300 ${
         isDark ? 'bg-slate-800' : 'bg-slate-50'

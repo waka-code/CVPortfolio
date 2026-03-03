@@ -15,6 +15,7 @@ export function Hero({  github, linkedin }: HeroProps) {
 
   return (
     <section
+      id="home"
       ref={elementRef}
       className={`min-h-screen flex items-center justify-center px-4 transition-colors duration-300 ${
         isDark

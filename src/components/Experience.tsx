@@ -23,6 +23,7 @@ export function Experience({ jobs }: ExperienceProps) {
 
   return (
     <section
+      id="experience"
       ref={elementRef}
       className={`py-20 px-4 transition-colors duration-300 ${
         isDark ? 'bg-slate-900' : 'bg-white'

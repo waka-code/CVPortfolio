@@ -167,7 +167,13 @@
     "lightMode": "Modo Claro",
     "darkMode": "Modo Oscuro",
     "switchToEnglish": "Switch to English",
-    "switchToSpanish": "Cambiar a Español"
+    "switchToSpanish": "Cambiar a Español",
+    "home": "Inicio",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "blog": "Blog",
+    "skills": "Skills",
+    "education": "Educación"
   },
   "blog": {
     "title": "Blog",
