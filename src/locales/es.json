@@ -175,7 +175,8 @@
     "blog": "Blog",
     "skills": "Skills",
     "education": "Educación",
-    "services": "Servicios"
+    "services": "Servicios",
+    "testimonials": "Testimonios"
   },
   "services": {
     "title": "Planes de Servicios",
@@ -232,6 +233,40 @@
           "Gestión de proyectos incluida"
         ]
       }
+    }
+  },
+  "testimonials": {
+    "title": "Testimonios",
+    "subtitle": "Lo que otros dicen sobre trabajar conmigo.",
+    "empty": "Aún no hay testimonios. ¡Sé el primero en compartir tu experiencia!",
+    "shareBtn": "Comparte tu experiencia",
+    "form": {
+      "title": "Dejar un Testimonio",
+      "name": "Nombre Completo",
+      "role": "Rol / Empresa",
+      "photoUrl": "URL de Foto (opcional)",
+      "description": "Tu testimonio",
+      "submit": "Enviar",
+      "submitting": "Enviando...",
+      "successTitle": "¡Gracias!",
+      "successMsg": "Tu testimonio está en revisión y aparecerá una vez aprobado.",
+      "errorMsg": "Algo salió mal. Por favor intenta de nuevo."
+    },
+    "admin": {
+      "title": "Admin de Testimonios",
+      "passwordPlaceholder": "Contraseña de administrador",
+      "unlock": "Acceder",
+      "wrongPassword": "Contraseña incorrecta.",
+      "tabs": {
+        "pending": "Pendientes",
+        "approved": "Aprobados",
+        "rejected": "Rechazados"
+      },
+      "approve": "Aprobar",
+      "reject": "Rechazar",
+      "revoke": "Revocar",
+      "restore": "Restaurar",
+      "noItems": "No hay elementos en esta categoría."
     }
   },
   "blog": {

@@ -175,7 +175,8 @@
     "blog": "Blog",
     "skills": "Skills",
     "education": "Education",
-    "services": "Services"
+    "services": "Services",
+    "testimonials": "Testimonials"
   },
   "services": {
     "title": "Service Plans",
@@ -232,6 +233,40 @@
           "Project management included"
         ]
       }
+    }
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "What others say about working with me.",
+    "empty": "No testimonials yet. Be the first to share your experience!",
+    "shareBtn": "Share your experience",
+    "form": {
+      "title": "Leave a Testimonial",
+      "name": "Full Name",
+      "role": "Role / Company",
+      "photoUrl": "Photo URL (optional)",
+      "description": "Your testimonial",
+      "submit": "Submit",
+      "submitting": "Submitting...",
+      "successTitle": "Thank you!",
+      "successMsg": "Your testimonial is under review and will appear once approved.",
+      "errorMsg": "Something went wrong. Please try again."
+    },
+    "admin": {
+      "title": "Testimonials Admin",
+      "passwordPlaceholder": "Admin password",
+      "unlock": "Unlock",
+      "wrongPassword": "Incorrect password.",
+      "tabs": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "approve": "Approve",
+      "reject": "Reject",
+      "revoke": "Revoke",
+      "restore": "Restore",
+      "noItems": "No items in this category."
     }
   },
   "blog": {

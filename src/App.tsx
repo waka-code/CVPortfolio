@@ -6,6 +6,8 @@ import { BlogPost } from './components/BlogPost';
 import { Skills } from './components/Skills';
 import { Education } from './components/Education';
 import { Services } from './components/Services';
+import { Testimonials } from './components/Testimonials';
+import { TestimonialsAdmin } from './components/TestimonialsAdmin';
 import { Footer } from './components/Footer';
 import { HeaderNav } from './components/HeaderNav';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
@@ -108,8 +110,10 @@ function AppContent() {
       <Skills skillCategories={skillCategories} />
       <Education {...education} />
       <Blog />
+      <Testimonials />
       <Footer {...personalInfo} />
       <BlogPost />
+      <TestimonialsAdmin />
     </div>
   );
 }
