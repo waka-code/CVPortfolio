@@ -102,12 +102,12 @@ function AppContent() {
     <div className={`min-h-screen transition-colors duration-300 ${isDark ? 'bg-slate-950' : 'bg-white'}`}>
       <HeaderNav />
       <Hero {...personalInfo} />
-      <Experience jobs={jobs} />
+      <Services />
       <Projects projects={projects} />
-      <Blog />
+      <Experience jobs={jobs} />
       <Skills skillCategories={skillCategories} />
       <Education {...education} />
-      <Services />
+      <Blog />
       <Footer {...personalInfo} />
       <BlogPost />
     </div>

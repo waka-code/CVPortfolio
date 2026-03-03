@@ -2,7 +2,8 @@
   "hero": {
     "title": "Waddimi Saint-Louis",
     "subtitle": "System Engineer | Full Stack Developer",
-    "summary": "Systems Engineer with 5 years of experience in fullstack development. Currently at ProDoctivity, delivering scalable solutions across frontend and backend while mentoring junior developers. Skilled in building robust APIs, responsive interfaces, and driving team growth through technical leadership and innovation.",
+    "summary": "I build scalable systems, robust APIs, and high-impact interfaces for companies that need real results. 5 years delivering fullstack solutions in production, with expertise in technical leadership, cloud architecture, and web/mobile development.",
+    "hireCTA": "View Plans",
     "email": "Email",
     "call": "Call"
   },
@@ -159,8 +160,8 @@
     }
   },
   "footer": {
-    "letsConnect": "Let's Connect",
-    "connectMessage": "Feel free to reach out for collaborations or just a friendly chat",
+    "letsConnect": "Ready to get started?",
+    "connectMessage": "Available for new projects. I respond within 24 hours.",
     "copyright": "© {{year}} Waddimi Saint-Louis. All rights reserved."
   },
   "nav": {

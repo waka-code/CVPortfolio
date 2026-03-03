@@ -1,7 +1,8 @@
-import { Briefcase } from 'lucide-react';
+import { Briefcase, Eye } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
+import { useState, useRef } from 'react';
 
 interface Job {
   title: string;
@@ -20,6 +21,17 @@ export function Experience({ jobs }: ExperienceProps) {
   const { elementRef, isVisible } = useScrollAnimation();
   const { t } = useTranslation();
   const { isDark } = useTheme();
+  const [hoveredResponsibilities, setHoveredResponsibilities] = useState<number | null>(null);
+  const tooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleTooltipEnter = (index: number) => {
+    if (tooltipTimer.current) clearTimeout(tooltipTimer.current);
+    setHoveredResponsibilities(index);
+  };
+
+  const handleTooltipLeave = () => {
+    tooltipTimer.current = setTimeout(() => setHoveredResponsibilities(null), 80);
+  };
 
   return (
     <section
@@ -42,7 +54,8 @@ export function Experience({ jobs }: ExperienceProps) {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {jobs.map((job, index) => (
+          {jobs.map((job, index) => {
+            return (
             <div
               key={index}
               className={`card-hover rounded-xl p-8 border ${
@@ -52,7 +65,11 @@ export function Experience({ jobs }: ExperienceProps) {
                   ? 'bg-slate-800 border-slate-700 hover:border-blue-500'
                   : 'bg-slate-50 border-slate-200 hover:border-blue-300'
               }`}
-              style={{ animationDelay: `${index * 150}ms` }}
+              style={{
+                animationDelay: `${index * 150}ms`,
+                position: 'relative',
+                zIndex: hoveredResponsibilities === index ? 10 : undefined,
+              }}
             >
               <div className="mb-4">
                 <h3
@@ -74,27 +91,39 @@ export function Experience({ jobs }: ExperienceProps) {
                 {job.description}
               </p>
 
-              <div className="mb-4">
-                <h4 className={`font-semibold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              <div
+                className="mb-4 relative"
+                onMouseEnter={() => handleTooltipEnter(index)}
+                onMouseLeave={handleTooltipLeave}
+              >
+                <div
+                  className={`inline-flex items-center gap-1.5 font-semibold text-sm cursor-default select-none ${
+                    isDark ? 'text-slate-300' : 'text-slate-700'
+                  }`}
+                >
+                  <Eye size={14} className="text-blue-500" />
                   {t('experience.keyResponsibilities')}
-                </h4>
-                <ul className="space-y-2">
-                  {job.tasks.map((task, taskIndex) => (
-                    <li
-                      key={taskIndex}
-                      className={`flex gap-2 text-sm ${
-                        isDark ? 'text-slate-300' : 'text-slate-700'
-                      }`}
-                    >
-                      <span className="text-blue-600 font-bold">•</span>
-                      <span>{task}</span>
-                    </li>
-                  ))}
-                </ul>
+                </div>
+                {hoveredResponsibilities === index && (
+                  <div
+                    className="absolute top-full left-0 mt-2 w-72 rounded-xl p-4 bg-slate-900 border border-slate-700 shadow-2xl animate-tooltip-in z-20"
+                    onMouseEnter={() => handleTooltipEnter(index)}
+                    onMouseLeave={handleTooltipLeave}
+                  >
+                    <ul className="space-y-2">
+                      {job.tasks.map((task, taskIndex) => (
+                        <li key={taskIndex} className="flex gap-2 text-sm text-slate-200">
+                          <span className="text-blue-400 font-bold shrink-0">•</span>
+                          <span>{task}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
 
               <div>
-                <h4 className={`font-semibold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <h4 className={`font-semibold mb-2 text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>
                   {t('experience.technologies')}
                 </h4>
                 <div className="flex flex-wrap gap-2">
@@ -113,7 +142,8 @@ export function Experience({ jobs }: ExperienceProps) {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 interface ProjectImageGalleryProps {
   projectFolder: string;
   isHovering: boolean;
+  onClose?: () => void;
 }
 
 interface GalleryState {
@@ -50,7 +51,7 @@ function galleryReducer(state: GalleryState, action: GalleryAction): GalleryStat
   }
 }
 
-export function ProjectImageGallery({ projectFolder, isHovering }: ProjectImageGalleryProps) {
+export function ProjectImageGallery({ projectFolder, isHovering, onClose }: ProjectImageGalleryProps) {
   const [state, dispatch] = useReducer(galleryReducer, initialState);
 
   useEffect(() => {
@@ -136,6 +137,7 @@ export function ProjectImageGallery({ projectFolder, isHovering }: ProjectImageG
   const closeGallery = (e: React.MouseEvent) => {
     e.stopPropagation();
     dispatch({ type: 'SET_SHOW_GALLERY', value: false });
+    onClose?.();
   };
 
   if (!state.showGallery || state.images.length === 0) {

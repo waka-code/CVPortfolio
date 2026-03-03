@@ -5,12 +5,12 @@ import { useCallback, useState, useEffect } from 'react';
 
 const NAV_LINKS = [
   { key: 'home', href: '#home' },
-  { key: 'experience', href: '#experience' },
+  { key: 'services', href: '#services' },
   { key: 'projects', href: '#projects' },
-  { key: 'blog', href: '#blog' },
+  { key: 'experience', href: '#experience' },
   { key: 'skills', href: '#skills' },
   { key: 'education', href: '#education' },
-  { key: 'services', href: '#services' },
+  { key: 'blog', href: '#blog' },
 ] as const;
 
 export function HeaderNav() {

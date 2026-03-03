@@ -268,6 +268,70 @@ html {
   outline: none !important;
 }
 
+/* Animación tooltip */
+@keyframes tooltipIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-tooltip-in {
+  animation: tooltipIn 0.14s ease-out forwards;
+  transform-origin: top left;
+}
+
+/* Animación de cierre para tarjetas */
+@keyframes fadeOutSlideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+}
+
+.animate-fade-out-slide-down {
+  animation: fadeOutSlideDown 0.24s ease-in forwards;
+}
+
+/* Animación suave para colapsables */
+@keyframes collapseIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes collapseOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+.animate-collapse-in {
+  animation: collapseIn 0.22s ease-out forwards;
+}
+
+.animate-collapse-out {
+  animation: collapseOut 0.18s ease-in forwards;
+}
+
 /* Blog article preview truncation */
 .line-clamp-3 {
   display: -webkit-box;

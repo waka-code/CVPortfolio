@@ -1,7 +1,8 @@
-import { Github, Linkedin, Download } from 'lucide-react';
+import { Github, Linkedin, Download, ArrowRight } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
+import { useCallback } from 'react';
 
 interface HeroProps {
   github: string;
@@ -12,6 +13,10 @@ export function Hero({  github, linkedin }: HeroProps) {
   const { elementRef, isVisible } = useScrollAnimation();
   const { isDark } = useTheme();
   const { t } = useTranslation();
+
+  const scrollToServices = useCallback(() => {
+    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
   return (
     <section
@@ -62,6 +67,13 @@ export function Hero({  github, linkedin }: HeroProps) {
             isVisible ? 'animate-fade-in-up delay-600' : 'opacity-0'
           }`}
         >
+          <button
+            onClick={scrollToServices}
+            className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/20 transition-all`}
+          >
+            {t('hero.hireCTA')}
+            <ArrowRight size={18} />
+          </button>
           <a
             href={github}
             target="_blank"
@@ -93,8 +105,8 @@ export function Hero({  github, linkedin }: HeroProps) {
             download="Waddimi_Saint-Louis_CV.pdf"
             className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg ${
               isDark
-                ? 'bg-blue-600 hover:bg-blue-500 text-white'
-                : 'bg-blue-600 hover:bg-blue-700 text-white'
+                ? 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+                : 'bg-slate-200 hover:bg-slate-300 text-slate-700'
             }`}
           >
             <Download size={20} />
