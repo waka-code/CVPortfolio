@@ -173,7 +173,65 @@
     "projects": "Proyectos",
     "blog": "Blog",
     "skills": "Skills",
-    "education": "Educación"
+    "education": "Educación",
+    "services": "Servicios"
+  },
+  "services": {
+    "title": "Planes de Servicios",
+    "subtitle": "Soluciones flexibles adaptadas a tus necesidades. Elige el plan que mejor se ajuste a tu proyecto.",
+    "perHour": "/hr",
+    "perMonth": "/mes",
+    "popular": "⭐ Más Popular",
+    "contactWhatsApp": "Contratar por WhatsApp",
+    "contactEmail": "Consultar por Email",
+    "whatsappMessage": "Hola Waddimi, estoy interesado en contratar el {{planName}} ({{price}}). Me gustaría recibir más información para iniciar el proceso.",
+    "emailSubject": "Consulta sobre {{planName}}",
+    "emailBody": "Hola Waddimi,\n\nEstoy interesado en contratar el {{planName}} a {{price}}.\n\nMe gustaría recibir más información y discutir los detalles del proyecto.\n\nQuedo a la espera de tu respuesta.\n\nSaludos",
+    "footerNote": "Precios en USD. Para proyectos especiales o de gran volumen, contáctame para una cotización personalizada.",
+    "plans": {
+      "starter": {
+        "name": "Plan Starter",
+        "description": "Ideal para tareas puntuales, corrección de bugs y consultas técnicas.",
+        "scope": "Hasta 20 horas por proyecto",
+        "benefits": [
+          "Corrección de bugs y errores",
+          "Consultas técnicas (mínimo 1 hora)",
+          "Pequeñas funcionalidades",
+          "Comunicación directa por WhatsApp/Email",
+          "Entrega en 24-72 horas",
+          "1 revisión incluida"
+        ]
+      },
+      "pro": {
+        "name": "Plan Pro",
+        "description": "Para módulos completos, integraciones de APIs y proyectos de mediana escala.",
+        "scope": "Estimación previa según el proyecto",
+        "benefits": [
+          "Desarrollo de módulos completos",
+          "Integración de APIs y servicios externos",
+          "Reuniones de seguimiento incluidas",
+          "Pruebas unitarias e integración",
+          "3 revisiones incluidas",
+          "Soporte post-entrega 7 días",
+          "Documentación técnica completa"
+        ]
+      },
+      "elite": {
+        "name": "Plan Elite",
+        "description": "Dedicación completa para proyectos de gran escala y liderazgo técnico.",
+        "scope": "Hasta 160 horas mensuales",
+        "benefits": [
+          "Desarrollo full-time dedicado",
+          "Liderazgo técnico y arquitectura",
+          "Reuniones semanales de avance",
+          "CI/CD y gestión de infraestructura",
+          "Mentoría al equipo de desarrollo",
+          "Revisiones ilimitadas",
+          "Soporte prioritario 24/7",
+          "Gestión de proyectos incluida"
+        ]
+      }
+    }
   },
   "blog": {
     "title": "Blog",

@@ -5,6 +5,7 @@ import { Blog } from './components/Blog';
 import { BlogPost } from './components/BlogPost';
 import { Skills } from './components/Skills';
 import { Education } from './components/Education';
+import { Services } from './components/Services';
 import { Footer } from './components/Footer';
 import { HeaderNav } from './components/HeaderNav';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
@@ -106,6 +107,7 @@ function AppContent() {
       <Blog />
       <Skills skillCategories={skillCategories} />
       <Education {...education} />
+      <Services />
       <Footer {...personalInfo} />
       <BlogPost />
     </div>

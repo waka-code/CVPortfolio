@@ -173,7 +173,65 @@
     "projects": "Projects",
     "blog": "Blog",
     "skills": "Skills",
-    "education": "Education"
+    "education": "Education",
+    "services": "Services"
+  },
+  "services": {
+    "title": "Service Plans",
+    "subtitle": "Flexible solutions tailored to your needs. Choose the plan that best fits your project.",
+    "perHour": "/hr",
+    "perMonth": "/mo",
+    "popular": "⭐ Most Popular",
+    "contactWhatsApp": "Hire via WhatsApp",
+    "contactEmail": "Inquire via Email",
+    "whatsappMessage": "Hi Waddimi, I'm interested in hiring the {{planName}} ({{price}}). I'd like to get more information to start the process.",
+    "emailSubject": "Inquiry about {{planName}}",
+    "emailBody": "Hi Waddimi,\n\nI'm interested in hiring the {{planName}} at {{price}}.\n\nI'd like to get more information and discuss the project details.\n\nLooking forward to your response.\n\nBest regards",
+    "footerNote": "Prices in USD. For special or high-volume projects, reach out for a custom quote.",
+    "plans": {
+      "starter": {
+        "name": "Starter Plan",
+        "description": "Ideal for one-time tasks, bug fixes, and technical consultations.",
+        "scope": "Up to 20 hours per project",
+        "benefits": [
+          "Bug fixing and error resolution",
+          "Technical consultations (1 hour minimum)",
+          "Small feature development",
+          "Direct WhatsApp/Email communication",
+          "Delivery in 24-72 hours",
+          "1 revision included"
+        ]
+      },
+      "pro": {
+        "name": "Pro Plan",
+        "description": "For complete modules, API integrations, and medium-scale projects.",
+        "scope": "Prior estimation based on project scope",
+        "benefits": [
+          "Full module development",
+          "API and service integrations",
+          "Follow-up meetings included",
+          "Unit and integration testing",
+          "3 revisions included",
+          "7-day post-delivery support",
+          "Full technical documentation"
+        ]
+      },
+      "elite": {
+        "name": "Elite Plan",
+        "description": "Full dedication for large-scale projects and technical leadership.",
+        "scope": "Up to 160 hours monthly",
+        "benefits": [
+          "Dedicated full-time development",
+          "Technical leadership & architecture",
+          "Weekly progress meetings",
+          "CI/CD & infrastructure management",
+          "Development team mentoring",
+          "Unlimited revisions",
+          "Priority 24/7 support",
+          "Project management included"
+        ]
+      }
+    }
   },
   "blog": {
     "title": "Blog",

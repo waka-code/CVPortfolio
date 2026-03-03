@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { key: 'blog', href: '#blog' },
   { key: 'skills', href: '#skills' },
   { key: 'education', href: '#education' },
+  { key: 'services', href: '#services' },
 ] as const;
 
 export function HeaderNav() {
