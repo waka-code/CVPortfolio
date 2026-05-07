@@ -184,12 +184,19 @@
     "perHour": "/hr",
     "perMonth": "/mes",
     "popular": "⭐ Más Popular",
+    "dedicatedBadge": "Mejor para empresas",
+    "dedicatedPrice": "Desde $2,500 – $6,000/mes",
+    "dedicatedScope": "Dependiendo del rol, seniority y responsabilidades.",
+    "scheduleMeeting": "Agendar Reunión",
+    "talkWhatsApp": "Hablar por WhatsApp",
+    "eliteContact": "Contáctame para hablar de trabajo o un plan personalizado",
     "contactWhatsApp": "Contratar por WhatsApp",
     "contactEmail": "Consultar por Email",
     "whatsappMessage": "Hola Waddimi, estoy interesado en contratar el {{planName}} ({{price}}). Me gustaría recibir más información para iniciar el proceso.",
     "emailSubject": "Consulta sobre {{planName}}",
     "emailBody": "Hola Waddimi,\n\nEstoy interesado en contratar el {{planName}} a {{price}}.\n\nMe gustaría recibir más información y discutir los detalles del proyecto.\n\nQuedo a la espera de tu respuesta.\n\nSaludos",
     "footerNote": "Precios en USD. Para proyectos especiales o de gran volumen, contáctame para una cotización personalizada.",
+    "footerNoteExtra": "Planes flexibles adaptados a startups, empresas y proyectos a largo plazo.",
     "plans": {
       "starter": {
         "name": "Plan Starter",
@@ -219,9 +226,9 @@
         ]
       },
       "elite": {
-        "name": "Plan Elite",
-        "description": "Dedicación completa para proyectos de gran escala y liderazgo técnico.",
-        "scope": "Hasta 160 horas mensuales",
+        "name": "Plan Personalizado",
+        "description": "Solución a medida según las necesidades específicas de tu proyecto. Todo el alcance, presupuesto y entregables se definen contigo.",
+        "scope": "Según tus necesidades",
         "benefits": [
           "Desarrollo full-time dedicado",
           "Liderazgo técnico y arquitectura",
@@ -231,6 +238,21 @@
           "Revisiones ilimitadas",
           "Soporte prioritario 24/7",
           "Gestión de proyectos incluida"
+        ]
+      },
+      "dedicated": {
+        "name": "Plan Dedicated",
+        "description": "Ideal para empresas que buscan integración continua al equipo y desarrollo a largo plazo.",
+        "scope": "Dependiendo del rol, seniority y responsabilidades.",
+        "benefits": [
+          "Participación activa en el equipo",
+          "Desarrollo full-time o part-time",
+          "Comunicación diaria y seguimiento",
+          "Participación en reuniones",
+          "Arquitectura y escalabilidad",
+          "Mantenimiento y soporte continuo",
+          "Integración con metodologías ágiles",
+          "Disponibilidad mensual garantizada"
         ]
       }
     }

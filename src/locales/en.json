@@ -184,12 +184,19 @@
     "perHour": "/hr",
     "perMonth": "/mo",
     "popular": "⭐ Most Popular",
+    "dedicatedBadge": "Best for companies",
+    "dedicatedPrice": "From $2,500 – $6,000/mo",
+    "dedicatedScope": "Depending on role, seniority, and responsibilities.",
+    "scheduleMeeting": "Schedule Meeting",
+    "talkWhatsApp": "Talk via WhatsApp",
+    "eliteContact": "Contact me to discuss work or a customized plan",
     "contactWhatsApp": "Hire via WhatsApp",
     "contactEmail": "Inquire via Email",
     "whatsappMessage": "Hi Waddimi, I'm interested in hiring the {{planName}} ({{price}}). I'd like to get more information to start the process.",
     "emailSubject": "Inquiry about {{planName}}",
     "emailBody": "Hi Waddimi,\n\nI'm interested in hiring the {{planName}} at {{price}}.\n\nI'd like to get more information and discuss the project details.\n\nLooking forward to your response.\n\nBest regards",
     "footerNote": "Prices in USD. For special or high-volume projects, reach out for a custom quote.",
+    "footerNoteExtra": "Flexible plans adapted for startups, companies, and long-term projects.",
     "plans": {
       "starter": {
         "name": "Starter Plan",
@@ -219,9 +226,9 @@
         ]
       },
       "elite": {
-        "name": "Elite Plan",
-        "description": "Full dedication for large-scale projects and technical leadership.",
-        "scope": "Up to 160 hours monthly",
+        "name": "Customized Plan",
+        "description": "Tailored solution based on your project's specific needs. All scope, budget, and deliverables are defined with you.",
+        "scope": "Based on your needs",
         "benefits": [
           "Dedicated full-time development",
           "Technical leadership & architecture",
@@ -231,6 +238,21 @@
           "Unlimited revisions",
           "Priority 24/7 support",
           "Project management included"
+        ]
+      },
+      "dedicated": {
+        "name": "Dedicated Plan",
+        "description": "Ideal for companies seeking continuous team integration and long-term development.",
+        "scope": "Depending on role, seniority, and responsibilities.",
+        "benefits": [
+          "Active team participation",
+          "Full-time or part-time development",
+          "Daily communication and follow-up",
+          "Participation in meetings",
+          "Architecture and scalability",
+          "Continuous maintenance and support",
+          "Integration with agile methodologies",
+          "Guaranteed monthly availability"
         ]
       }
     }
