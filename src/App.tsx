@@ -98,6 +98,18 @@ function AppContent() {
       { name: 'MongoDB', image: `${import.meta.env.BASE_URL}certificado/mongo.jpg` },
       { name: 'React', image: `${import.meta.env.BASE_URL}certificado/react.png` },
     ],
+    aiCertifications: [
+      'Claude Code in Action',
+      'Introduction to Model Context Protocol',
+      'Claude with the Anthropic API',
+      'Introduction to Agent Skills',
+    ],
+    aiCertificateImages: [
+      { name: 'Claude Code in Action', image: `${import.meta.env.BASE_URL}certificado/claude-code-in-action.png` },
+      { name: 'Introduction to Model Context Protocol', image: `${import.meta.env.BASE_URL}certificado/introduction-to-model-context-protocol.png` },
+      { name: 'Claude with the Anthropic API', image: `${import.meta.env.BASE_URL}certificado/claude-with-the-anthropic-api.png` },
+      { name: 'Introduction to Agent Skills', image: `${import.meta.env.BASE_URL}certificado/introduction-to-agent-skills.png` },
+    ],
   };
 
   return (
