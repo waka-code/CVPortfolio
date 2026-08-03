@@ -16,7 +16,7 @@
       "start": {
         "title": "How it started",
         "paragraphs": [
-          "My path into programming began in 2017, when I enrolled at Universidad Tecnológica de Santiago (UTESA) to study Systems Engineering. That is where I wrote my first lines of code and realized this was for me: understanding how things work under the hood and building them from scratch.",
+          "My path into programming began in 2017, when I enrolled at Universidad Tecnológica de Santiago (UTESA) to study Systems Engineering. That is where I wrote my first lines of code and realized this was for me, understanding how things work under the hood and building them from scratch.",
           "My first language was C#. It taught me the fundamentals I still rely on today: types, data structures, object-oriented design, and the discipline of writing code someone else can read. Then came JavaScript, and with it the web: suddenly I could build something, open it in a browser, and put it in anyone's hands.",
           "In November 2020, while still studying, I started working as a freelance web developer on platforms like Upwork and Workana. That was two and a half years of turning designs into working sites, wiring front-end to back-end, and learning to work with real clients. That combination — the solid grounding of C# and the reach of JavaScript — shaped the rest of my career, and it is why I work comfortably on both sides of the stack today."
         ]
@@ -24,7 +24,7 @@
       "academy": {
         "title": "Alterna Academy and finding a mentor",
         "paragraphs": [
-          "In 2022 I joined Alterna Academy, a programming school that marked a clear before and after. University gave me the theory and freelancing gave me the craft; the academy taught me how real software gets built as a team, with the practices and pace the industry demands.",
+          "In 2022 I joined Alterna Academy, a programming school that marked a clear before and after. University gave me the theory and freelancing gave me the craft, the academy taught me how real software gets built as a team, with the practices and pace the industry demands.",
           "That is where I met Eduardo Burgos, a software engineer with more than 20 years in the field and CEO of Alterna Academy. He was my mentor, he is someone I look up to, and today he is also a good friend. Much of how I think about development — making technical decisions with judgment, reviewing code honestly, teaching whoever comes next — comes straight from him.",
           "Shortly after, in April 2023, I joined ProDoctivity SRL as a fullstack developer: my first formal role inside a product team, working with React, TypeScript, Node, Docker, and microservices. I graduated from UTESA in 2024, and since then I have kept adding projects at IMarket and Higher Bit Solutions, where I also took on technical leadership."
         ]
@@ -456,6 +456,8 @@
     "filterAllTech": "All technologies",
     "filterAllBranches": "All branches",
     "noResults": "No articles match these filters.",
-    "tableOfContents": "Contents"
+    "tableOfContents": "Contents",
+    "loadingArticle": "Loading article...",
+    "articleNotFound": "We couldn't find this article."
   }
 }

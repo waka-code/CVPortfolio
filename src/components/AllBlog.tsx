@@ -5,7 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 import { BlogArticleCard } from './BlogArticleCard';
 import { useSearchParamsState } from '../hooks/useSearchParamsState';
 import { useBlogLikes } from '../hooks/useBlogLikes';
-import { loadBlogArticles, BlogArticle } from '../utils/blogLoader';
+import { useBlogArticles } from '../hooks/useBlogArticles';
 import {
   ALL_BLOG_HASH,
   BLOG_BRANCH_PARAM,
@@ -18,10 +18,10 @@ import {
 const PAGE_SIZE = 4;
 
 export function AllBlog() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { isDark } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
-  const [articles, setArticles] = useState<BlogArticle[]>([]);
+  const { articles } = useBlogArticles();
   const [params, setParams] = useSearchParamsState();
   const { likes, toggleLike, hasLiked } = useBlogLikes();
 
@@ -31,10 +31,6 @@ export function AllBlog() {
   const handleBack = useCallback(() => {
     window.location.hash = BLOG_SECTION_HASH;
   }, []);
-
-  useEffect(() => {
-    setArticles(loadBlogArticles(i18n.language));
-  }, [i18n.language]);
 
   useEffect(() => {
     const handleHashChange = () => {

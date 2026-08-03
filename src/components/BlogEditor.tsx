@@ -1,10 +1,10 @@
-import { X, Eye, Edit3, Copy, Check, Send, Key, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { X, Eye, Edit3, Copy, Check, Send, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useMemo, useReducer } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { MarkdownContent } from './MarkdownContent';
-import { commitBlogArticle, getGitHubToken, setGitHubToken, clearGitHubToken } from '../utils/githubApi';
 import { BLOG_BRANCHES } from '../constants/blog';
+import { publishArticle, type ArticleLang } from '../hooks/useBlogArticles';
 import { buildToc, buildTocTree } from '../utils/markdownToc';
 import { TableOfContents } from './TableOfContents';
 
@@ -26,15 +26,12 @@ interface EditorState {
   copied: boolean;
   publishStatus: PublishStatus;
   statusMessage: string;
-  showTokenInput: boolean;
-  tokenInput: string;
   publishLang: 'es' | 'en' | 'both';
 }
 
 type EditorAction =
   | { type: 'SET_FIELD'; field: keyof EditorState; value: any }
   | { type: 'TOGGLE_PREVIEW' }
-  | { type: 'TOGGLE_TOKEN_INPUT' }
   | { type: 'SET_COPIED'; value: boolean }
   | { type: 'SET_PUBLISH_STATUS'; status: PublishStatus; message: string }
   | { type: 'RESET_FORM' };
@@ -50,8 +47,6 @@ const initialState: EditorState = {
   copied: false,
   publishStatus: 'idle',
   statusMessage: '',
-  showTokenInput: false,
-  tokenInput: '',
   publishLang: 'es',
 };
 
@@ -61,14 +56,12 @@ function editorReducer(state: EditorState, action: EditorAction): EditorState {
       return { ...state, [action.field]: action.value };
     case 'TOGGLE_PREVIEW':
       return { ...state, showPreview: !state.showPreview };
-    case 'TOGGLE_TOKEN_INPUT':
-      return { ...state, showTokenInput: !state.showTokenInput };
     case 'SET_COPIED':
       return { ...state, copied: action.value };
     case 'SET_PUBLISH_STATUS':
       return { ...state, publishStatus: action.status, statusMessage: action.message };
     case 'RESET_FORM':
-      return { ...initialState, showTokenInput: state.showTokenInput };
+      return initialState;
     default:
       return state;
   }
@@ -83,7 +76,6 @@ export function BlogEditor({ isOpen, onClose }: BlogEditorProps) {
   if (!isOpen) return null;
 
   const isEs = i18n.language === 'es';
-  const hasToken = !!getGitHubToken();
 
   const generateSlug = (text: string) => {
     return text
@@ -118,68 +110,42 @@ ${state.content}
 `;
   };
 
-  const handleSaveToken = () => {
-    if (state.tokenInput.trim()) {
-      setGitHubToken(state.tokenInput.trim());
-      dispatch({ type: 'SET_FIELD', field: 'tokenInput', value: '' });
-      dispatch({ type: 'TOGGLE_TOKEN_INPUT' });
-    }
-  };
-
-  const handleRemoveToken = () => {
-    clearGitHubToken();
-    dispatch({ type: 'SET_FIELD', field: 'showTokenInput', value: false });
-    dispatch({ type: 'SET_FIELD', field: 'tokenInput', value: '' });
-  };
-
   const handlePublish = async () => {
-    if (!hasToken) {
-      dispatch({ type: 'SET_FIELD', field: 'showTokenInput', value: true });
-      return;
-    }
-
     dispatch({
       type: 'SET_PUBLISH_STATUS',
       status: 'publishing',
-      message: isEs ? 'Publicando artículo...' : 'Publishing article...'
+      message: isEs ? 'Guardando artículo...' : 'Saving article...'
     });
 
-    const md = generateMarkdown();
-    const filename = `${slug}.md`;
-    const langs = state.publishLang === 'both' ? ['es', 'en'] : [state.publishLang];
+    const langs: ArticleLang[] =
+      state.publishLang === 'both' ? ['es', 'en'] : [state.publishLang];
 
-    let allSuccess = true;
-    const results: string[] = [];
-
-    for (const lang of langs) {
-      const result = await commitBlogArticle(
-        filename,
-        md,
-        lang,
-        `blog: add ${slug} (${lang})`
+    try {
+      await publishArticle(
+        {
+          slug,
+          title: state.title.trim(),
+          subtitle: state.subtitle.trim(),
+          date: today,
+          content: state.content,
+          tags: tagsArray,
+          branch: state.branch,
+        },
+        langs
       );
 
-      if (result.success) {
-        results.push(`${lang}: ${result.message}`);
-      } else {
-        allSuccess = false;
-        results.push(`${lang}: ${result.message}`);
-      }
-    }
-
-    if (allSuccess) {
       dispatch({
         type: 'SET_PUBLISH_STATUS',
         status: 'success',
         message: isEs
-          ? `Artículo publicado. GitHub Actions desplegará automáticamente.\n${results.join('\n')}`
-          : `Article published. GitHub Actions will deploy automatically.\n${results.join('\n')}`
+          ? `Artículo guardado (${langs.join(', ')}). Ya está publicado, sin necesidad de desplegar.`
+          : `Article saved (${langs.join(', ')}). It is live already, no deploy needed.`
       });
-    } else {
+    } catch (error) {
       dispatch({
         type: 'SET_PUBLISH_STATUS',
         status: 'error',
-        message: results.join('\n')
+        message: error instanceof Error ? error.message : String(error)
       });
     }
   };
@@ -222,19 +188,6 @@ ${state.content}
           </h2>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => dispatch({ type: 'TOGGLE_TOKEN_INPUT' })}
-              className={`p-2 rounded-lg transition-colors ${
-                hasToken
-                  ? 'text-green-400 hover:bg-slate-800'
-                  : isDark
-                    ? 'text-yellow-400 hover:bg-slate-800'
-                    : 'text-yellow-600 hover:bg-slate-100'
-              }`}
-              title={hasToken ? (isEs ? 'Token configurado' : 'Token configured') : (isEs ? 'Configurar token' : 'Configure token')}
-            >
-              <Key size={20} />
-            </button>
-            <button
               onClick={() => dispatch({ type: 'TOGGLE_PREVIEW' })}
               className={`p-2 rounded-lg transition-colors ${
                 state.showPreview
@@ -257,68 +210,6 @@ ${state.content}
             </button>
           </div>
         </div>
-
-        {/* Token Configuration */}
-        {state.showTokenInput && (
-          <div className={`mb-6 p-4 rounded-lg border ${
-            isDark ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-200'
-          }`}>
-            <p className={`text-sm mb-3 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-              {isEs
-                ? 'Necesitas un GitHub Personal Access Token con permiso "Contents: Read and write" para tu repo.'
-                : 'You need a GitHub Personal Access Token with "Contents: Read and write" permission for your repo.'}
-            </p>
-            <a
-              href="https://github.com/settings/tokens/new?scopes=repo&description=CVPortfolio+Blog+Editor"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 text-sm underline mb-3 inline-block"
-            >
-              {isEs ? 'Crear token en GitHub' : 'Create token on GitHub'}
-            </a>
-            {hasToken ? (
-              <div className="flex items-center gap-3">
-                <span className="flex items-center gap-1 text-green-400 text-sm">
-                  <CheckCircle2 size={16} />
-                  {isEs ? 'Token configurado' : 'Token configured'}
-                </span>
-                <button
-                  onClick={handleRemoveToken}
-                  className="text-red-400 hover:text-red-300 text-sm underline"
-                >
-                  {isEs ? 'Eliminar token' : 'Remove token'}
-                </button>
-              </div>
-            ) : (
-              <div className="flex gap-2">
-                <input
-                  type="password"
-                  value={state.tokenInput}
-                  onChange={(e) => dispatch({ type: 'SET_FIELD', field: 'tokenInput', value: e.target.value })}
-                  placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-                  className={`flex-1 px-3 py-2 rounded-lg border text-sm ${
-                    isDark
-                      ? 'bg-slate-900 border-slate-600 text-white placeholder-slate-500'
-                      : 'bg-white border-slate-300 text-slate-900 placeholder-slate-400'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                  onKeyDown={(e) => e.key === 'Enter' && handleSaveToken()}
-                />
-                <button
-                  onClick={handleSaveToken}
-                  disabled={!state.tokenInput.trim()}
-                  className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isEs ? 'Guardar' : 'Save'}
-                </button>
-              </div>
-            )}
-            <p className={`text-xs mt-2 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
-              {isEs
-                ? 'El token se guarda en localStorage de tu navegador. Solo tú puedes usarlo.'
-                : 'The token is stored in your browser\'s localStorage. Only you can use it.'}
-            </p>
-          </div>
-        )}
 
         {/* Status Message */}
         {state.publishStatus !== 'idle' && (
@@ -350,8 +241,11 @@ ${state.content}
             <div className={`mb-4 p-4 rounded-lg text-sm ${
               isDark ? 'bg-slate-800 text-slate-400' : 'bg-slate-50 text-slate-600'
             }`}>
-              <span className="font-medium">{isEs ? 'Archivo' : 'File'}:</span>{' '}
-              <code>src/blog/{state.publishLang === 'both' ? 'es & en' : state.publishLang}/{slug || 'slug'}.md</code>
+              <span className="font-medium">{isEs ? 'Se guarda en' : 'Saved to'}:</span>{' '}
+              <code>
+                articles/ · {state.publishLang === 'both' ? 'es + en' : state.publishLang} ·{' '}
+                {slug || 'slug'}
+              </code>
             </div>
 
             <div className={`rounded-lg p-6 border ${
@@ -521,7 +415,7 @@ ${state.content}
               ? <Loader2 size={18} className="animate-spin" />
               : <Send size={18} />
             }
-            {isEs ? 'Publicar en GitHub' : 'Publish to GitHub'}
+            {isEs ? 'Publicar' : 'Publish'}
           </button>
 
           <button

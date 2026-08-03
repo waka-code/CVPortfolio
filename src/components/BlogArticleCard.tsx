@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { formatDate } from '../utils/formatDate';
 import { blogHash } from '../constants/routes';
-import type { BlogArticle } from '../utils/blogLoader';
+import type { BlogArticle } from '../utils/blogArticle';
 
 interface BlogArticleCardProps {
   article: BlogArticle;

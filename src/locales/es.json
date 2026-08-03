@@ -24,9 +24,9 @@
       "academy": {
         "title": "Alterna Academy y encontrar un mentor",
         "paragraphs": [
-          "En 2022 entré a Alterna Academy, una academia de programación que marcó un antes y un después. La universidad me dio la base teórica y el freelance me dio oficio; la academia me enseñó cómo se construye software de verdad en equipo, con las prácticas y el ritmo que exige la industria.",
+          "En 2022 entré a Alterna Academy, una academia de programación que marcó un antes y un después. La universidad me dio la base teórica y el freelance me dio oficio, la academia me enseñó cómo se construye software de verdad en equipo, con las prácticas y el ritmo que exige la industria.",
           "Ahí conocí a Eduardo Burgos, ingeniero de software con más de 20 años en el área y CEO de Alterna Academy. Fue mi mentor, es una figura a seguir y hoy también un buen amigo. Buena parte de cómo pienso el desarrollo —tomar decisiones técnicas con criterio, revisar código con honestidad, enseñar a quien viene detrás— viene directamente de él.",
-          "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack: mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y desde entonces he seguido sumando proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico."
+          "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack, mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y desde entonces he seguido sumando proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico."
         ]
       },
       "utesa": {
@@ -456,6 +456,8 @@
     "filterAllTech": "Todas las tecnologías",
     "filterAllBranches": "Todas las ramas",
     "noResults": "No hay artículos para estos filtros.",
-    "tableOfContents": "Índice"
+    "tableOfContents": "Índice",
+    "loadingArticle": "Cargando artículo...",
+    "articleNotFound": "No encontramos este artículo."
   }
 }

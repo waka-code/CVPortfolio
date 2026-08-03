@@ -4,24 +4,24 @@ import { BlogArticleCard } from './BlogArticleCard';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
-import { useEffect, useState } from 'react';
-import { loadBlogArticles, BlogArticle } from '../utils/blogLoader';
+import { useState } from 'react';
+import { useBlogArticles } from '../hooks/useBlogArticles';
 import { useBlogLikes } from '../hooks/useBlogLikes';
+import { isAdminUnlocked } from '../utils/adminAuth';
 import { ALL_BLOG_HASH } from '../constants/routes';
 
 const HOME_ARTICLE_COUNT = 2;
 
 export function Blog() {
   const { elementRef, isVisible } = useScrollAnimation();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { isDark } = useTheme();
-  const [articles, setArticles] = useState<BlogArticle[]>([]);
+  const { articles } = useBlogArticles();
   const [showEditor, setShowEditor] = useState(false);
   const { likes, toggleLike, hasLiked } = useBlogLikes();
 
-  useEffect(() => {
-    setArticles(loadBlogArticles(i18n.language));
-  }, [i18n.language]);
+  // Writing is only offered once the admin panel has been unlocked in this browser
+  const canPublish = isAdminUnlocked();
 
   const displayedArticles = articles.slice(0, HOME_ARTICLE_COUNT);
 
@@ -45,6 +45,7 @@ export function Blog() {
               {t('blog.title')}
             </h2>
           </div>
+          {canPublish && (
           <button
             onClick={() => setShowEditor(true)}
             className={`btn-animate flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
@@ -56,6 +57,7 @@ export function Blog() {
             <PlusCircle size={20} />
             <span className="font-medium">{t('blog.newArticle')}</span>
           </button>
+          )}
         </div>
 
         <BlogEditor isOpen={showEditor} onClose={() => setShowEditor(false)} />
