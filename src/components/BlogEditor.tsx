@@ -1,10 +1,12 @@
 import { X, Eye, Edit3, Copy, Check, Send, Key, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
-import { useReducer } from 'react';
+import { useMemo, useReducer } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import { MarkdownContent } from './MarkdownContent';
 import { commitBlogArticle, getGitHubToken, setGitHubToken, clearGitHubToken } from '../utils/githubApi';
+import { BLOG_BRANCHES } from '../constants/blog';
+import { buildToc, buildTocTree } from '../utils/markdownToc';
+import { TableOfContents } from './TableOfContents';
 
 interface BlogEditorProps {
   isOpen: boolean;
@@ -17,7 +19,9 @@ interface EditorState {
   title: string;
   subtitle: string;
   tags: string;
+  branch: string;
   content: string;
+  showToc: boolean;
   showPreview: boolean;
   copied: boolean;
   publishStatus: PublishStatus;
@@ -39,7 +43,9 @@ const initialState: EditorState = {
   title: '',
   subtitle: '',
   tags: '',
+  branch: 'frontend',
   content: '',
+  showToc: true,
   showPreview: false,
   copied: false,
   publishStatus: 'idle',
@@ -72,6 +78,7 @@ export function BlogEditor({ isOpen, onClose }: BlogEditorProps) {
   const { isDark } = useTheme();
   const { i18n } = useTranslation();
   const [state, dispatch] = useReducer(editorReducer, initialState);
+  const previewToc = useMemo(() => buildTocTree(buildToc(state.content)), [state.content]);
 
   if (!isOpen) return null;
 
@@ -104,6 +111,7 @@ subtitle: "${state.subtitle}"
 date: "${today}"
 slug: "${slug}"
 tags: ${tagsJson}
+branch: "${state.branch}"
 ---
 
 ${state.content}
@@ -371,15 +379,21 @@ ${state.content}
                   </div>
                 )}
               </div>
-              <article className={`prose prose-sm max-w-none ${
-                isDark
-                  ? 'prose-invert prose-headings:text-white prose-p:text-slate-300 prose-a:text-blue-400'
-                  : 'prose-headings:text-slate-900 prose-p:text-slate-700 prose-a:text-blue-600'
-              }`}>
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {state.content || (isEs ? '*Escribe contenido para ver la vista previa...*' : '*Write content to see the preview...*')}
-                </ReactMarkdown>
-              </article>
+              <TableOfContents
+                nodes={previewToc}
+                title={isEs ? 'Índice' : 'Contents'}
+                variant="inline"
+                isOpen={state.showToc}
+                onToggle={() => dispatch({ type: 'SET_FIELD', field: 'showToc', value: !state.showToc })}
+              />
+
+              <MarkdownContent
+                size="sm"
+                content={
+                  state.content ||
+                  (isEs ? '*Escribe contenido para ver la vista previa...*' : '*Write content to see the preview...*')
+                }
+              />
             </div>
           </div>
         ) : (
@@ -427,6 +441,23 @@ ${state.content}
                 placeholder="react, typescript, tutorial"
                 className={inputClass}
               />
+            </div>
+
+            <div>
+              <label className={labelClass}>
+                {isEs ? 'Rama' : 'Branch'}
+              </label>
+              <select
+                value={state.branch}
+                onChange={(e) => dispatch({ type: 'SET_FIELD', field: 'branch', value: e.target.value })}
+                className={inputClass}
+              >
+                {BLOG_BRANCHES.map((branch) => (
+                  <option key={branch} value={branch}>
+                    {branch}
+                  </option>
+                ))}
+              </select>
             </div>
 
             {/* Language selector */}

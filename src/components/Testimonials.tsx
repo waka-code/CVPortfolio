@@ -1,9 +1,25 @@
-import { useState, useEffect } from 'react';
-import { MessageSquareQuote, Quote, X, Send, CheckCircle, AlertCircle, Star } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  MessageSquareQuote,
+  Quote,
+  X,
+  Send,
+  CheckCircle,
+  AlertCircle,
+  Star,
+  ChevronLeft,
+  ChevronRight,
+} from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
-import { useTestimonials, type TestimonialInput } from '../hooks/useTestimonials';
+import {
+  normalizeLang,
+  testimonialText,
+  useTestimonials,
+  type Testimonial,
+  type TestimonialInput,
+} from '../hooks/useTestimonials';
 
 interface FormState {
   name: string;
@@ -40,16 +56,111 @@ function Avatar({ name, photoUrl, isDark }: { name: string; photoUrl: string; is
   );
 }
 
+/** Fixed height keeps every card identical and every author line on the same baseline */
+const CARD_HEIGHT = 'h-[22rem]';
+
+function TestimonialCard({
+  testimonial,
+  isDark,
+  animationClass,
+  animationDelay,
+}: {
+  testimonial: Testimonial;
+  isDark: boolean;
+  animationClass: string;
+  animationDelay: string;
+}) {
+  const { i18n } = useTranslation();
+
+  return (
+    <div
+      className={`rounded-xl p-6 border transition-colors duration-300 card-hover flex flex-col ${CARD_HEIGHT} ${
+        isDark
+          ? 'bg-slate-900 border-slate-700 hover:border-blue-500'
+          : 'bg-white border-slate-200 hover:border-blue-400'
+      } ${animationClass}`}
+      style={{ animationDelay }}
+    >
+      <Quote size={24} className="text-blue-500 mb-3 opacity-60 shrink-0" />
+
+      {/* Long testimonials scroll inside the card instead of stretching it */}
+      <p
+        className={`text-sm leading-relaxed flex-1 min-h-0 overflow-y-auto no-scrollbar pr-1 ${
+          isDark ? 'text-slate-300' : 'text-slate-600'
+        }`}
+      >
+        "{testimonialText(testimonial, i18n.language)}"
+      </p>
+
+      <div
+        className={`flex items-center gap-3 mt-4 pt-4 border-t shrink-0 ${
+          isDark ? 'border-slate-800' : 'border-slate-100'
+        }`}
+      >
+        <Avatar name={testimonial.name} photoUrl={testimonial.photoUrl} isDark={isDark} />
+        <div className="min-w-0">
+          <p className={`font-semibold text-sm truncate ${isDark ? 'text-white' : 'text-slate-900'}`}>
+            {testimonial.name}
+          </p>
+          <p className={`text-xs truncate ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+            {testimonial.role}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Testimonials() {
   const { elementRef, isVisible } = useScrollAnimation();
   const { isDark } = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { approvedTestimonials, submitTestimonial } = useTestimonials();
 
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState<FormState>({ name: '', role: '', photoUrl: '', description: '' });
   const [status, setStatus] = useState<SubmitStatus>('idle');
   const [errors, setErrors] = useState<Partial<FormState>>({});
+
+  // A plain grid fits up to three; beyond that the cards scroll as a carousel
+  const isCarousel = approvedTestimonials.length > 3;
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  /** Width of one card plus the gap, so arrows advance exactly one card. */
+  const cardStep = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return 0;
+    const first = track.firstElementChild as HTMLElement | null;
+    if (!first) return track.clientWidth;
+    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 0;
+    return first.offsetWidth + gap;
+  }, []);
+
+  const handleTrackScroll = useCallback(() => {
+    const track = trackRef.current;
+    const step = cardStep();
+    if (!track || step === 0) return;
+
+    setActiveIndex(Math.round(track.scrollLeft / step));
+    setAtStart(track.scrollLeft <= 1);
+    setAtEnd(track.scrollLeft + track.clientWidth >= track.scrollWidth - 1);
+  }, [cardStep]);
+
+  const scrollByCard = (direction: number) => {
+    trackRef.current?.scrollBy({ left: direction * cardStep(), behavior: 'smooth' });
+  };
+
+  const scrollToCard = (index: number) => {
+    trackRef.current?.scrollTo({ left: index * cardStep(), behavior: 'smooth' });
+  };
+
+  // Arrow availability depends on measured widths, so seed it once the track exists
+  useEffect(() => {
+    if (isCarousel) handleTrackScroll();
+  }, [isCarousel, approvedTestimonials.length, handleTrackScroll]);
 
   useEffect(() => {
     if (!showModal) return;
@@ -86,6 +197,7 @@ export function Testimonials() {
         role: form.role.trim(),
         photoUrl: form.photoUrl.trim(),
         description: form.description.trim(),
+        lang: normalizeLang(i18n.language),
       };
       await submitTestimonial(input);
       setStatus('success');
@@ -137,34 +249,84 @@ export function Testimonials() {
               {t('testimonials.empty')}
             </p>
           </div>
+        ) : isCarousel ? (
+          <div className={isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}>
+            <div
+              ref={trackRef}
+              onScroll={handleTrackScroll}
+              className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-2"
+            >
+              {approvedTestimonials.map((testimonial) => (
+                <div
+                  key={testimonial.id}
+                  className="shrink-0 snap-start basis-full sm:basis-[calc((100%-1.5rem)/2)] lg:basis-[calc((100%-3rem)/3)]"
+                >
+                  <TestimonialCard
+                    testimonial={testimonial}
+                    isDark={isDark}
+                    animationClass=""
+                    animationDelay="0ms"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-center gap-3 mt-8">
+              <button
+                onClick={() => scrollByCard(-1)}
+                disabled={atStart}
+                aria-label={t('testimonials.previous')}
+                className={`p-2 rounded-lg border transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                  isDark
+                    ? 'bg-slate-900 border-slate-700 text-blue-400 hover:border-blue-500'
+                    : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300'
+                }`}
+              >
+                <ChevronLeft size={20} />
+              </button>
+
+              <div className="flex items-center gap-2">
+                {approvedTestimonials.map((testimonial, index) => (
+                  <button
+                    key={testimonial.id}
+                    onClick={() => scrollToCard(index)}
+                    aria-label={`${index + 1}`}
+                    aria-current={index === activeIndex ? 'true' : undefined}
+                    className={`h-2 rounded-full transition-all ${
+                      index === activeIndex
+                        ? 'w-6 bg-blue-600'
+                        : isDark
+                          ? 'w-2 bg-slate-600 hover:bg-slate-500'
+                          : 'w-2 bg-slate-300 hover:bg-slate-400'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={() => scrollByCard(1)}
+                disabled={atEnd}
+                aria-label={t('testimonials.next')}
+                className={`p-2 rounded-lg border transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                  isDark
+                    ? 'bg-slate-900 border-slate-700 text-blue-400 hover:border-blue-500'
+                    : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300'
+                }`}
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {approvedTestimonials.map((testimonial, index) => (
-              <div
+              <TestimonialCard
                 key={testimonial.id}
-                className={`rounded-xl p-6 border transition-colors duration-300 card-hover ${
-                  isDark
-                    ? 'bg-slate-900 border-slate-700 hover:border-blue-500'
-                    : 'bg-white border-slate-200 hover:border-blue-400'
-                } ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <Quote size={24} className="text-blue-500 mb-4 opacity-60" />
-                <p className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                  "{testimonial.description}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <Avatar name={testimonial.name} photoUrl={testimonial.photoUrl} isDark={isDark} />
-                  <div>
-                    <p className={`font-semibold text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                      {testimonial.name}
-                    </p>
-                    <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                      {testimonial.role}
-                    </p>
-                  </div>
-                </div>
-              </div>
+                testimonial={testimonial}
+                isDark={isDark}
+                animationClass={isVisible ? 'animate-fade-in-up' : 'opacity-0'}
+                animationDelay={`${index * 150}ms`}
+              />
             ))}
           </div>
         )}

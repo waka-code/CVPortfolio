@@ -1,8 +1,9 @@
-import { Github, Linkedin, Download, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Download, User, ArrowRight } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
-import { useCallback } from 'react';
+import { ABOUT_HASH } from '../constants/routes';
+// import { useCallback } from 'react';
 
 interface HeroProps {
   github: string;
@@ -14,9 +15,9 @@ export function Hero({  github, linkedin }: HeroProps) {
   const { isDark } = useTheme();
   const { t } = useTranslation();
 
-  const scrollToServices = useCallback(() => {
-    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-  }, []);
+  // const scrollToServices = useCallback(() => {
+  //   document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+  // }, []);
 
   return (
     <section
@@ -67,13 +68,21 @@ export function Hero({  github, linkedin }: HeroProps) {
             isVisible ? 'animate-fade-in-up delay-600' : 'opacity-0'
           }`}
         >
-          <button
+          {/* <button
             onClick={scrollToServices}
             className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/20 transition-all`}
           >
             {t('hero.hireCTA')}
             <ArrowRight size={18} />
-          </button>
+          </button> */}
+          <a
+            href={ABOUT_HASH}
+            className="btn-animate flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/20 transition-all"
+          >
+            <User size={20} />
+            <span>{t('about.openCTA')}</span>
+            <ArrowRight size={18} />
+          </a>
           <a
             href={github}
             target="_blank"

@@ -5,7 +5,7 @@ import { useCallback, useState, useEffect } from 'react';
 
 const NAV_LINKS = [
   { key: 'home', href: '#home' },
-  { key: 'services', href: '#services' },
+  // { key: 'services', href: '#services' },
   { key: 'projects', href: '#projects' },
   { key: 'experience', href: '#experience' },
   { key: 'skills', href: '#skills' },
@@ -30,11 +30,29 @@ export function HeaderNav() {
 
   const handleNavClick = useCallback((href: string) => {
     setMobileOpen(false);
-    const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+
+    // Picking a section is a fresh start: point the URL at it and drop any overlay
+    // route or filter params, so reloading lands here instead of where the visitor
+    // happened to be before. replaceState avoids the instant jump that assigning
+    // location.hash would cause, keeping the smooth scroll below.
+    window.history.replaceState(null, '', `${window.location.pathname}${href}`);
+    // Overlay screens route on hashchange, which replaceState does not fire
+    window.dispatchEvent(new Event('hashchange'));
+
+    requestAnimationFrame(() => {
+      document.getElementById(href.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }, []);
+
+  // Reloading with a section hash should land on that section. The browser tries this
+  // itself, but the sections do not exist yet when React has not rendered, so redo it.
+  useEffect(() => {
+    const href = window.location.hash;
+    if (!NAV_LINKS.some((link) => link.href === href)) return;
+
+    requestAnimationFrame(() => {
+      document.getElementById(href.replace('#', ''))?.scrollIntoView();
+    });
   }, []);
 
   useEffect(() => {

@@ -339,3 +339,13 @@ html {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Carrusel: oculta la barra de scroll sin perder el desplazamiento */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

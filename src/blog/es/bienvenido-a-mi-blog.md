@@ -4,6 +4,7 @@ subtitle: "Compartiendo conocimientos sobre desarrollo de software y tecnología
 date: "2026-02-08"
 slug: "bienvenido-a-mi-blog"
 tags: ["anuncio", "introducción", "desarrollo web"]
+branch: "general"
 ---
 
 # ¡Bienvenido!

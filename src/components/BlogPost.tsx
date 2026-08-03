@@ -1,24 +1,39 @@
-import { X, ThumbsUp, Calendar, Clock } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { ArrowLeft, GitBranch, ThumbsUp, Calendar, Clock } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { loadBlogArticles, BlogArticle } from '../utils/blogLoader';
 import { useBlogLikes } from '../hooks/useBlogLikes';
 import { formatDate } from '../utils/formatDate';
+import { buildToc, buildTocTree } from '../utils/markdownToc';
+import { TableOfContents } from './TableOfContents';
+import { MarkdownContent } from './MarkdownContent';
+import { BLOG_HASH_PREFIX, BLOG_SECTION_HASH } from '../constants/routes';
 
 export function BlogPost() {
   const { isDark } = useTheme();
   const { t, i18n } = useTranslation();
   const [article, setArticle] = useState<BlogArticle | null>(null);
+  const [isTocOpen, setIsTocOpen] = useState(true);
   const { likes, toggleLike, hasLiked } = useBlogLikes();
+
+  const toc = useMemo(
+    () => buildTocTree(buildToc(article?.content ?? '')),
+    [article?.content]
+  );
+
+  // Where to return to: whichever list screen the user came from
+  const originRef = useRef(BLOG_SECTION_HASH);
+
+  const handleBack = useCallback(() => {
+    window.location.hash = originRef.current;
+  }, []);
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash.startsWith('#blog/')) {
-        const slug = hash.replace('#blog/', '');
+      if (hash.startsWith(BLOG_HASH_PREFIX)) {
+        const slug = hash.slice(BLOG_HASH_PREFIX.length);
         const articles = loadBlogArticles(i18n.language);
         const found = articles.find(a => a.slug === slug);
         setArticle(found || null);
@@ -28,6 +43,7 @@ export function BlogPost() {
           window.scrollTo(0, 0);
         }
       } else {
+        originRef.current = hash || BLOG_SECTION_HASH;
         setArticle(null);
       }
     };
@@ -39,46 +55,49 @@ export function BlogPost() {
   }, [i18n.language]);
 
   useEffect(() => {
+    if (!article) return;
+
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && article) {
-        window.location.hash = '';
-      }
+      if (e.key === 'Escape') handleBack();
     };
 
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
-  }, [article]);
+  }, [article, handleBack]);
 
   if (!article) return null;
 
-  const handleClose = () => {
-    window.location.hash = '';
-  };
-
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-fade-in-up"
-      onClick={handleClose}
+      data-scroll-root
+      className={`fixed inset-0 z-[55] overflow-y-auto overscroll-contain animate-fade-in-up ${
+        isDark ? 'bg-slate-900' : 'bg-slate-50'
+      }`}
     >
+      {/* Stays reachable however far down the article the reader is */}
       <div
-        onClick={(e) => e.stopPropagation()}
-        className={`relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-xl p-6 md:p-10 ${
-          isDark ? 'bg-slate-900' : 'bg-white'
-        } animate-scale-in`}
+        data-sticky-bar
+        className={`sticky top-0 z-20 border-b backdrop-blur ${
+          isDark ? 'bg-slate-900/90 border-slate-800' : 'bg-slate-50/90 border-slate-200'
+        }`}
       >
-        <button
-          onClick={handleClose}
-          className={`sticky top-2 float-right z-10 p-2 rounded-lg transition-colors ${
-            isDark
-              ? 'hover:bg-slate-800 text-slate-300 bg-slate-900/80'
-              : 'hover:bg-slate-100 text-slate-700 bg-white/80'
-          }`}
-          aria-label="Close article"
-        >
-          <X size={24} />
-        </button>
+        <div className="max-w-6xl mx-auto px-4 py-3">
+          <button
+            onClick={handleBack}
+            className={`btn-animate flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
+              isDark
+                ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
+                : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
+            }`}
+          >
+            <ArrowLeft size={20} />
+            <span className="font-medium">{t('blog.back')}</span>
+          </button>
+        </div>
+      </div>
 
-        <header className="mb-8">
+      <div className="max-w-6xl mx-auto px-4 pt-8 pb-12">
+        <header className="mb-10">
           <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${
             isDark ? 'text-white' : 'text-slate-900'
           }`}>
@@ -126,34 +145,51 @@ export function BlogPost() {
             </button>
           </div>
 
-          {/* Tags */}
-          {article.tags && article.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {article.tags.map(tag => (
-                <span
-                  key={tag}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    isDark
-                      ? 'bg-slate-800 text-slate-300'
-                      : 'bg-slate-100 text-slate-700'
-                  }`}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
+          <div className="flex flex-wrap gap-2">
+            {article.branch && (
+              <span
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium border ${
+                  isDark
+                    ? 'bg-blue-600/15 text-blue-400 border-blue-600/30'
+                    : 'bg-blue-50 text-blue-600 border-blue-200'
+                }`}
+              >
+                <GitBranch size={13} />
+                {article.branch}
+              </span>
+            )}
+            {article.tags?.map(tag => (
+              <span
+                key={tag}
+                className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  isDark ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-700'
+                }`}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </header>
 
-        <article className={`prose prose-lg max-w-none ${
-          isDark
-            ? 'prose-invert prose-headings:text-white prose-p:text-slate-300 prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-400 prose-pre:bg-slate-800 prose-pre:border prose-pre:border-slate-700'
-            : 'prose-headings:text-slate-900 prose-p:text-slate-700 prose-a:text-blue-600 prose-strong:text-slate-900 prose-code:text-blue-600 prose-pre:bg-slate-50 prose-pre:border prose-pre:border-slate-200'
-        }`}>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {article.content}
-          </ReactMarkdown>
-        </article>
+        <div
+          className={`grid gap-10 items-start transition-[grid-template-columns] duration-300 ease-out ${
+            isTocOpen
+              ? 'lg:grid-cols-[18rem_minmax(0,1fr)]'
+              : 'lg:grid-cols-[4.5rem_minmax(0,1fr)]'
+          }`}
+        >
+          {/* Sticky lives on the grid item: the nav alone is too short to stick against */}
+          <aside className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
+            <TableOfContents
+              nodes={toc}
+              title={t('blog.tableOfContents')}
+              isOpen={isTocOpen}
+              onToggle={() => setIsTocOpen((prev) => !prev)}
+            />
+          </aside>
+
+          <MarkdownContent content={article.content} />
+        </div>
       </div>
     </div>
   );

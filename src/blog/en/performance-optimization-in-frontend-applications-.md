@@ -4,6 +4,7 @@ subtitle: "Memoization in React with TypeScript"
 date: "2026-03-04"
 slug: "performance-optimization-in-frontend-applications-"
 tags: ["react","typescript","frontend","memoization"]
+branch: "frontend"
 ---
 
 In modern frontend applications, particularly those developed with React and TypeScript (React TS), performance can degrade due to unnecessary re-renders, repetitive computations, and constant component recomposition. Memoization emerges as a key technique to optimize processing and minimize resource consumption.

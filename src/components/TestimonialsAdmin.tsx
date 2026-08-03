@@ -2,7 +2,13 @@ import { useState, useEffect } from 'react';
 import { ShieldCheck, X, Lock, CheckCircle, XCircle, RotateCcw, Eye } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
-import { useTestimonials, type Testimonial, type TestimonialStatus } from '../hooks/useTestimonials';
+import {
+  useTestimonials,
+  type Testimonial,
+  type TestimonialLang,
+  type TestimonialStatus,
+  type TestimonialTranslations,
+} from '../hooks/useTestimonials';
 
 const ADMIN_TOKEN_KEY = 'admin_token';
 
@@ -34,6 +40,8 @@ function Avatar({ name, photoUrl, isDark }: { name: string; photoUrl: string; is
   );
 }
 
+const LANG_LABEL: Record<TestimonialLang, string> = { es: 'Español', en: 'English' };
+
 function TestimonialRow({
   testimonial,
   tab,
@@ -46,7 +54,7 @@ function TestimonialRow({
 }: {
   testimonial: Testimonial;
   tab: TabKey;
-  onApprove: (id: string) => void;
+  onApprove: (id: string, translations: TestimonialTranslations) => void;
   onReject: (id: string) => void;
   onRevoke: (id: string) => void;
   onRestore: (id: string) => void;
@@ -54,6 +62,11 @@ function TestimonialRow({
   t: (key: string) => string;
 }) {
   const [expanded, setExpanded] = useState(false);
+
+  const sourceLang = testimonial.lang ?? 'es';
+  const targetLang: TestimonialLang = sourceLang === 'es' ? 'en' : 'es';
+  const [translation, setTranslation] = useState(testimonial.translations?.[targetLang] ?? '');
+  const [showTranslation, setShowTranslation] = useState(false);
 
   return (
     <div
@@ -93,12 +106,59 @@ function TestimonialRow({
         </div>
       </div>
 
+      {tab === 'pending' && showTranslation && (
+        <div className={`mt-4 rounded-lg border p-3 ${isDark ? 'border-slate-600 bg-slate-800' : 'border-slate-200 bg-slate-50'}`}>
+          <p className={`text-xs mb-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+            {t('testimonials.admin.originalIn')} {LANG_LABEL[sourceLang]}
+          </p>
+          <label
+            className={`block text-xs font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}
+          >
+            {t('testimonials.admin.translationFor')} {LANG_LABEL[targetLang]} *
+          </label>
+          <textarea
+            value={translation}
+            onChange={(e) => setTranslation(e.target.value)}
+            rows={4}
+            placeholder={t('testimonials.admin.translationPlaceholder')}
+            className={`w-full px-3 py-2 rounded-lg border text-sm resize-none outline-none focus:ring-2 focus:ring-blue-500 ${
+              isDark
+                ? 'bg-slate-700 border-slate-600 text-white placeholder-slate-400'
+                : 'bg-white border-slate-300 text-slate-900 placeholder-slate-400'
+            }`}
+          />
+        </div>
+      )}
+
       <div className="flex gap-2 mt-4 justify-end flex-wrap">
         {tab === 'pending' && (
           <>
+            {showTranslation && (
+              <button
+                onClick={() => setShowTranslation(false)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border ${
+                  isDark
+                    ? 'border-slate-600 text-slate-300 hover:bg-slate-600'
+                    : 'border-slate-300 text-slate-600 hover:bg-slate-100'
+                }`}
+              >
+                {t('testimonials.admin.cancel')}
+              </button>
+            )}
             <button
-              onClick={() => onApprove(testimonial.id)}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-xs font-medium transition-colors"
+              onClick={() => {
+                if (!showTranslation) {
+                  setShowTranslation(true);
+                  return;
+                }
+                if (!translation.trim()) return;
+                onApprove(testimonial.id, {
+                  [sourceLang]: testimonial.description,
+                  [targetLang]: translation.trim(),
+                });
+              }}
+              disabled={showTranslation && !translation.trim()}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg text-xs font-medium transition-colors"
             >
               <CheckCircle size={14} />
               {t('testimonials.admin.approve')}
@@ -146,7 +206,7 @@ function TestimonialRow({
 export function TestimonialsAdmin() {
   const { isDark } = useTheme();
   const { t } = useTranslation();
-  const { allTestimonials, updateStatus } = useTestimonials();
+  const { allTestimonials, updateStatus, approveTestimonial } = useTestimonials();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -212,7 +272,8 @@ export function TestimonialsAdmin() {
 
   const filtered = allTestimonials.filter((t) => t.status === activeTab);
 
-  const handleApprove = (id: string) => updateStatus(id, 'approved');
+  const handleApprove = (id: string, translations: TestimonialTranslations) =>
+    approveTestimonial(id, translations);
   const handleReject = (id: string) => updateStatus(id, 'rejected');
   const handleRevoke = (id: string) => updateStatus(id, 'pending');
   const handleRestore = (id: string) => updateStatus(id, 'pending');

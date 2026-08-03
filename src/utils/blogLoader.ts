@@ -6,6 +6,8 @@ export interface BlogArticle {
   content: string;
   rawContent: string;
   tags?: string[];
+  /** Discipline the article belongs to: frontend, backend, devops, ... */
+  branch?: string;
   readingTime?: number;
 }
 
@@ -81,6 +83,7 @@ export function loadBlogArticles(locale: string = 'en'): BlogArticle[] {
         content: markdown,
         rawContent,
         tags: (frontmatter.tags as string[]) || [],
+        branch: (frontmatter.branch as string) || '',
         readingTime,
       });
     } catch (error) {

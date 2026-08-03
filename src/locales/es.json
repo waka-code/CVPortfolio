@@ -7,15 +7,99 @@
     "email": "Correo",
     "call": "Llamar"
   },
+  "about": {
+    "openCTA": "Sobre mí",
+    "title": "Sobre mí",
+    "subtitle": "Mi camino en el mundo tech",
+    "back": "Volver",
+    "sections": {
+      "start": {
+        "title": "Cómo empecé",
+        "paragraphs": [
+          "Mi camino en la programación empezó en 2017, cuando entré a la Universidad Tecnológica de Santiago (UTESA) a estudiar Ingeniería de Sistemas. Ahí escribí mis primeras líneas de código y descubrí que esto era lo mío, entender cómo funcionan las cosas por dentro y construirlas desde cero.",
+          "Mi primer lenguaje fue C#. Con él aprendí los fundamentos que todavía uso hoy: tipos, estructuras de datos, programación orientada a objetos y la disciplina de escribir código que otra persona pueda leer. Después llegó JavaScript, y con él la web, de golpe podía construir algo, abrirlo en un navegador y ponerlo en manos de cualquiera.",
+          "En noviembre de 2020, todavía estudiando, empecé a trabajar como desarrollador web freelance en plataformas como Upwork y Workana. Fueron dos años y medio de convertir diseños en sitios funcionales, integrar front-end con back-end y aprender a entenderme con clientes reales. Esa combinación —la base sólida de C# y el alcance de JavaScript— definió el resto de mi carrera y es la razón por la que hoy trabajo cómodo en ambos lados del stack."
+        ]
+      },
+      "academy": {
+        "title": "Alterna Academy y encontrar un mentor",
+        "paragraphs": [
+          "En 2022 entré a Alterna Academy, una academia de programación que marcó un antes y un después. La universidad me dio la base teórica y el freelance me dio oficio; la academia me enseñó cómo se construye software de verdad en equipo, con las prácticas y el ritmo que exige la industria.",
+          "Ahí conocí a Eduardo Burgos, ingeniero de software con más de 20 años en el área y CEO de Alterna Academy. Fue mi mentor, es una figura a seguir y hoy también un buen amigo. Buena parte de cómo pienso el desarrollo —tomar decisiones técnicas con criterio, revisar código con honestidad, enseñar a quien viene detrás— viene directamente de él.",
+          "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack: mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y desde entonces he seguido sumando proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico."
+        ]
+      },
+      "utesa": {
+        "title": "Compartiendo lo aprendido en UTESA",
+        "paragraphs": [
+          "Tuve el honor de participar en un evento sobre el mundo tech en la Universidad Tecnológica de Santiago (UTESA), donde hablé sobre cómo conseguir tu primer trabajo en tecnología, cómo es el día a día de un programador y un poco sobre mi propio camino.",
+          "Como graduado de UTESA y de Alterna Academy, fue muy especial poder compartir mi experiencia y aprendizaje con quienes buscan iniciar su carrera en tecnología.",
+          "Todo esto fue posible gracias a Juan José Días Nerio, director de la carrera de Ingeniería en Software en UTESA y uno de mis grandes maestros, cuyo apoyo y visión hicieron que la experiencia fuera realmente enriquecedora.",
+          "Compartí escenario con profesionales de altísimo nivel, y fue increíble ver la pasión y la experiencia que cada uno aportó."
+        ]
+      },
+      "today": {
+        "title": "Por qué lo hago",
+        "paragraphs": [
+          "Eventos como ese me recuerdan por qué amo lo que hago y lo importante que es compartir conocimiento, inspirar y conectar con otros profesionales. Sin duda fue una experiencia enriquecedora que me encantaría repetir.",
+          "Hoy sigo con la misma idea con la que empecé: construir cosas que funcionen de verdad, aprender de gente que sabe más que yo, y devolver algo de lo que recibí a quienes están empezando."
+        ]
+      }
+    },
+    "peopleTitle": "Personas que marcaron el camino",
+    "people": [
+      {
+        "name": "Eduardo Burgos",
+        "role": "Ingeniero de software y CEO de Alterna Academy. Más de 20 años en el área: mentor, inspiración, referente en mi desarrollo profesional y buen amigo."
+      },
+      {
+        "name": "Juan José Días Nerio",
+        "role": "Director de la carrera de Ingeniería en Software en UTESA y uno de mis grandes maestros."
+      }
+    ],
+    "timelineTitle": "Cronología",
+    "momentsTitle": "Momentos",
+    "milestones": [
+      {
+        "year": 2017,
+        "title": "Entré a UTESA",
+        "description": "Empecé Ingeniería de Sistemas en la Universidad Tecnológica de Santiago y escribí mis primeras líneas de código, en C#."
+      },
+      {
+        "year": 2022,
+        "title": "Alterna Academy",
+        "description": "Entré a la academia donde conocí a Eduardo Burgos, mi mentor, y aprendí cómo se construye software en equipo."
+      },
+      {
+        "year": 2024,
+        "title": "Me gradué de UTESA",
+        "description": "Ingeniero de Sistemas, después de siete años combinando estudio y trabajo real."
+      }
+    ],
+    "tableOfContents": "Índice"
+  },
   "experience": {
     "title": "Experiencia Profesional",
     "keyResponsibilities": "Responsabilidades Clave:",
     "technologies": "Tecnologías:",
+    "viewAll": "Ver Todos",
+    "viewDetail": "Ver detalle del trabajo",
+    "allTitle": "Toda la Experiencia",
+    "jobsLabel": "experiencias",
+    "back": "Volver",
+    "filterLabel": "Filtrar por:",
+    "filterCompany": "Empresa",
+    "filterRole": "Rol",
+    "filterAllCompanies": "Todas las empresas",
+    "filterAllRoles": "Todos los roles",
+    "noResults": "No hay experiencias para estos filtros.",
+    "relatedProjects": "Proyectos relacionados",
+    "notFound": "No encontramos esta experiencia.",
     "jobs": {
       "higherbit": {
-        "title": "Desarrollador Fullstack & Líder Técnico",
+        "title": "Desarrollador Fullstack & Líder Técnico - Contrator",
         "company": "Higher Bit Solutions",
-        "period": "Sept 2025 - Actual",
+        "period": "Sept 2025 - Feb 2026",
         "description": "Higher Bit Solutions es una startup que ofrece soluciones personalizadas de tecnología, IA y automatización. Como Ingeniero Full-Stack y Líder Técnico, construyo sistemas de extremo a extremo, lidero decisiones técnicas, mentoreo desarrolladores y aseguro soluciones escalables, seguras y de alto rendimiento.",
         "tasks": [
           "Lideré la hoja de ruta técnica, revisiones de PR y mentoría para desarrolladores junior",
@@ -74,10 +158,31 @@
     "downloadCV": "Descargar CV",
     "viewMore": "Ver Más",
     "viewLess": "Ver Menos",
+    "viewAll": "Ver Todos",
+    "allTitle": "Todos los Proyectos",
+    "projectsLabel": "proyectos",
+    "back": "Volver",
+    "screenshots": "Capturas",
+    "loadingImages": "Cargando imágenes...",
+    "filterLabel": "Filtrar por:",
+    "filterAll": "Todos los proyectos",
+    "noResults": "No hay proyectos para este filtro.",
+    "previousPage": "Página anterior",
+    "nextPage": "Página siguiente",
+    "assignedBy": "Asignado por",
+    "personalProject": "Proyecto personal",
+    "visitSite": "Visitar sitio",
+    "viewRepo": "Ver repositorio",
+    "notFound": "No encontramos este proyecto.",
+    "viewDetail": "Ver detalle",
+    "expandImage": "Ampliar imagen",
+    "closeImage": "Cerrar imagen",
+    "previousImage": "Imagen anterior",
+    "nextImage": "Imagen siguiente",
     "items": {
       "marfil": {
         "name": "Marfil Platform - Higher Bit Solutions",
-        "date": "Sept 2025",
+        "date": "Sept 2025 – Feb 2026",
         "description": "Plataforma ERP enfocada en la gestión administrativa, contable y operativa de empresas, con módulos especializados en gestión de proyectos estructurales, control de inventario, cotizaciones, reportes y automatización de procesos internos. Diseñada específicamente para los sectores de construcción e infraestructura, destaca por su flexibilidad y adaptabilidad a flujos de trabajo de ingeniería estructural.",
         "tasks": [
           "Diseño y construcción de interfaces web para módulos de gestión de proyectos estructurales",
@@ -88,7 +193,7 @@
       },
       "hemisferio": {
         "name": "Hemisferio Platform - Higher Bit Solutions",
-        "date": "Feb 2026",
+        "date": "Sept 2025 – Feb 2026",
         "description": "Plataforma integral para la gestión operativa y comercial de empresas de servicios e instalaciones. Permite gestionar clientes, catálogos de productos y materias primas, proyectos, cotizaciones, ventas rápidas, planificación de tareas, historial de operaciones, reportes y flujos de aprobación. Incluye dashboards, gestión de usuarios y roles, y automatización de procesos clave.",
         "tasks": [
           "Desarrollo de servicios backend usando Django y PostgreSQL",
@@ -96,6 +201,36 @@
           "Diseño y optimización de modelos relacionales para operaciones a gran escala",
           "Construcción de APIs RESTful con autenticación, paginación y manejo de errores adecuados",
           "Configuración de infraestructura AWS y pipelines de despliegue"
+        ]
+      },
+      "calquen": {
+        "name": "Calquen Platform - Higher Bit Solutions",
+        "date": "Sept 2025 – Feb 2026",
+        "description": "Plataforma SaaS multiempresa enfocada en la gestión administrativa, contable y documental de empresas. Centraliza la administración de documentos contables, legales y tributarios, con extracción automatizada de información desde el ERP KameOne mediante scraping programado. Incluye portal cliente segmentado por empresa, sistema de recordatorios y notificaciones, planes de suscripción, y control granular de roles y permisos. Diseñada para automatizar el flujo documental y reducir la carga operativa de estudios contables y áreas de administración.",
+        "tasks": [
+          "Reconstrucción completa del frontend de la plataforma: arquitectura de componentes, sistema de diseño y todas las vistas de la aplicación",
+          "Arquitectura multiempresa (multi-tenant) con portal cliente acotado por empresa activa y control de acceso por roles/permisos a nivel de módulo",
+          "Scraper automatizado del ERP KameOne para la descarga y sincronización periódica de documentos, con almacenamiento en AWS S3",
+          "Gestión documental integral: documentos contables, legales y tributarios, con categorización, auditoría y ejecución programada",
+          "Motor de recordatorios y notificaciones con plantillas configurables por empresa e historial de envíos",
+          "Módulo de suscripciones y planes con servicios y planes complementarios",
+          "Búsqueda global y buscador de portal cliente acotado por empresa",
+          "Dashboards, reportes financieros y registro de actividad (activity log)",
+          "Envío de correos transaccionales (activación, recuperación de contraseña) e integración con AWS Secrets Manager"
+        ]
+      },
+      "iocupacional": {
+        "name": "IOcupacional Platform - Higher Bit Solutions",
+        "date": "Sept 2025 – Feb 2026",
+        "description": "Plataforma integral para la gestión de salud ocupacional, diseñada para clínicas y centros médicos que realizan exámenes preocupacionales, ocupacionales y de egreso a empresas en convenio. Permite administrar fichas médicas, baterías de exámenes, firma digital de médicos, portales de acceso para empresas, roles y permisos granulares, y automatización de flujos clínicos y administrativos. Incluye dashboards, gestión de usuarios y trazabilidad completa de operaciones.",
+        "tasks": [
+          "Reconstrucción completa de la aplicación, tanto backend como frontend, desde la arquitectura hasta la implementación",
+          "Gestión de fichas médicas con firma digital del médico sobre la ficha completa, incluyendo bandeja de trabajo dedicada para el doctor",
+          "Sistema de roles y permisos granular por página/operación como única fuente de verdad para autorización (route guards y sidebar dinámico)",
+          "Portal de Empresas en Convenio con accesos por clave, gestión y descarga de documentos por empresa",
+          "Integración con AWS Cognito para sincronización automática de usuarios (alta, cambio de email y contraseña) con transacciones atómicas y backfill de usuarios legacy",
+          "Formularios y validación robusta con React Hook Form + Zod y manejo de estado de servidor mediante TanStack Query",
+          "CI/CD automatizado con GitHub Actions y despliegue continuo a Railway"
         ]
       },
       "ownorbit": {
@@ -263,6 +398,8 @@
     "subtitle": "Lo que otros dicen sobre trabajar conmigo.",
     "empty": "Aún no hay testimonios. ¡Sé el primero en compartir tu experiencia!",
     "shareBtn": "Comparte tu experiencia",
+    "previous": "Testimonio anterior",
+    "next": "Testimonio siguiente",
     "form": {
       "title": "Dejar un Testimonio",
       "name": "Nombre Completo",
@@ -286,6 +423,10 @@
         "rejected": "Rechazados"
       },
       "approve": "Aprobar",
+      "cancel": "Cancelar",
+      "originalIn": "Original en",
+      "translationFor": "Versión en",
+      "translationPlaceholder": "Escribe la traducción del testimonio...",
       "reject": "Rechazar",
       "revoke": "Revocar",
       "restore": "Restaurar",
@@ -303,6 +444,18 @@
     "viewMore": "Ver Más",
     "viewLess": "Ver Menos",
     "allTags": "Todos",
-    "filterByTag": "Filtrar por etiqueta"
+    "filterByTag": "Filtrar por etiqueta",
+    "newArticle": "Nuevo Artículo",
+    "viewAll": "Ver Todos",
+    "allTitle": "Todos los Artículos",
+    "articlesLabel": "artículos",
+    "back": "Volver",
+    "filterLabel": "Filtrar por:",
+    "filterTech": "Tecnología",
+    "filterBranch": "Rama",
+    "filterAllTech": "Todas las tecnologías",
+    "filterAllBranches": "Todas las ramas",
+    "noResults": "No hay artículos para estos filtros.",
+    "tableOfContents": "Índice"
   }
 }
