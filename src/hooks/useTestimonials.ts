@@ -87,13 +87,18 @@ export function useTestimonials() {
     await update(testimonialRef, { status });
   };
 
-  /** Approving requires both languages, so the site never shows an untranslated quote. */
+  /**
+   * Approving requires both languages, so the site never shows an untranslated quote.
+   * `lang` is corrected here too: the submission form only knows which language the
+   * site was in, which is not always the one the person wrote in.
+   */
   const approveTestimonial = async (
     id: string,
-    translations: TestimonialTranslations
+    translations: TestimonialTranslations,
+    lang: TestimonialLang
   ): Promise<void> => {
     const testimonialRef = ref(database, `testimonials/${id}`);
-    await update(testimonialRef, { status: 'approved', translations });
+    await update(testimonialRef, { status: 'approved', translations, lang });
   };
 
   return {

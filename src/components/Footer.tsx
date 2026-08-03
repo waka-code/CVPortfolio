@@ -2,6 +2,7 @@ import { Mail, Phone, Github, Linkedin } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
+import { ADMIN_HASH } from '../constants/routes';
 
 interface FooterProps {
   email: string;
@@ -77,6 +78,13 @@ export function Footer({ email, phone, github, linkedin }: FooterProps) {
               year: new Date().getFullYear(),
             })}
           </p>
+          {/* Discreet way in; the panel still asks for the password */}
+          <a
+            href={ADMIN_HASH}
+            className="inline-block mt-3 text-xs text-slate-500 hover:text-blue-400 transition-colors"
+          >
+            {t('footer.admin')}
+          </a>
         </div>
       </div>
     </footer>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ShieldCheck, X, Lock, CheckCircle, XCircle, RotateCcw, Eye } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
+import { detectTestimonialLang } from '../utils/detectLang';
 import {
   useTestimonials,
   type Testimonial,
@@ -54,7 +55,7 @@ function TestimonialRow({
 }: {
   testimonial: Testimonial;
   tab: TabKey;
-  onApprove: (id: string, translations: TestimonialTranslations) => void;
+  onApprove: (id: string, translations: TestimonialTranslations, lang: TestimonialLang) => void;
   onReject: (id: string) => void;
   onRevoke: (id: string) => void;
   onRestore: (id: string) => void;
@@ -63,9 +64,12 @@ function TestimonialRow({
 }) {
   const [expanded, setExpanded] = useState(false);
 
-  const sourceLang = testimonial.lang ?? 'es';
+  // Guessed from the text, since the stored value is the language the site was in
+  const [sourceLang, setSourceLang] = useState<TestimonialLang>(() =>
+    detectTestimonialLang(testimonial.description, testimonial.lang)
+  );
   const targetLang: TestimonialLang = sourceLang === 'es' ? 'en' : 'es';
-  const [translation, setTranslation] = useState(testimonial.translations?.[targetLang] ?? '');
+  const [translation, setTranslation] = useState('');
   const [showTranslation, setShowTranslation] = useState(false);
 
   return (
@@ -108,9 +112,29 @@ function TestimonialRow({
 
       {tab === 'pending' && showTranslation && (
         <div className={`mt-4 rounded-lg border p-3 ${isDark ? 'border-slate-600 bg-slate-800' : 'border-slate-200 bg-slate-50'}`}>
-          <p className={`text-xs mb-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-            {t('testimonials.admin.originalIn')} {LANG_LABEL[sourceLang]}
-          </p>
+          <div className="flex items-center gap-2 mb-3 flex-wrap">
+            <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              {t('testimonials.admin.originalIn')}
+            </span>
+            {(['es', 'en'] as TestimonialLang[]).map((lang) => (
+              <button
+                key={lang}
+                onClick={() => {
+                  setSourceLang(lang);
+                  setTranslation('');
+                }}
+                className={`px-2 py-0.5 rounded-full text-xs font-medium border transition-colors ${
+                  sourceLang === lang
+                    ? 'bg-blue-600 border-blue-600 text-white'
+                    : isDark
+                      ? 'bg-slate-900 border-slate-600 text-slate-300 hover:border-blue-500'
+                      : 'bg-white border-slate-300 text-slate-600 hover:border-blue-300'
+                }`}
+              >
+                {LANG_LABEL[lang]}
+              </button>
+            ))}
+          </div>
           <label
             className={`block text-xs font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}
           >
@@ -152,10 +176,14 @@ function TestimonialRow({
                   return;
                 }
                 if (!translation.trim()) return;
-                onApprove(testimonial.id, {
-                  [sourceLang]: testimonial.description,
-                  [targetLang]: translation.trim(),
-                });
+                onApprove(
+                  testimonial.id,
+                  {
+                    [sourceLang]: testimonial.description,
+                    [targetLang]: translation.trim(),
+                  },
+                  sourceLang
+                );
               }}
               disabled={showTranslation && !translation.trim()}
               className="flex items-center gap-1.5 px-3 py-1.5 bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg text-xs font-medium transition-colors"
@@ -272,8 +300,11 @@ export function TestimonialsAdmin() {
 
   const filtered = allTestimonials.filter((t) => t.status === activeTab);
 
-  const handleApprove = (id: string, translations: TestimonialTranslations) =>
-    approveTestimonial(id, translations);
+  const handleApprove = (
+    id: string,
+    translations: TestimonialTranslations,
+    lang: TestimonialLang
+  ) => approveTestimonial(id, translations, lang);
   const handleReject = (id: string) => updateStatus(id, 'rejected');
   const handleRevoke = (id: string) => updateStatus(id, 'pending');
   const handleRestore = (id: string) => updateStatus(id, 'pending');

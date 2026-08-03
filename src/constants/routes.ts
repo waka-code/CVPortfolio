@@ -1,3 +1,5 @@
+export const ADMIN_HASH = '#admin';
+
 export const HOME_SECTION_HASH = '#home';
 export const ABOUT_HASH = '#about';
 
