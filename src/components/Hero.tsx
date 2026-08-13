@@ -64,7 +64,7 @@ export function Hero({  github, linkedin }: HeroProps) {
         </p>
 
         <div
-          className={`flex flex-wrap justify-center gap-4 mb-8 ${
+          className={`flex justify-center mb-8 ${
             isVisible ? 'animate-fade-in-up delay-600' : 'opacity-0'
           }`}
         >
@@ -75,52 +75,75 @@ export function Hero({  github, linkedin }: HeroProps) {
             {t('hero.hireCTA')}
             <ArrowRight size={18} />
           </button> */}
-          <a
-            href={ABOUT_HASH}
-            className="btn-animate flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/20 transition-all"
-          >
-            <User size={20} />
-            <span>{t('about.openCTA')}</span>
-            <ArrowRight size={18} />
-          </a>
-          <a
-            href={github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg ${
+          <div
+            className={`inline-flex flex-wrap justify-center items-center gap-1 p-1.5 rounded-full border backdrop-blur-sm ${
               isDark
-                ? 'bg-slate-700 hover:bg-slate-600 text-white'
-                : 'bg-slate-300 hover:bg-slate-400 text-slate-900'
+                ? 'bg-slate-900/60 border-slate-700/60'
+                : 'bg-white/70 border-slate-200'
             }`}
           >
-            <Github size={20} />
-            <span>GitHub</span>
-          </a>
-          <a
-            href={linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg ${
-              isDark
-                ? 'bg-slate-700 hover:bg-slate-600 text-white'
-                : 'bg-slate-300 hover:bg-slate-400 text-slate-900'
-            }`}
-          >
-            <Linkedin size={20} />
-            <span>LinkedIn</span>
-          </a>
-          <a
-            href={`${import.meta.env.BASE_URL}WSL.pdf`}
-            download="Waddimi_Saint-Louis_CV.pdf"
-            className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg ${
-              isDark
-                ? 'bg-slate-800 hover:bg-slate-700 text-slate-300'
-                : 'bg-slate-200 hover:bg-slate-300 text-slate-700'
-            }`}
-          >
-            <Download size={20} />
-            <span>{t('projects.downloadCV')}</span>
-          </a>
+            <a
+              href={ABOUT_HASH}
+              className="cta-primary flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold ring-1 ring-inset ring-white/25"
+            >
+              <User size={17} />
+              <span>{t('about.openCTA')}</span>
+              <ArrowRight size={17} className="cta-arrow" />
+            </a>
+            <span
+              aria-hidden="true"
+              className={`h-5 w-px ${isDark ? 'bg-slate-700/70' : 'bg-slate-200'}`}
+            />
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className={`icon-pill px-3 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${
+                isDark
+                  ? 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+            >
+              <Github size={18} className="shrink-0" />
+              <span className="icon-pill-label">GitHub</span>
+            </a>
+            <span
+              aria-hidden="true"
+              className={`h-5 w-px ${isDark ? 'bg-slate-700/70' : 'bg-slate-200'}`}
+            />
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className={`icon-pill px-3 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${
+                isDark
+                  ? 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+            >
+              <Linkedin size={18} className="shrink-0" />
+              <span className="icon-pill-label">LinkedIn</span>
+            </a>
+            <span
+              aria-hidden="true"
+              className={`h-5 w-px ${isDark ? 'bg-slate-700/70' : 'bg-slate-200'}`}
+            />
+            <a
+              href={`${import.meta.env.BASE_URL}WSL.pdf`}
+              download="Waddimi_Saint-Louis_CV.pdf"
+              aria-label={t('projects.downloadCV')}
+              className={`icon-pill px-3 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${
+                isDark
+                  ? 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+            >
+              <Download size={18} className="shrink-0" />
+              <span className="icon-pill-label">{t('projects.downloadCV')}</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

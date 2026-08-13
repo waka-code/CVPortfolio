@@ -190,6 +190,134 @@
   transform: translateY(0);
 }
 
+/* ===== CTA principal del hero ("Sobre mí") ===== */
+@keyframes ctaGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Latido: sombra + anillo que se expande para atraer la mirada */
+@keyframes ctaGlowPulse {
+  0%, 100% {
+    box-shadow: 0 4px 14px -4px rgba(37, 99, 235, 0.6),
+                0 0 0 0 rgba(56, 189, 248, 0.6);
+  }
+  50% {
+    box-shadow: 0 8px 22px -4px rgba(37, 99, 235, 0.95),
+                0 0 0 7px rgba(56, 189, 248, 0);
+  }
+}
+
+/* Destello que recorre el botón cada pocos segundos */
+@keyframes ctaShine {
+  0% { transform: translateX(-160%) skewX(-20deg); }
+  35% { transform: translateX(320%) skewX(-20deg); }
+  100% { transform: translateX(320%) skewX(-20deg); }
+}
+
+@keyframes ctaArrow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+.cta-primary {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: linear-gradient(
+    110deg,
+    #1d4ed8 0%,
+    #2563eb 25%,
+    #22d3ee 50%,
+    #2563eb 75%,
+    #1d4ed8 100%
+  );
+  background-size: 250% 100%;
+  animation: ctaGradient 7s ease-in-out infinite,
+             ctaGlowPulse 2.6s ease-in-out infinite;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: translateX(-160%) skewX(-20deg);
+  animation: ctaShine 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.cta-primary:hover {
+  transform: scale(1.06);
+}
+
+.cta-primary:active {
+  transform: scale(1);
+}
+
+.cta-arrow {
+  animation: ctaArrow 1.8s ease-in-out infinite;
+}
+
+.cta-primary:hover .cta-arrow {
+  animation-duration: 0.9s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-primary,
+  .cta-primary::after,
+  .cta-arrow {
+    animation: none;
+  }
+  .cta-primary {
+    box-shadow: 0 10px 30px -8px rgba(37, 99, 235, 0.7);
+  }
+}
+
+/* ===== Enlaces solo-icono: el nombre se despliega al hover (efecto tren) ===== */
+.icon-pill {
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon-pill-label {
+  display: inline-block;
+  max-width: 0;
+  margin-left: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transform: translateX(-8px);
+  transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease 0.08s;
+}
+
+.icon-pill:hover .icon-pill-label,
+.icon-pill:focus-visible .icon-pill-label {
+  max-width: 10rem;
+  margin-left: 0.5rem;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-pill-label {
+    transition: none;
+  }
+}
+
 /* Efecto de brillo para skills */
 .skill-glow {
   transition: all 0.3s ease;
