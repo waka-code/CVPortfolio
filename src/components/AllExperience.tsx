@@ -1,7 +1,8 @@
-import { ArrowLeft, Briefcase, ChevronLeft, ChevronRight, Download, Filter } from 'lucide-react';
+import { Briefcase, ChevronLeft, ChevronRight, Download, Filter } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
+import { BackButton } from './BackButton';
 import { ExperienceCard, Job } from './ExperienceCard';
 import { useSearchParamsState } from '../hooks/useSearchParamsState';
 import { buildCompanyOptions, buildRoleOptions, filterJobs } from '../utils/experienceFilters';
@@ -104,13 +105,7 @@ export function AllExperience({ jobs }: AllExperienceProps) {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 py-12">
-        <button
-          onClick={handleBack}
-          className={`btn-animate flex items-center gap-2 mb-8 px-4 py-2 rounded-lg border transition-colors ${buttonClass}`}
-        >
-          <ArrowLeft size={20} />
-          <span className="font-medium">{t('experience.back')}</span>
-        </button>
+        <BackButton onClick={handleBack} label={t('experience.back')} />
 
         <div className="flex items-start justify-between mb-8 gap-4 flex-wrap">
           <div className="flex items-center gap-3">

@@ -1,8 +1,9 @@
-import { Code2, Download, ArrowRight } from 'lucide-react';
+import { Code2, Download } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { ProjectCard, Project } from './ProjectCard';
+import { ViewAllButton } from './ViewAllButton';
 import { ALL_PROJECTS_HASH } from '../constants/routes';
 
 const HOME_PROJECT_COUNT = 4;
@@ -64,21 +65,12 @@ export function Projects({ projects }: ProjectsProps) {
         </div>
 
         {projects.length > HOME_PROJECT_COUNT && (
-          <div className="flex justify-center mt-12">
-            <a
-              href={ALL_PROJECTS_HASH}
-              className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg border transition-colors ${
-                isDark
-                  ? 'bg-slate-900 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
-                  : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
-              }`}
-            >
-              <span className="font-medium">
-                {t('projects.viewAll')} ({projects.length})
-              </span>
-              <ArrowRight size={20} />
-            </a>
-          </div>
+          <ViewAllButton
+            href={ALL_PROJECTS_HASH}
+            label={t('projects.viewAll')}
+            count={projects.length}
+            surface="dark"
+          />
         )}
       </div>
     </section>

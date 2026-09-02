@@ -1,6 +1,7 @@
-import { ArrowLeft, CalendarClock, Camera, GraduationCap, Mic, Sparkles, Terminal, Users } from 'lucide-react';
+import { CalendarClock, Camera, GraduationCap, Mic, Sparkles, Terminal, Users } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { BackButton } from './BackButton';
 import { useTheme } from '../context/ThemeContext';
 import { ScreenshotSlider } from './ScreenshotSlider';
 import { TableOfContents } from './TableOfContents';
@@ -141,17 +142,7 @@ export function About({ jobs }: AboutProps) {
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 py-3">
-          <button
-            onClick={handleBack}
-            className={`btn-animate flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
-              isDark
-                ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
-                : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
-            }`}
-          >
-            <ArrowLeft size={20} />
-            <span className="font-medium">{t('about.back')}</span>
-          </button>
+          <BackButton onClick={handleBack} label={t('about.back')} className="" />
         </div>
       </div>
 

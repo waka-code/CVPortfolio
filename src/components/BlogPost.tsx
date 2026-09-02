@@ -1,6 +1,7 @@
-import { ArrowLeft, GitBranch, ThumbsUp, Calendar, Clock } from 'lucide-react';
+import { GitBranch, ThumbsUp, Calendar, Clock } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { BackButton } from './BackButton';
 import { useTranslation } from 'react-i18next';
 import { useBlogArticles } from '../hooks/useBlogArticles';
 import { useBlogLikes } from '../hooks/useBlogLikes';
@@ -76,17 +77,7 @@ export function BlogPost() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 py-3">
-        <button
-          onClick={handleBack}
-          className={`btn-animate flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
-            isDark
-              ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
-              : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
-          }`}
-        >
-          <ArrowLeft size={20} />
-          <span className="font-medium">{t('blog.back')}</span>
-        </button>
+        <BackButton onClick={handleBack} label={t('blog.back')} className="" />
       </div>
     </div>
   );

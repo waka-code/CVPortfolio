@@ -1,6 +1,7 @@
-import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Filter, Search } from 'lucide-react';
+import { BookOpen, ChevronLeft, ChevronRight, Filter, Search } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { BackButton } from './BackButton';
 import { useTheme } from '../context/ThemeContext';
 import { BlogArticleCard } from './BlogArticleCard';
 import { useSearchParamsState } from '../hooks/useSearchParamsState';
@@ -129,13 +130,7 @@ export function AllBlog() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 py-12">
-        <button
-          onClick={handleBack}
-          className={`btn-animate flex items-center gap-2 mb-8 px-4 py-2 rounded-lg border transition-colors ${buttonClass}`}
-        >
-          <ArrowLeft size={20} />
-          <span className="font-medium">{t('blog.back')}</span>
-        </button>
+        <BackButton onClick={handleBack} label={t('blog.back')} />
 
         <div className="flex items-center gap-3 mb-8">
           <BookOpen className="text-blue-600" size={32} />

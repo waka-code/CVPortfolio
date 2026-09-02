@@ -26,7 +26,8 @@
         "paragraphs": [
           "En 2022 entré a Alterna Academy, una academia de programación que marcó un antes y un después. La universidad me dio la base teórica y el freelance me dio oficio, la academia me enseñó cómo se construye software de verdad en equipo, con las prácticas y el ritmo que exige la industria.",
           "Ahí conocí a Eduardo Burgos, ingeniero de software con más de 20 años en el área y CEO de Alterna Academy. Fue mi mentor, es una figura a seguir y hoy también un buen amigo. Buena parte de cómo pienso el desarrollo —tomar decisiones técnicas con criterio, revisar código con honestidad, enseñar a quien viene detrás— viene directamente de él.",
-          "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack, mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y desde entonces he seguido sumando proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico."
+          "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack, mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y en paralelo sumé proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico.",
+          "En marzo de 2026 cerré mi etapa en ProDoctivity, casi tres años, para entrar a Millicom a través de Zerviz Technologies. Hoy trabajo ahí como desarrollador fullstack senior sobre plataformas de telecomunicaciones de alto tráfico en América Latina: aplicaciones frontend en React, Vue y Next, servicios backend en Node y Ruby on Rails, y trabajo fino de rendimiento en PostgreSQL y Redis."
         ]
       },
       "utesa": {
@@ -76,6 +77,13 @@
         "description": "Ingeniero de Sistemas, después de siete años combinando estudio y trabajo real."
       }
     ],
+    "milestonesDisabled": [
+      {
+        "year": 2026,
+        "title": "Entré a Millicom",
+        "description": "Cerré casi tres años en ProDoctivity para sumarme a Millicom a través de Zerviz Technologies, trabajando sobre plataformas de telecomunicaciones de alto tráfico en América Latina."
+      }
+    ],
     "tableOfContents": "Índice"
   },
   "experience": {
@@ -96,57 +104,75 @@
     "relatedProjects": "Proyectos relacionados",
     "notFound": "No encontramos esta experiencia.",
     "jobs": {
+      "millicom": {
+        "title": "Desarrollador Fullstack Sr.",
+        "company": "Millicom (vía Zerviz Technologies)",
+        "period": "Marzo 2026 - Actual",
+        "description": "Contratado por Zerviz Technologies, presto servicios a Millicom, compañía de telecomunicaciones internacional que ofrece servicios móviles, banda ancha y digitales en América Latina.",
+        "tasks": [
+          "Desarrollo aplicaciones frontend de alto rendimiento con React, Vue.js y Next.js, mejorando la experiencia de usuario y reduciendo los tiempos de carga en interfaces clave",
+          "Construyo y escalo servicios backend con Node.js y Ruby on Rails, aplicando principios de arquitectura limpia para asegurar mantenibilidad y confiabilidad",
+          "Diseño y optimizo APIs REST dentro de una arquitectura de microservicios, habilitando un crecimiento escalable y modular del sistema",
+          "Integro múltiples servicios de terceros, implementando mecanismos seguros de autenticación y autorización para proteger los datos de usuario",
+          "Mejoro el rendimiento de base de datos diseñando y optimizando esquemas y consultas PostgreSQL para operaciones de alto tráfico",
+          "Reduzco tiempos de respuesta de API y latencia del sistema implementando estrategias de caché con Redis",
+          "Colaboro de forma transversal con equipos de producto, diseño e ingeniería para entregar funcionalidades alineadas con los objetivos del negocio",
+          "Optimizo procesos de despliegue y liberación aprovechando Docker y pipelines CI/CD, mejorando la velocidad de entrega y la confiabilidad"
+        ]
+      },
       "higherbit": {
-        "title": "Desarrollador Fullstack & Líder Técnico - Contrator",
+        "title": "Ingeniero Fullstack Sr. / Líder Técnico (Contractor)",
         "company": "Higher Bit Solutions",
-        "period": "Sept 2025 - Feb 2026",
+        "period": "Sept 2025 - Abril 2026",
         "description": "Higher Bit Solutions es una startup que ofrece soluciones personalizadas de tecnología, IA y automatización. Como Ingeniero Full-Stack y Líder Técnico, construyo sistemas de extremo a extremo, lidero decisiones técnicas, mentoreo desarrolladores y aseguro soluciones escalables, seguras y de alto rendimiento.",
         "tasks": [
-          "Lideré la hoja de ruta técnica, revisiones de PR y mentoría para desarrolladores junior",
-          "Diseñé arquitecturas de extremo a extremo usando Django, Node.js, React, Postgres y AWS",
-          "Construí APIs escalables con paginación, transacciones, validaciones y cobertura de pruebas",
-          "Desarrollé dashboards complejos e interfaces de administración (React/Next.js)",
-          "Gestioné infraestructura AWS: ECS/ECR, RDS, S3, CloudFront, Cognito, VPC, IAM",
+          "Lideré la hoja de ruta técnica y las decisiones de arquitectura para múltiples sistemas en producción",
+          "Diseñé e implementé soluciones de extremo a extremo usando Django, Node.js, React y PostgreSQL",
+          "Construí APIs escalables y seguras con validaciones, paginación, transacciones y pruebas automatizadas",
+          "Desarrollé dashboards complejos e interfaces de administración usando React, Next.js y TypeScript",
+          "Gestioné infraestructura AWS (ECS, ECR, RDS, S3, CloudFront, Cognito, VPC, IAM)",
           "Implementé pipelines CI/CD, monitoreo y despliegues automatizados",
-          "Colaboré con stakeholders para definir requisitos y asegurar alineación empresarial"
+          "Mentoreé desarrolladores junior, conduje revisiones de PR y hice cumplir estándares de código",
+          "Colaboré directamente con stakeholders para traducir requisitos de negocio en soluciones técnicas"
         ]
       },
       "prodoctivity": {
-        "title": "Desarrollador Fullstack",
+        "title": "Desarrollador Fullstack Sr.",
         "company": "ProDoctivity SRL",
-        "period": "Abril 2023 - Actual",
+        "period": "Abril 2023 - Marzo 2026",
         "description": "ProDoctivity Cloud es una solución integral de gestión empresarial que transforma las operaciones tradicionales a través de la digitalización y automatización de procesos. La plataforma optimiza los flujos de trabajo documentales, mejorando significativamente la eficiencia organizacional.",
         "tasks": [
           "Desarrollo de aplicaciones full stack usando React, TypeScript, Node, Docker y MongoDB",
           "Diseño y construcción de Microservicios para soportar procesos de negocio e integración con ERP",
+          "Actué como referencia técnica para decisiones de frontend y backend",
           "Proporcionar asistencia a colegas en caso de dudas o consultas",
           "Supervisar y guiar a pasantes que se unen al equipo de programación, ofreciendo seguimiento constante y asesoría técnica"
         ]
       },
       "imarket": {
-        "title": "Desarrollador Fullstack - Freelancer",
+        "title": "Desarrollador Fullstack (Contractor)",
         "company": "IMarket",
         "period": "Nov 2024 - Mayo 2025",
         "description": "Plataforma de software diseñada para gestionar diferentes aspectos administrativos y contables de pequeñas y medianas empresas.",
         "tasks": [
-          "Desarrollo de APIs RESTful para comunicación entre cliente y servidor",
-          "Implementación de lógica de negocio y validaciones",
-          "Creación de modelos, migraciones y consultas de base de datos",
-          "Optimización de rendimiento en operaciones críticas",
-          "Creación de componentes reutilizables e interfaces de usuario responsivas"
+          "Desarrollé APIs RESTful e implementé lógica de negocio y validaciones",
+          "Diseñé modelos de base de datos, migraciones y consultas optimizadas",
+          "Mejoré el rendimiento en operaciones críticas",
+          "Construí componentes frontend reutilizables e interfaces de usuario responsivas",
+          "Implementé gestión de estado de la aplicación y servicios de consumo de API"
         ]
       },
       "freelancer": {
-        "title": "Desarrollador Web - Freelancer",
-        "company": "Varias Plataformas",
+        "title": "Desarrollador Fullstack / Web",
+        "company": "Proyectos Freelance",
         "period": "Nov 2020 - Abril 2023",
         "description": "Proyectos freelance gestionados a través de varias plataformas como Upwork, Workana, entre otras.",
         "tasks": [
-          "Transformar diseños y mockups en sitios funcionales usando HTML, CSS, JS/TS y frameworks",
-          "Desarrollar módulos SPA y PWA de front-end con tecnologías progresivas",
-          "Integrar datos entre front-end y back-end usando Node.js, .NET, C# y bases de datos",
-          "Convertir diseños gráficos en código limpio con herramientas y frameworks modernos",
-          "Mantener y optimizar sitios web, asegurando velocidad, accesibilidad y compatibilidad"
+          "Entregué múltiples proyectos freelance incluyendo SPAs, PWAs y sistemas fullstack",
+          "Transformé diseños UI/UX en aplicaciones listas para producción",
+          "Integré sistemas frontend y backend usando APIs REST",
+          "Aseguré rendimiento, accesibilidad y compatibilidad entre navegadores",
+          "Colaboré de cerca con diseñadores usando Figma y frameworks de UI modernos"
         ]
       }
     }
@@ -292,7 +318,9 @@
       "spanish": "Español",
       "english": "Inglés",
       "native": "Nativo (C2)",
-      "intermediate": "Intermedio (B1)"
+      "intermediate": "Intermedio (B1)",
+      "french": "Francés",
+      "basic": "Básico (A2)"
     }
   },
   "footer": {

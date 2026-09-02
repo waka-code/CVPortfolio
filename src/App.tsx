@@ -30,7 +30,8 @@ function AppContent() {
     linkedin: 'https://www.linkedin.com/in/waddimi-saint-louis-b49424230/',
   };
 
-  const jobKeys = ['higherbit', 'prodoctivity', 'imarket', 'freelancer'] as const;
+  // Millicom queda fuera por ahora: descomentar aquí y sus entradas abajo para volver a mostrarlo
+  const jobKeys = [/* 'millicom', */ 'higherbit', 'prodoctivity', 'imarket', 'freelancer'] as const;
 
   type JobKey = (typeof jobKeys)[number];
 
@@ -39,10 +40,11 @@ function AppContent() {
   type ProjectKey = (typeof projectKeys)[number];
 
   const jobTechnologies: Record<JobKey, string[]> = {
-    higherbit: ['Python', 'Django', 'PostgreSQL', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Docker', 'AWS', 'Terraform'],
-    prodoctivity: ['React', 'TypeScript', 'Node.js', 'Docker', 'MongoDB'],
+    // millicom: ['React', 'JavaScript (ES6+)', 'Node.js', 'NestJS', 'Ruby on Rails', 'PostgreSQL', 'Docker', 'REST APIs', 'CI/CD', 'Tailwind CSS', 'VUE.js'],
+    higherbit: ['Python', 'Django', 'PostgreSQL', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Jest', 'Vite', 'Docker', 'ECS/ECR', 'RDS', 'S3', 'CloudFront', 'Cognito', 'IAM', 'SES', 'Amplify', 'VPC', 'Secrets Manager', 'CI/CD', 'Terraform'],
+    prodoctivity: ['React', 'TypeScript', 'Node.js', 'Docker', 'MongoDB', 'C#', 'Playwright'],
     imarket: ['Angular', 'TypeScript', '.NET 8', 'C#', 'Docker', 'PostgreSQL'],
-    freelancer: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Angular', 'Vue.js', 'Node.js', '.NET', 'MongoDB', 'PostgreSQL'],
+    freelancer: ['Angular', 'TypeScript', '.NET 8', 'C#', 'Docker', 'PostgreSQL', 'Ruby on Rails', 'Figma'],
   };
 
   // Projects built during each job, shown on the job's detail screen
@@ -56,6 +58,7 @@ function AppContent() {
     prodoctivity: 2023,
     imarket: 2024,
     higherbit: 2025,
+    // millicom: 2026,
   };
 
   // Screenshot folders under public/. Higher Bit's work is shown through its projects.
@@ -136,6 +139,7 @@ function AppContent() {
     languages: [
       { language: t('education.languagesList.spanish'), level: t('education.languagesList.native') },
       { language: t('education.languagesList.english'), level: t('education.languagesList.intermediate') },
+      { language: t('education.languagesList.french'), level: t('education.languagesList.basic') },
     ],
     certifications: ['Node.js', 'React', 'MongoDB', `${t('education.aws')}`],
     certificateImages: [

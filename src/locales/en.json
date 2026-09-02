@@ -26,7 +26,8 @@
         "paragraphs": [
           "In 2022 I joined Alterna Academy, a programming school that marked a clear before and after. University gave me the theory and freelancing gave me the craft, the academy taught me how real software gets built as a team, with the practices and pace the industry demands.",
           "That is where I met Eduardo Burgos, a software engineer with more than 20 years in the field and CEO of Alterna Academy. He was my mentor, he is someone I look up to, and today he is also a good friend. Much of how I think about development — making technical decisions with judgment, reviewing code honestly, teaching whoever comes next — comes straight from him.",
-          "Shortly after, in April 2023, I joined ProDoctivity SRL as a fullstack developer: my first formal role inside a product team, working with React, TypeScript, Node, Docker, and microservices. I graduated from UTESA in 2024, and since then I have kept adding projects at IMarket and Higher Bit Solutions, where I also took on technical leadership."
+          "Shortly after, in April 2023, I joined ProDoctivity SRL as a fullstack developer: my first formal role inside a product team, working with React, TypeScript, Node, Docker, and microservices. I graduated from UTESA in 2024, and alongside that I added projects at IMarket and Higher Bit Solutions, where I also took on technical leadership.",
+          "In March 2026 I closed my chapter at ProDoctivity after nearly three years, to join Millicom through Zerviz Technologies. That is where I work today as a senior fullstack developer on high-traffic telecom platforms across Latin America: frontend applications in React, Vue, and Next, backend services in Node and Ruby on Rails, and detailed performance work in PostgreSQL and Redis."
         ]
       },
       "utesa": {
@@ -76,6 +77,13 @@
         "description": "Systems Engineer, after seven years combining study with real work."
       }
     ],
+    "milestonesDisabled": [
+      {
+        "year": 2026,
+        "title": "Joined Millicom",
+        "description": "I closed nearly three years at ProDoctivity to join Millicom through Zerviz Technologies, working on high-traffic telecom platforms across Latin America."
+      }
+    ],
     "tableOfContents": "Contents"
   },
   "experience": {
@@ -96,57 +104,75 @@
     "relatedProjects": "Related projects",
     "notFound": "We couldn't find this experience.",
     "jobs": {
+      "millicom": {
+        "title": "Sr. Fullstack Developer",
+        "company": "Millicom (via Zerviz Technologies)",
+        "period": "March 2026 - Present",
+        "description": "Contracted through Zerviz Technologies, providing services to Millicom, an international telecommunications company delivering mobile, broadband, and digital services in Latin America.",
+        "tasks": [
+          "Delivered high-performance frontend applications using React, Vue.js, and Next.js, improving user experience and reducing load times across key interfaces",
+          "Built and scaled backend services with Node.js and Ruby on Rails, applying clean architecture principles to ensure maintainability and reliability",
+          "Designed and optimized REST APIs within a microservices architecture, enabling scalable and modular system growth",
+          "Integrated multiple third-party services, implementing secure authentication and authorization mechanisms to protect user data",
+          "Improved database performance by designing and optimizing PostgreSQL schemas and queries, supporting high-traffic operations",
+          "Reduced API response times and system latency by implementing Redis-based caching strategies",
+          "Collaborated cross-functionally with product, design, and engineering teams to deliver features aligned with business goals",
+          "Streamlined deployment and release processes by leveraging Docker and CI/CD pipelines, improving delivery speed and reliability"
+        ]
+      },
       "higherbit": {
-        "title": "Fullstack Developer & Technical Lead - Contract",
+        "title": "Sr Fullstack Engineer / Tech Lead (Contract)",
         "company": "Higher Bit Solutions",
-        "period": "Sept 2025 - Feb 2026",
+        "period": "Sept 2025 - Apr 2026",
         "description": "Higher Bit Solutions is a startup delivering custom tech, AI, and automation solutions. As a Full-Stack Engineer and Technical Lead, I build end-to-end systems, lead technical decisions, mentor developers, and ensure scalable, secure, high-performance solutions.",
         "tasks": [
-          "Led technical roadmap, PR reviews, and mentoring for junior devs",
-          "Designed end-to-end architectures using Django, Node.js, React, Postgres, and AWS",
-          "Built scalable APIs with pagination, transactions, validations, and test coverage",
-          "Developed complex dashboards and admin interfaces (React/Next.js)",
-          "Managed AWS infrastructure: ECS/ECR, RDS, S3, CloudFront, Cognito, VPC, IAM",
+          "Led technical roadmap and architectural decisions for multiple production systems",
+          "Designed and implemented end-to-end solutions using Django, Node.js, React, and PostgreSQL",
+          "Built scalable, secure APIs with validations, pagination, transactions, and automated testing",
+          "Developed complex dashboards and admin interfaces using React, Next.js, and TypeScript",
+          "Managed AWS infrastructure (ECS, ECR, RDS, S3, CloudFront, Cognito, VPC, IAM)",
           "Implemented CI/CD pipelines, monitoring, and automated deployments",
-          "Collaborated with stakeholders to define requirements and ensure business alignment"
+          "Mentored junior developers, conducted PR reviews, and enforced coding standards",
+          "Collaborated directly with stakeholders to translate business requirements into technical solutions"
         ]
       },
       "prodoctivity": {
-        "title": "Fullstack Developer",
+        "title": "Sr Fullstack Developer",
         "company": "ProDoctivity SRL",
-        "period": "April 2023 - Current",
+        "period": "April 2023 - March 2026",
         "description": "ProDoctivity Cloud is a comprehensive business management solution that transforms traditional operations through process digitization and automation. The platform optimizes document workflows, significantly improving organizational efficiency.",
         "tasks": [
           "Develop full stack applications using React, TypeScript, Node, Docker and MongoDB",
           "Design and build Micro-services to support business processes and integration with ERP",
+          "Acted as technical reference for frontend and backend decisions",
           "Provide assistance to colleagues in case of doubts or queries",
           "Supervise and guide interns joining the programming team, offering constant follow-up and technical advice"
         ]
       },
       "imarket": {
-        "title": "Fullstack Developer - Freelancer",
+        "title": "Fullstack Developer (Contract)",
         "company": "IMarket",
         "period": "Nov 2024 - May 2025",
         "description": "Software platform designed to manage different administrative and accounting aspects of small and medium-sized companies.",
         "tasks": [
-          "Development of RESTful APIs for communication between client and server",
-          "Implementation of business logic and validations",
-          "Creation of models, migrations, and database queries",
-          "Performance optimization in critical operations",
-          "Creation of reusable components and responsive user interfaces"
+          "Developed RESTful APIs and implemented business logic and validations",
+          "Designed database models, migrations, and optimized queries",
+          "Improved performance in critical operations",
+          "Built reusable frontend components and responsive user interfaces",
+          "Implemented application state management and API consumption services"
         ]
       },
       "freelancer": {
-        "title": "Web Developer - Freelancer",
-        "company": "Various Platforms",
+        "title": "Fullstack / Web Developer",
+        "company": "Freelance Projects",
         "period": "Nov 2020 - April 2023",
         "description": "Freelance projects managed through various platforms such as Upwork, Workana, among others.",
         "tasks": [
-          "Transform designs and mockups into functional sites using HTML, CSS, JS/TS, and frameworks",
-          "Develop front-end SPA and PWA modules with progressive technologies",
-          "Integrate data between front-end and back-end using Node.js, .NET, C#, and databases",
-          "Convert graphic designs into clean code with modern tools and frameworks",
-          "Maintain and optimize websites, ensuring speed, accessibility and compatibility"
+          "Delivered multiple freelance projects including SPAs, PWAs, and fullstack systems",
+          "Transformed UI/UX designs into production-ready applications",
+          "Integrated frontend and backend systems using REST APIs",
+          "Ensured performance, accessibility, and cross-browser compatibility",
+          "Collaborated closely with designers using Figma and modern UI frameworks"
         ]
       }
     }
@@ -292,7 +318,9 @@
       "spanish": "Spanish",
       "english": "English",
       "native": "Native (C2)",
-      "intermediate": "Intermediate (B1)"
+      "intermediate": "Intermediate (B1)",
+      "french": "French",
+      "basic": "Basic (A2)"
     }
   },
   "footer": {

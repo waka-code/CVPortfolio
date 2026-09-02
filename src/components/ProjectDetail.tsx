@@ -1,7 +1,8 @@
-import { ArrowLeft, Building2, Calendar, ExternalLink, LucideGithub, User } from 'lucide-react';
+import { Building2, Calendar, ExternalLink, LucideGithub, User } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
+import { BackButton } from './BackButton';
 import { ScreenshotSlider } from './ScreenshotSlider';
 import { PROJECTS_SECTION_HASH, PROJECT_HASH_PREFIX } from '../constants/routes';
 import type { Project } from './ProjectCard';
@@ -58,19 +59,7 @@ export function ProjectDetail({ projects }: ProjectDetailProps) {
 
   if (!projectId) return null;
 
-  const backButton = (
-    <button
-      onClick={handleBack}
-      className={`btn-animate flex items-center gap-2 mb-8 px-4 py-2 rounded-lg border transition-colors ${
-        isDark
-          ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
-          : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
-      }`}
-    >
-      <ArrowLeft size={20} />
-      <span className="font-medium">{t('projects.back')}</span>
-    </button>
-  );
+  const backButton = <BackButton onClick={handleBack} label={t('projects.back')} />;
 
   const screenClass = `fixed inset-0 z-[55] overflow-y-auto overscroll-contain animate-fade-in-up ${
     isDark ? 'bg-slate-900' : 'bg-slate-50'

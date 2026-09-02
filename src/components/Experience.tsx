@@ -1,8 +1,9 @@
-import { ArrowRight, Briefcase } from 'lucide-react';
+import { Briefcase } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { ExperienceCard, Job } from './ExperienceCard';
+import { ViewAllButton } from './ViewAllButton';
 import { ALL_EXPERIENCE_HASH } from '../constants/routes';
 
 const HOME_JOB_COUNT = 4;
@@ -50,21 +51,12 @@ export function Experience({ jobs }: ExperienceProps) {
         </div>
 
         {jobs.length > HOME_JOB_COUNT && (
-          <div className="flex justify-center mt-12">
-            <a
-              href={ALL_EXPERIENCE_HASH}
-              className={`btn-animate flex items-center gap-2 px-6 py-3 rounded-lg border transition-colors ${
-                isDark
-                  ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
-                  : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
-              }`}
-            >
-              <span className="font-medium">
-                {t('experience.viewAll')} ({jobs.length})
-              </span>
-              <ArrowRight size={20} />
-            </a>
-          </div>
+          <ViewAllButton
+            href={ALL_EXPERIENCE_HASH}
+            label={t('experience.viewAll')}
+            count={jobs.length}
+            surface="light"
+          />
         )}
       </div>
     </section>

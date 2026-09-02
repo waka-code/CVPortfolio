@@ -1,7 +1,8 @@
-import { ArrowLeft, ChevronLeft, ChevronRight, Code2, Download, Filter } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Code2, Download, Filter } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
+import { BackButton } from './BackButton';
 import { ProjectCard, Project } from './ProjectCard';
 import { useSearchParamsState } from '../hooks/useSearchParamsState';
 import { buildFilterOptions, filterProjects } from '../utils/projectFilters';
@@ -93,17 +94,7 @@ export function AllProjects({ projects }: AllProjectsProps) {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 py-12">
-        <button
-          onClick={handleBack}
-          className={`btn-animate flex items-center gap-2 mb-8 px-4 py-2 rounded-lg border transition-colors ${
-            isDark
-              ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500 hover:text-blue-300'
-              : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300 hover:text-blue-700'
-          }`}
-        >
-          <ArrowLeft size={20} />
-          <span className="font-medium">{t('projects.back')}</span>
-        </button>
+        <BackButton onClick={handleBack} label={t('projects.back')} />
 
         <div className="flex items-start justify-between mb-8 gap-4 flex-wrap">
           <div className="flex items-center gap-3">
