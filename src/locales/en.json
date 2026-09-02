@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "Waddimi Saint-Louis",
-    "subtitle": "System Engineer | Full Stack Developer",
-    "summary": "I build scalable systems, robust APIs, and high-impact interfaces for companies that need real results. 5 years delivering fullstack solutions in production, with expertise in technical leadership, cloud architecture, and web/mobile development.",
+    "subtitle": "Senior Full Stack Engineer | AI & Cloud",
+    "summary": "Senior Full Stack Engineer with 5+ years building scalable, cloud-native, and AI-powered applications. I work daily with React, Next.js, TypeScript, Node.js, Python, PostgreSQL, microservices, and AWS, integrating LLMs, AI APIs, and automation into production systems, with a focus on architecture, cloud infrastructure, CI/CD, and technical leadership.",
     "hireCTA": "View Plans",
     "email": "Email",
     "call": "Call"
@@ -27,7 +27,7 @@
           "In 2022 I joined Alterna Academy, a programming school that marked a clear before and after. University gave me the theory and freelancing gave me the craft, the academy taught me how real software gets built as a team, with the practices and pace the industry demands.",
           "That is where I met Eduardo Burgos, a software engineer with more than 20 years in the field and CEO of Alterna Academy. He was my mentor, he is someone I look up to, and today he is also a good friend. Much of how I think about development — making technical decisions with judgment, reviewing code honestly, teaching whoever comes next — comes straight from him.",
           "Shortly after, in April 2023, I joined ProDoctivity SRL as a fullstack developer: my first formal role inside a product team, working with React, TypeScript, Node, Docker, and microservices. I graduated from UTESA in 2024, and alongside that I added projects at IMarket and Higher Bit Solutions, where I also took on technical leadership.",
-          "In March 2026 I closed my chapter at ProDoctivity after nearly three years, to join Millicom through Zerviz Technologies. That is where I work today as a senior fullstack developer on high-traffic telecom platforms across Latin America: frontend applications in React, Vue, and Next, backend services in Node and Ruby on Rails, and detailed performance work in PostgreSQL and Redis."
+          "I have been at ProDoctivity ever since, today as a senior fullstack developer, and over the last couple of years my work has moved toward applied AI: I built a RAG-based document assistant on OpenAI LLMs, automatic document classification, and a standalone MCP service in Rust wired into the Node backend. Alongside that, between September 2025 and April 2026, I led the technical side of Higher Bit Solutions as a contractor."
         ]
       },
       "utesa": {
@@ -124,29 +124,37 @@
         "title": "Sr Fullstack Engineer / Tech Lead (Contract)",
         "company": "Higher Bit Solutions",
         "period": "Sept 2025 - Apr 2026",
-        "description": "Higher Bit Solutions is a startup delivering custom tech, AI, and automation solutions. As a Full-Stack Engineer and Technical Lead, I build end-to-end systems, lead technical decisions, mentor developers, and ensure scalable, secure, high-performance solutions.",
+        "description": "Higher Bit Solutions is a startup delivering custom tech, AI, and automation solutions for business clients. As a Full-Stack Engineer and Technical Lead I built end-to-end systems, led technical decisions, mentored developers, and ensured scalable, secure, high-performance solutions.",
         "tasks": [
-          "Led technical roadmap and architectural decisions for multiple production systems",
-          "Designed and implemented end-to-end solutions using Django, Node.js, React, and PostgreSQL",
-          "Built scalable, secure APIs with validations, pagination, transactions, and automated testing",
+          "Led technical roadmaps and architectural decisions across multiple production systems and client projects",
+          "Designed and implemented end-to-end solutions using Django, Node.js, React, Next.js, TypeScript, and PostgreSQL",
+          "Architected and implemented scalable, secure APIs with validation, pagination, transactions, and automated testing",
           "Developed complex dashboards and admin interfaces using React, Next.js, and TypeScript",
-          "Managed AWS infrastructure (ECS, ECR, RDS, S3, CloudFront, Cognito, VPC, IAM)",
+          "Managed and optimized AWS infrastructure, including ECS, ECR, RDS, S3, CloudFront, Cognito, VPC, and IAM",
+          "Migrated and restructured production architectures for Calquen, Hemisferio Norte, and Marfil, establishing separate staging and production environments while reducing monthly infrastructure costs without impacting clients",
+          "Rebuilt the Calquen frontend and key backend components from the ground up within one month, while resolving production issues and improving the scraper and data-processing workflow",
+          "Designed and implemented the Iocupacional product architecture and business logic from scratch, developing both frontend and backend and using AI-assisted development workflows to accelerate delivery",
+          "Used AI coding tools, primarily Claude Code, throughout the development lifecycle for architecture, implementation, debugging, refactoring, and feature delivery",
           "Implemented CI/CD pipelines, monitoring, and automated deployments",
-          "Mentored junior developers, conducted PR reviews, and enforced coding standards",
-          "Collaborated directly with stakeholders to translate business requirements into technical solutions"
+          "Mentored junior developers, conducted code reviews, and established engineering best practices",
+          "Collaborated directly with stakeholders to translate business requirements into scalable technical solutions"
         ]
       },
       "prodoctivity": {
         "title": "Sr Fullstack Developer",
         "company": "ProDoctivity SRL",
-        "period": "April 2023 - March 2026",
+        "period": "April 2023 - Present",
         "description": "ProDoctivity Cloud is a comprehensive business management solution that transforms traditional operations through process digitization and automation. The platform optimizes document workflows, significantly improving organizational efficiency.",
         "tasks": [
-          "Develop full stack applications using React, TypeScript, Node, Docker and MongoDB",
-          "Design and build Micro-services to support business processes and integration with ERP",
-          "Acted as technical reference for frontend and backend decisions",
-          "Provide assistance to colleagues in case of doubts or queries",
-          "Supervise and guide interns joining the programming team, offering constant follow-up and technical advice"
+          "Develop and deliver full-stack features using React, TypeScript, Node.js, Docker, and MongoDB",
+          "Design and implement microservices supporting core ERP business processes and backend workflows",
+          "Built a production-grade RAG-based AI document assistant using OpenAI LLMs, letting users upload documents and query their content in natural language",
+          "Implemented AI-powered document classification, automatically analyzing uploaded documents and assigning the appropriate documentType",
+          "Designed and implemented an independent MCP service in Rust, integrated with the Node.js backend to expose application data and services to AI-powered workflows",
+          "Integrated LLM capabilities, RAG, and AI automation into existing business workflows and backend services",
+          "Act as a technical reference for frontend and backend architecture, implementation decisions, and engineering best practices",
+          "Assist team members with troubleshooting, architecture, code reviews, and technical problem-solving",
+          "Supervise and mentor interns through onboarding, code reviews, and continuous feedback"
         ]
       },
       "imarket": {
@@ -300,6 +308,7 @@
       "databases": "Databases",
       "cloudDevops": "Cloud & DevOps",
       "architecture": "Architecture",
+      "aiEngineering": "AI Engineering",
       "toolsAi": "Tools & AI",
       "softSkills": "Soft Skills"
     }
@@ -320,7 +329,7 @@
       "native": "Native (C2)",
       "intermediate": "Intermediate (B1)",
       "french": "French",
-      "basic": "Basic (A2)"
+      "basic": "Basic (A1)"
     }
   },
   "footer": {

@@ -131,7 +131,7 @@ export function Hero({  github, linkedin }: HeroProps) {
               className={`h-5 w-px ${isDark ? 'bg-slate-700/70' : 'bg-slate-200'}`}
             />
             <a
-              href={`${import.meta.env.BASE_URL}WSL.pdf`}
+              href={`${import.meta.env.BASE_URL}Waddimi-Saint-Louis_AC..pdf`}
               download="Waddimi_Saint-Louis_CV.pdf"
               aria-label={t('projects.downloadCV')}
               className={`icon-pill px-3 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${

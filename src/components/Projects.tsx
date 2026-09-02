@@ -40,7 +40,7 @@ export function Projects({ projects }: ProjectsProps) {
             </h2>
           </div>
           <a
-            href={`${import.meta.env.BASE_URL}WSL.pdf`}
+            href={`${import.meta.env.BASE_URL}Waddimi-Saint-Louis_AC..pdf`}
             download="Waddimi_Saint-Louis_CV.pdf"
             className={`btn-animate flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
               isDark

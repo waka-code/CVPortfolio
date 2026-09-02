@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "Waddimi Saint-Louis",
-    "subtitle": "Ingeniero de Sistemas | Desarrollador Full Stack",
-    "summary": "Construyo sistemas escalables, APIs robustas e interfaces de alto impacto para empresas que necesitan resultados reales. 5 años entregando soluciones fullstack en producción, con experiencia en liderazgo técnico, arquitectura cloud y desarrollo web/móvil.",
+    "subtitle": "Ingeniero Full Stack Sr. | IA & Cloud",
+    "summary": "Ingeniero Full Stack Senior con más de 5 años construyendo aplicaciones escalables, cloud-native y potenciadas con IA. Trabajo a diario con React, Next.js, TypeScript, Node.js, Python, PostgreSQL, microservicios y AWS, integrando LLMs, APIs de IA y automatización en sistemas en producción, con foco en arquitectura, infraestructura cloud, CI/CD y liderazgo técnico.",
     "hireCTA": "Ver Planes",
     "email": "Correo",
     "call": "Llamar"
@@ -27,7 +27,7 @@
           "En 2022 entré a Alterna Academy, una academia de programación que marcó un antes y un después. La universidad me dio la base teórica y el freelance me dio oficio, la academia me enseñó cómo se construye software de verdad en equipo, con las prácticas y el ritmo que exige la industria.",
           "Ahí conocí a Eduardo Burgos, ingeniero de software con más de 20 años en el área y CEO de Alterna Academy. Fue mi mentor, es una figura a seguir y hoy también un buen amigo. Buena parte de cómo pienso el desarrollo —tomar decisiones técnicas con criterio, revisar código con honestidad, enseñar a quien viene detrás— viene directamente de él.",
           "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack, mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y en paralelo sumé proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico.",
-          "En marzo de 2026 cerré mi etapa en ProDoctivity, casi tres años, para entrar a Millicom a través de Zerviz Technologies. Hoy trabajo ahí como desarrollador fullstack senior sobre plataformas de telecomunicaciones de alto tráfico en América Latina: aplicaciones frontend en React, Vue y Next, servicios backend en Node y Ruby on Rails, y trabajo fino de rendimiento en PostgreSQL y Redis."
+          "Sigo en ProDoctivity desde entonces, hoy como desarrollador fullstack senior, y en los últimos años mi trabajo se movió hacia la IA aplicada: construí un asistente documental basado en RAG sobre LLMs de OpenAI, clasificación automática de documentos y un servicio MCP independiente en Rust integrado al backend de Node. En paralelo, entre septiembre de 2025 y abril de 2026, llevé el liderazgo técnico en Higher Bit Solutions como contractor."
         ]
       },
       "utesa": {
@@ -124,29 +124,37 @@
         "title": "Ingeniero Fullstack Sr. / Líder Técnico (Contractor)",
         "company": "Higher Bit Solutions",
         "period": "Sept 2025 - Abril 2026",
-        "description": "Higher Bit Solutions es una startup que ofrece soluciones personalizadas de tecnología, IA y automatización. Como Ingeniero Full-Stack y Líder Técnico, construyo sistemas de extremo a extremo, lidero decisiones técnicas, mentoreo desarrolladores y aseguro soluciones escalables, seguras y de alto rendimiento.",
+        "description": "Higher Bit Solutions es una startup que ofrece soluciones personalizadas de tecnología, IA y automatización para clientes de negocio. Como Ingeniero Full-Stack y Líder Técnico construí sistemas de extremo a extremo, lideré las decisiones técnicas, mentoreé desarrolladores y aseguré soluciones escalables, seguras y de alto rendimiento.",
         "tasks": [
-          "Lideré la hoja de ruta técnica y las decisiones de arquitectura para múltiples sistemas en producción",
-          "Diseñé e implementé soluciones de extremo a extremo usando Django, Node.js, React y PostgreSQL",
+          "Lideré la hoja de ruta técnica y las decisiones de arquitectura para múltiples sistemas en producción y proyectos de clientes",
+          "Diseñé e implementé soluciones de extremo a extremo usando Django, Node.js, React, Next.js, TypeScript y PostgreSQL",
           "Construí APIs escalables y seguras con validaciones, paginación, transacciones y pruebas automatizadas",
           "Desarrollé dashboards complejos e interfaces de administración usando React, Next.js y TypeScript",
-          "Gestioné infraestructura AWS (ECS, ECR, RDS, S3, CloudFront, Cognito, VPC, IAM)",
+          "Gestioné y optimicé la infraestructura AWS (ECS, ECR, RDS, S3, CloudFront, Cognito, VPC, IAM)",
+          "Migré y reestructuré las arquitecturas de producción de Calquen, Hemisferio Norte y Marfil, separando entornos de staging y producción y reduciendo el costo mensual de infraestructura sin impactar a los clientes",
+          "Reconstruí desde cero el frontend de Calquen y componentes clave del backend en un mes, resolviendo incidencias en producción y mejorando el scraper y el flujo de procesamiento de datos",
+          "Diseñé e implementé desde cero la arquitectura y la lógica de negocio de Iocupacional, desarrollando frontend y backend con flujos de trabajo asistidos por IA para acelerar la entrega",
+          "Usé herramientas de IA para programar, principalmente Claude Code, a lo largo de todo el ciclo de desarrollo: arquitectura, implementación, depuración, refactorización y entrega de funcionalidades",
           "Implementé pipelines CI/CD, monitoreo y despliegues automatizados",
-          "Mentoreé desarrolladores junior, conduje revisiones de PR y hice cumplir estándares de código",
-          "Colaboré directamente con stakeholders para traducir requisitos de negocio en soluciones técnicas"
+          "Mentoreé desarrolladores junior, conduje revisiones de código y establecí buenas prácticas de ingeniería",
+          "Colaboré directamente con stakeholders para traducir requisitos de negocio en soluciones técnicas escalables"
         ]
       },
       "prodoctivity": {
         "title": "Desarrollador Fullstack Sr.",
         "company": "ProDoctivity SRL",
-        "period": "Abril 2023 - Marzo 2026",
+        "period": "Abril 2023 - Actual",
         "description": "ProDoctivity Cloud es una solución integral de gestión empresarial que transforma las operaciones tradicionales a través de la digitalización y automatización de procesos. La plataforma optimiza los flujos de trabajo documentales, mejorando significativamente la eficiencia organizacional.",
         "tasks": [
-          "Desarrollo de aplicaciones full stack usando React, TypeScript, Node, Docker y MongoDB",
-          "Diseño y construcción de Microservicios para soportar procesos de negocio e integración con ERP",
-          "Actué como referencia técnica para decisiones de frontend y backend",
-          "Proporcionar asistencia a colegas en caso de dudas o consultas",
-          "Supervisar y guiar a pasantes que se unen al equipo de programación, ofreciendo seguimiento constante y asesoría técnica"
+          "Desarrollo y entrego funcionalidades full stack usando React, TypeScript, Node.js, Docker y MongoDB",
+          "Diseño e implemento microservicios que soportan los procesos de negocio del ERP y los flujos backend",
+          "Construí un asistente documental con IA basado en RAG sobre LLMs de OpenAI, que permite subir documentos y consultarlos en lenguaje natural",
+          "Implementé clasificación de documentos con IA, analizando automáticamente cada archivo subido y asignando su documentType",
+          "Diseñé e implementé un servicio MCP independiente en Rust, integrado con el backend Node.js para exponer datos y servicios de la aplicación a flujos de trabajo con IA",
+          "Integré capacidades de LLM, RAG y automatización con IA en flujos de negocio y servicios backend ya existentes",
+          "Actúo como referencia técnica en arquitectura frontend y backend, decisiones de implementación y buenas prácticas de ingeniería",
+          "Acompaño al equipo en troubleshooting, arquitectura, revisiones de código y resolución de problemas técnicos",
+          "Superviso y mentoreo pasantes mediante onboarding, revisiones de código y feedback continuo"
         ]
       },
       "imarket": {
@@ -300,6 +308,7 @@
       "databases": "Bases de Datos",
       "cloudDevops": "Cloud & DevOps",
       "architecture": "Arquitectura",
+      "aiEngineering": "Ingeniería de IA",
       "toolsAi": "Herramientas & IA",
       "softSkills": "Habilidades Blandas"
     }
@@ -320,7 +329,7 @@
       "native": "Nativo (C2)",
       "intermediate": "Intermedio (B1)",
       "french": "Francés",
-      "basic": "Básico (A2)"
+      "basic": "Básico (A1)"
     }
   },
   "footer": {

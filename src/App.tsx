@@ -41,10 +41,10 @@ function AppContent() {
 
   const jobTechnologies: Record<JobKey, string[]> = {
     // millicom: ['React', 'JavaScript (ES6+)', 'Node.js', 'NestJS', 'Ruby on Rails', 'PostgreSQL', 'Docker', 'REST APIs', 'CI/CD', 'Tailwind CSS', 'VUE.js'],
-    higherbit: ['Python', 'Django', 'PostgreSQL', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Jest', 'Vite', 'Docker', 'ECS/ECR', 'RDS', 'S3', 'CloudFront', 'Cognito', 'IAM', 'SES', 'Amplify', 'VPC', 'Secrets Manager', 'CI/CD', 'Terraform'],
-    prodoctivity: ['React', 'TypeScript', 'Node.js', 'Docker', 'MongoDB', 'C#', 'Playwright'],
+    higherbit: ['Python', 'Django', 'PostgreSQL', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Jest', 'Vite', 'Docker', 'ECS/ECR', 'RDS', 'S3', 'CloudFront', 'Cognito', 'IAM', 'SES', 'Amplify', 'VPC', 'Secrets Manager', 'PostHog', 'CI/CD', 'Terraform'],
+    prodoctivity: ['React', 'TypeScript', 'Node.js', 'Docker', 'MongoDB', 'C#', 'Playwright', 'Microservices', 'OpenAI API', 'RAG', 'Rust', 'MCP'],
     imarket: ['Angular', 'TypeScript', '.NET 8', 'C#', 'Docker', 'PostgreSQL'],
-    freelancer: ['Angular', 'TypeScript', '.NET 8', 'C#', 'Docker', 'PostgreSQL', 'Ruby on Rails', 'Figma'],
+    freelancer: ['Angular', 'TypeScript', '.NET 8', 'C#', 'Docker', 'PostgreSQL', 'Ruby on Rails', 'PHP', 'Kotlin', 'Java', 'Figma'],
   };
 
   // Projects built during each job, shown on the job's detail screen
@@ -124,11 +124,12 @@ function AppContent() {
   const skillCategories = [
     { category: t('skills.categories.coreStack'), skills: ['React.js + TypeScript', 'Next.js', 'Node.js + Express.js', 'MongoDB', 'PostgreSQL', 'Docker', 'CI/CD'] },
     { category: t('skills.categories.frontend'), skills: ['Angular 18', 'Vue.js', 'React Native', 'HTML5/CSS3', 'Tailwind', 'Bootstrap', 'Material UI', 'Vite', 'Jest'] },
-    { category: t('skills.categories.backend'), skills: ['.NET 8 (C#)', 'Python/Django', 'Ruby', 'GraphQL', 'gRPC', 'REST APIs'] },
+    { category: t('skills.categories.backend'), skills: ['.NET 8 (C#)', 'Python/Django', 'Ruby', 'Rust', 'GraphQL', 'gRPC', 'REST APIs'] },
     { category: t('skills.categories.databases'), skills: ['PostgreSQL', 'SQL Server', 'MongoDB', 'Firebase'] },
     { category: t('skills.categories.cloudDevops'), skills: ['AWS (ECS, RDS, S3, CloudFront, IAM)', 'Docker', 'NGINX', 'Terraform', 'GitHub Actions', 'GitLab CI'] },
     { category: t('skills.categories.architecture'), skills: ['Microservices', 'Monorepos', 'Hexagonal', 'SOLID', 'REST APIs', 'MVC'] },
-    { category: t('skills.categories.toolsAi'), skills: ['GitHub', 'Git', 'Postman', 'Swagger', 'Figma', 'Copilot', 'Cursor', 'Windsurf'] },
+    { category: t('skills.categories.aiEngineering'), skills: ['OpenAI APIs', 'RAG', 'LLM Applications', 'AI Agents', 'Tool Calling', 'MCP (Model Context Protocol)', 'Agent Skills', 'Claude Code'] },
+    { category: t('skills.categories.toolsAi'), skills: ['GitHub', 'Git', 'Postman', 'Swagger', 'PostHog', 'Figma', 'Copilot', 'Cursor', 'Windsurf'] },
     { category: t('skills.categories.softSkills'), skills: ['Problem Solving', 'Code Review', 'Leadership', 'Technical Documentation', 'Teamwork', 'Agile (Scrum)'] },
   ];
 
