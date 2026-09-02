@@ -293,9 +293,20 @@
         ]
       },
       "stockhex": {
-        "name": "StockHex",
+        "name": "StockHex - Sistema de Gestión de Inventario",
         "date": "Oct 27, 2024",
-        "description": "Aplicación de inventario diseñada para gestionar eficiente y escalablemente los productos y recursos de una empresa, proporcionando seguimiento detallado de stock, movimientos y actualizaciones de artículos en tiempo real. Basada en arquitectura hexagonal, el sistema está organizado en capas independientes."
+        "description": "Sistema full-stack de gestión de inventario con auditoría completa, construido sobre un invariante de dominio: el stock nunca se edita directamente. La única forma de modificarlo es registrar un movimiento, y movimiento + stock se persisten en una sola transacción, de modo que el historial y las existencias no pueden desincronizarse y cada cambio queda atribuido a su autor; un error no se borra, se corrige registrando su movimiento inverso. La API sigue arquitectura limpia en cuatro capas (Domain sin dependencias externas, casos de uso que devuelven Result<T> y nunca conocen HTTP, controladores sin lógica) e implementa autorización basada en permisos, con roles editables como datos y 31 permisos en 9 módulos declarados en una única fuente en el código. Incluye sesiones con JWT y refresh token rotativo con detección de reutilización, concurrencia optimista sobre rowversion con reintentos y errores normalizados como ProblemDetails (RFC 7807). Respaldado por 201 tests de API —incluidos tests contra un SQL Server real vía Testcontainers— y 418 comprobaciones E2E en navegador real con Playwright.",
+        "tasks": [
+          "Diseñé una auditoría que no se puede descuadrar: un solo SaveChanges guarda el movimiento y el nuevo stock con StockBefore/StockAfter encadenados, con FK en Restrict para que ningún borrado en cascada se lleve el historial y un índice único filtrado en base de datos que impide revertir dos veces el mismo movimiento",
+          "Implementé RBAC dinámico sin tabla de permisos: roles editables como datos desde la UI y permisos declarados en el código junto al endpoint que los exige; el JWT lleva solo el id del rol y los permisos se resuelven por petición con caché invalidable, así quitar un permiso surte efecto de inmediato sin cerrar sesiones",
+          "Añadí un guardia contra escalada de privilegios: nadie puede conceder un permiso que él mismo no tiene",
+          "Endurecí las sesiones: refresh tokens rotativos almacenados solo como SHA-256, reutilizar uno ya rotado invalida la cadena completa, rate limiting por IP en /api/auth con 429 + Retry-After y expulsión inmediata de cuentas desactivadas aunque el JWT no sea revocable",
+          "Resolví la concurrencia con rowversion sobre el producto más reintentos con espera exponencial y jitter, verificado contra SQL Server real en Testcontainers: 25 movimientos simultáneos sobre el mismo producto terminan en 25 éxitos y stock exacto (ese test encontró un bug que el proveedor InMemory nunca podía reproducir)",
+          "Construí el frontend derivado del backend con React 19 + TanStack Query: menú, botones y rutas se derivan del catálogo de permisos que expone la API y nunca del nombre del rol; filtros, búsqueda y paginación viven en la URL, y el cliente HTTP garantiza una sola renovación de token en vuelo para que varios 401 simultáneos no roten el mismo refresh token",
+          "Dejé el despliegue en un comando: docker compose up -d --build levanta base de datos, API y frontend, aplica migraciones y siembra el administrador; nginx sirve la SPA y hace de proxy de /api (un solo origen, sin CORS) y la URL de la API se resuelve al arrancar el contenedor, así la misma imagen sirve para cualquier entorno",
+          "Cubrí la aplicación con 201 tests de API (xUnit, FluentAssertions, WebApplicationFactory, Testcontainers) y 6 suites E2E en Chromium real con Playwright —418 comprobaciones—, una de ellas dedicada a maltratar la app: doble clic, botón atrás, refrescos a media faena, URLs manipuladas, seis pestañas a la vez y seis anchos de ventana entre 1920 y 390 px, auditando cada pantalla contra errores de consola, 5xx y desbordes de layout",
+          "Configuré CI en GitHub Actions que compila con -warnaserror a cero warnings y audita dependencias vulnerables, incluidas las transitivas"
+        ]
       }
     }
   },

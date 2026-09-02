@@ -90,16 +90,22 @@ function AppContent() {
     iocupacional: ['React', 'Next.js', 'TypeScript', 'TanStack Query', 'React Hook Form', 'Zod', 'Tailwind CSS', 'Python', 'Django', 'Django REST Framework', 'PostgreSQL', 'AWS Cognito', 'Docker', 'REST APIs', 'GitHub Actions', 'Railway'],
     ownorbit: ['Node.js', 'TypeScript', 'Express.js', 'Docker', 'NGINX', 'React', 'React Native', 'Expo', 'Tailwind CSS', 'Jest'],
     virtualwallet: ['Node.js', 'TypeScript', 'Express.js', 'MongoDB', 'React', 'Docker', 'Microservices', 'REST APIs', 'JWT', 'Postman'],
-    stockhex: ['.NET 8', 'C#', 'SQL Server', 'JWT', 'Swagger', 'Docker'],
+    stockhex: ['.NET 8', 'ASP.NET Core', 'C#', 'EF Core 8', 'SQL Server 2022', 'JWT', 'BCrypt', 'FluentValidation', 'Serilog', 'xUnit', 'Testcontainers', 'React 19', 'TypeScript', 'Vite', 'TanStack Query', 'Playwright', 'Docker Compose', 'GitHub Actions'],
   };
 
+  // Source repositories
   const projectLinks: Partial<Record<ProjectKey, string>> = {
-    ownorbit: 'https://preview--renta-pulse.lovable.app/',
     virtualwallet: 'https://github.com/waka-code/wallet',
     stockhex: 'https://github.com/waka-code/StockHex',
   };
 
-  const projectsWithImages: ProjectKey[] = ['marfil', 'hemisferio', 'calquen', 'iocupacional'];
+  // Live sites: landing pages or deployed previews
+  const projectSiteLinks: Partial<Record<ProjectKey, string>> = {
+    ownorbit: 'https://preview--renta-pulse.lovable.app/',
+    stockhex: 'https://waka-code.github.io/StockHex/',
+  };
+
+  const projectsWithImages: ProjectKey[] = ['marfil', 'hemisferio', 'calquen', 'iocupacional', 'stockhex'];
 
   // Projects with no entry here are personal projects, not company assignments
   const projectCompanies: Partial<Record<ProjectKey, string>> = {
@@ -115,9 +121,10 @@ function AppContent() {
     name: t(`projects.items.${key}.name`),
     date: t(`projects.items.${key}.date`),
     description: t(`projects.items.${key}.description`),
-    tasks: key !== 'stockhex' ? (t(`projects.items.${key}.tasks`, { returnObjects: true }) as string[]) : undefined,
+    tasks: t(`projects.items.${key}.tasks`, { returnObjects: true }) as string[],
     technologies: projectTechnologies[key],
     link: projectLinks[key],
+    siteLink: projectSiteLinks[key],
     images: projectsWithImages.includes(key) ? `${import.meta.env.BASE_URL}${key}/` : undefined,
   }));
 

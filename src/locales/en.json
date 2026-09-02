@@ -293,9 +293,20 @@
         ]
       },
       "stockhex": {
-        "name": "StockHex",
+        "name": "StockHex - Inventory Management System",
         "date": "Oct 27, 2024",
-        "description": "Inventory application designed to efficiently and scalably manage a company's products and resources, providing detailed tracking of stock, movements and item updates in real time. Based on a hexagonal architecture, the system is organized in independent layers."
+        "description": "Full-stack inventory management system with complete audit trail, built on a single domain invariant: stock is never edited directly. The only way to change it is to record a movement, and movement + stock are persisted in a single transaction, so history and quantities cannot drift apart and every change is attributed to its author; a mistake is never deleted, it is corrected by recording its reverse movement. The API follows clean architecture in four layers (Domain with no external dependencies, use cases returning Result<T> that never know about HTTP, controllers with no logic) and implements permission-based authorization, with roles editable as data and 31 permissions across 9 modules declared from a single source in code. It also ships JWT sessions with rotating refresh tokens and reuse detection, optimistic concurrency over rowversion with retries, and errors normalized as ProblemDetails (RFC 7807). Backed by 201 API tests —including tests against a real SQL Server via Testcontainers— and 418 E2E checks in a real browser with Playwright.",
+        "tasks": [
+          "Designed an audit trail that cannot drift: a single SaveChanges stores the movement and the new stock with chained StockBefore/StockAfter, FKs set to Restrict so no cascade delete can wipe history, and a filtered unique index in the database that makes reverting the same movement twice impossible",
+          "Implemented dynamic RBAC with no permissions table: roles are data editable from the UI and permissions are declared in code next to the endpoint that requires them; the JWT carries only the role id and permissions are resolved per request with an invalidatable cache, so revoking a permission takes effect immediately without signing anyone out",
+          "Added a privilege-escalation guard: nobody can grant a permission they do not hold themselves",
+          "Hardened sessions: rotating refresh tokens stored only as SHA-256, reusing an already-rotated token invalidates the whole chain, per-IP rate limiting on /api/auth with 429 + Retry-After, and immediate lockout of deactivated accounts even though the JWT itself is not revocable",
+          "Solved concurrency with rowversion on the product plus retries using exponential backoff and jitter, verified against a real SQL Server in Testcontainers: 25 concurrent movements on the same product end in 25 successes and an exact stock value (that test caught a bug the InMemory provider could never reproduce)",
+          "Built a frontend derived from the backend with React 19 + TanStack Query: menu, buttons and routes come from the permission catalog exposed by the API, never from the role name; filters, search and pagination live in the URL, and the HTTP client guarantees a single token refresh in flight so simultaneous 401s cannot rotate the same refresh token and drop the session",
+          "Reduced deployment to one command: docker compose up -d --build brings up database, API and frontend, applies migrations and seeds the administrator; nginx serves the SPA and proxies /api (single origin, no CORS to configure) and the API URL is resolved at container startup, so the same image works in any environment",
+          "Covered the app with 201 API tests (xUnit, FluentAssertions, WebApplicationFactory, Testcontainers) and 6 E2E suites in real Chromium with Playwright —418 checks—, one of them dedicated to abusing the app: double clicks, back button, refreshes mid-flow, tampered URLs, six tabs at once and six viewport widths between 1920 and 390 px, auditing every screen for console errors, 5xx responses and layout overflow",
+          "Set up CI on GitHub Actions that builds with -warnaserror at zero warnings and audits vulnerable dependencies, including transitive ones"
+        ]
       }
     }
   },

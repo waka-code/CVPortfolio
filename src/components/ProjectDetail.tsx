@@ -78,7 +78,12 @@ export function ProjectDetail({ projects }: ProjectDetailProps) {
     );
   }
 
-  const isExternalPreview = project.name.toLowerCase().includes('ownorbit');
+
+  const linkButtonClass = `btn-animate inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border transition-colors ${
+    isDark
+      ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500'
+      : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300'
+  }`;
 
   return (
     <div className={screenClass}>
@@ -122,19 +127,27 @@ export function ProjectDetail({ projects }: ProjectDetailProps) {
               )}
             </span>
 
+            {project.siteLink && (
+              <a
+                href={project.siteLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkButtonClass}
+              >
+                <ExternalLink size={14} />
+                {t('projects.visitSite')}
+              </a>
+            )}
+
             {project.link && (
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`btn-animate inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border transition-colors ${
-                  isDark
-                    ? 'bg-slate-800 border-slate-700 text-blue-400 hover:border-blue-500'
-                    : 'bg-white border-slate-200 text-blue-600 hover:border-blue-300'
-                }`}
+                className={linkButtonClass}
               >
-                {isExternalPreview ? <ExternalLink size={14} /> : <LucideGithub size={14} />}
-                {isExternalPreview ? t('projects.visitSite') : t('projects.viewRepo')}
+                <LucideGithub size={14} />
+                {t('projects.viewRepo')}
               </a>
             )}
           </div>

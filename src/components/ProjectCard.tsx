@@ -13,7 +13,10 @@ export interface Project {
   company?: string;
   tasks?: string[];
   technologies: string[];
+  /** Source repository */
   link?: string;
+  /** Live site: landing page or deployed preview */
+  siteLink?: string;
   images?: string;
 }
 
