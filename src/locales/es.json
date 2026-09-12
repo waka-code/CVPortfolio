@@ -27,7 +27,7 @@
           "En 2022 entré a Alterna Academy, una academia de programación que marcó un antes y un después. La universidad me dio la base teórica y el freelance me dio oficio, la academia me enseñó cómo se construye software de verdad en equipo, con las prácticas y el ritmo que exige la industria.",
           "Ahí conocí a Eduardo Burgos, ingeniero de software con más de 20 años en el área y CEO de Alterna Academy. Fue mi mentor, es una figura a seguir y hoy también un buen amigo. Buena parte de cómo pienso el desarrollo —tomar decisiones técnicas con criterio, revisar código con honestidad, enseñar a quien viene detrás— viene directamente de él.",
           "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack, mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y en paralelo sumé proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico.",
-          "Sigo en ProDoctivity desde entonces, hoy como desarrollador fullstack senior, y en los últimos años mi trabajo se movió hacia la IA aplicada: construí un asistente documental basado en RAG sobre LLMs de OpenAI, clasificación automática de documentos y un servicio MCP independiente en Rust integrado al backend de Node. En paralelo, entre septiembre de 2025 y abril de 2026, llevé el liderazgo técnico en Higher Bit Solutions como contractor."
+          "Estuve en ProDoctivity hasta septiembre de 2026, los últimos años como desarrollador fullstack senior, y ahí mi trabajo se movió hacia la IA aplicada: construí un asistente documental basado en RAG sobre LLMs de OpenAI, clasificación automática de documentos y un servicio MCP independiente en Rust integrado al backend de Node. En paralelo, entre septiembre de 2025 y abril de 2026, llevé el liderazgo técnico en Higher Bit Solutions como contractor. Desde marzo de 2026 trabajo en Millicom a través de Zerviz Technologies, sobre plataformas de telecomunicaciones de alto tráfico en América Latina."
         ]
       },
       "utesa": {
@@ -121,10 +121,10 @@
         ]
       },
       "higherbit": {
-        "title": "Ingeniero Fullstack Sr. / Líder Técnico (Contractor)",
+        "title": "Ingeniero Fullstack Sr. / Líder Técnico",
         "company": "Higher Bit Solutions",
-        "period": "Sept 2025 - Abril 2026",
-        "description": "Higher Bit Solutions es una startup que ofrece soluciones personalizadas de tecnología, IA y automatización para clientes de negocio. Como Ingeniero Full-Stack y Líder Técnico construí sistemas de extremo a extremo, lideré las decisiones técnicas, mentoreé desarrolladores y aseguré soluciones escalables, seguras y de alto rendimiento.",
+        "period": "Contrato por proyecto · Sept 2025 - Abril 2026",
+        "description": "Contrato por proyecto en Higher Bit Solutions, una startup que ofrece soluciones personalizadas de tecnología, IA y automatización para clientes de negocio. Como Ingeniero Full-Stack y Líder Técnico construí sistemas de extremo a extremo, lideré las decisiones técnicas, mentoreé desarrolladores y aseguré soluciones escalables, seguras y de alto rendimiento.",
         "tasks": [
           "Lideré la hoja de ruta técnica y las decisiones de arquitectura para múltiples sistemas en producción y proyectos de clientes",
           "Diseñé e implementé soluciones de extremo a extremo usando Django, Node.js, React, Next.js, TypeScript y PostgreSQL",
@@ -143,18 +143,18 @@
       "prodoctivity": {
         "title": "Desarrollador Fullstack Sr.",
         "company": "ProDoctivity SRL",
-        "period": "Abril 2023 - Actual",
+        "period": "Abril 2023 - Sept 2026",
         "description": "ProDoctivity Cloud es una solución integral de gestión empresarial que transforma las operaciones tradicionales a través de la digitalización y automatización de procesos. La plataforma optimiza los flujos de trabajo documentales, mejorando significativamente la eficiencia organizacional.",
         "tasks": [
-          "Desarrollo y entrego funcionalidades full stack usando React, TypeScript, Node.js, Docker y MongoDB",
-          "Diseño e implemento microservicios que soportan los procesos de negocio del ERP y los flujos backend",
+          "Desarrollé y entregué funcionalidades full stack usando React, TypeScript, Node.js, Docker y MongoDB",
+          "Diseñé e implementé microservicios que soportan los procesos de negocio del ERP y los flujos backend",
           "Construí un asistente documental con IA basado en RAG sobre LLMs de OpenAI, que permite subir documentos y consultarlos en lenguaje natural",
           "Implementé clasificación de documentos con IA, analizando automáticamente cada archivo subido y asignando su documentType",
           "Diseñé e implementé un servicio MCP independiente en Rust, integrado con el backend Node.js para exponer datos y servicios de la aplicación a flujos de trabajo con IA",
           "Integré capacidades de LLM, RAG y automatización con IA en flujos de negocio y servicios backend ya existentes",
-          "Actúo como referencia técnica en arquitectura frontend y backend, decisiones de implementación y buenas prácticas de ingeniería",
-          "Acompaño al equipo en troubleshooting, arquitectura, revisiones de código y resolución de problemas técnicos",
-          "Superviso y mentoreo pasantes mediante onboarding, revisiones de código y feedback continuo"
+          "Fui referencia técnica en arquitectura frontend y backend, decisiones de implementación y buenas prácticas de ingeniería",
+          "Acompañé al equipo en troubleshooting, arquitectura, revisiones de código y resolución de problemas técnicos",
+          "Supervisé y mentoreé pasantes mediante onboarding, revisiones de código y feedback continuo"
         ]
       },
       "imarket": {
@@ -268,14 +268,15 @@
         ]
       },
       "ownorbit": {
-        "name": "OwnOrbit (MVP)",
-        "date": "Mayo 2025",
-        "description": "MVP de una plataforma escalable de gestión de alquileres de propiedades desarrollada con arquitectura de microservicios (Node.js, TypeScript, gRPC, Docker), integrando un frontend React/React Native. Este es un proyecto comercial privado - el código no puede ser compartido públicamente.",
+        "name": "OwnOrbit - Plataforma de Gestión de Alquileres",
+        "date": "Mayo 2025 - Actual",
+        "description": "Plataforma de microservicios orientada a eventos para la gestión de alquiler de propiedades, con clientes web y móvil (~36k líneas de TypeScript). Como Ingeniero de Software Líder diseñé la arquitectura del sistema y construí los servicios backend, los clientes y la infraestructura de despliegue. Es un proyecto comercial privado, el código no puede compartirse públicamente, pero la landing y la demo están disponibles.",
         "tasks": [
-          "Diseñé e implementé la arquitectura global, aplicando SOLID y Clean Architecture",
-          "Desarrollé microservicios Node.js/TypeScript, entornos Dockerizados y configuración lista para CI/CD",
-          "Construí interfaces web y móviles responsivas con React, React Native, Expo y Tailwind CSS",
-          "Establecí estándares de calidad de código (ESLint, Jest, commitlint) y paquetes compartidos reutilizables"
+          "Diseñé la arquitectura del sistema (Clean Architecture, SOLID, propiedad de datos por servicio) y construí los servicios Node.js/TypeScript detrás de un API Gateway NGINX que centraliza la validación de JWT, CORS y rate limiting",
+          "Implementé mensajería asíncrona entre servicios sobre RabbitMQ con dead-letter exchange y reintentos acotados, más chat en tiempo real sobre WebSockets",
+          "Modelé el flujo completo de arriendo como una máquina de estados con autorización por actor, línea de tiempo de auditoría e índices únicos parciales en MongoDB que garantizan las invariantes de concurrencia",
+          "Desarrollé los clientes web (React 19 + Vite + Tailwind v4) y móvil (React Native + Expo) con portales por rol para propietarios, arrendatarios y abogados",
+          "Construí un monorepo pnpm con paquetes compartidos entre web y móvil, un pipeline CI/CD de 6 etapas en GitLab (incluyendo escaneo de seguridad y rollback) y estándares de código con ESLint, Husky y commitlint"
         ]
       },
       "virtualwallet": {
@@ -306,6 +307,18 @@
           "Dejé el despliegue en un comando: docker compose up -d --build levanta base de datos, API y frontend, aplica migraciones y siembra el administrador; nginx sirve la SPA y hace de proxy de /api (un solo origen, sin CORS) y la URL de la API se resuelve al arrancar el contenedor, así la misma imagen sirve para cualquier entorno",
           "Cubrí la aplicación con 201 tests de API (xUnit, FluentAssertions, WebApplicationFactory, Testcontainers) y 6 suites E2E en Chromium real con Playwright —418 comprobaciones—, una de ellas dedicada a maltratar la app: doble clic, botón atrás, refrescos a media faena, URLs manipuladas, seis pestañas a la vez y seis anchos de ventana entre 1920 y 390 px, auditando cada pantalla contra errores de consola, 5xx y desbordes de layout",
           "Configuré CI en GitHub Actions que compila con -warnaserror a cero warnings y audita dependencias vulnerables, incluidas las transitivas"
+        ]
+      },
+      "nexus": {
+        "name": "Nexus Expression Engine",
+        "date": "2026",
+        "description": "Motor de reglas de negocio con un lenguaje de expresiones construido desde cero: lexer con recuperación de errores, parser de descenso recursivo, AST, evaluador y verificador estático de tipos, sin generador de parsers y con cero dependencias de terceros en el núcleo. Arquitecto e ingeniero único del proyecto.",
+        "tasks": [
+          "Construí el lenguaje de expresiones completo desde cero: lexer con recuperación de errores, parser de descenso recursivo, AST, evaluador y verificador estático de tipos, sin generador de parsers ni dependencias de terceros en el núcleo",
+          "Diseñé un monolito modular hexagonal con auto-descubrimiento de módulos, cuyas reglas de dependencia se verifican con tests de arquitectura ejecutables",
+          "Versioné las reglas de forma append-only en PostgreSQL, con concurrencia optimista sobre xmin y un índice único parcial que garantiza exactamente una versión activa",
+          "Expuse una API REST con problem details (RFC 7807) y OpenAPI, con la base de datos levantada con un solo docker compose up",
+          "Configuré CI con cero warnings bajo TreatWarningsAsErrors y suite de tests en xUnit v3"
         ]
       }
     }
@@ -338,10 +351,11 @@
       "spanish": "Español",
       "english": "Inglés",
       "native": "Nativo (C2)",
-      "intermediate": "Intermedio (B1)",
+      "intermediate": "Intermedio (B1 - en progreso)",
       "french": "Francés",
       "basic": "Básico (A1)"
-    }
+    },
+    "englishAcademy": "Inglés - Academia Europea (2026 - Actual)"
   },
   "footer": {
     "letsConnect": "¿Listo para empezar?",

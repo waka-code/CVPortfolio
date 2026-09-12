@@ -147,22 +147,39 @@ export function ProjectCard({
                 {project.date}
               </p>
             </div>
-            {project.link && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className={`btn-animate transition-colors ml-2 shrink-0 ${
-                  isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
-                }`}
-              >
-                {project.name.toLowerCase().includes('ownorbit') ? (
-                  <ExternalLink size={24} />
-                ) : (
-                  <LucideGithub size={24} />
+            {(project.siteLink || project.link) && (
+              <div className="flex items-center gap-2 ml-2 shrink-0">
+                {project.siteLink && (
+                  <a
+                    href={project.siteLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label={t('projects.visitSite')}
+                    title={t('projects.visitSite')}
+                    className={`btn-animate transition-colors ${
+                      isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+                    }`}
+                  >
+                    <ExternalLink size={24} />
+                  </a>
                 )}
-              </a>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label={t('projects.viewRepo')}
+                    title={t('projects.viewRepo')}
+                    className={`btn-animate transition-colors ${
+                      isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+                    }`}
+                  >
+                    <LucideGithub size={24} />
+                  </a>
+                )}
+              </div>
             )}
           </div>
 

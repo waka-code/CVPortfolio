@@ -30,17 +30,16 @@ function AppContent() {
     linkedin: 'https://www.linkedin.com/in/waddimi-saint-louis-b49424230/',
   };
 
-  // Millicom queda fuera por ahora: descomentar aquí y sus entradas abajo para volver a mostrarlo
-  const jobKeys = [/* 'millicom', */ 'higherbit', 'prodoctivity', 'imarket', 'freelancer'] as const;
+  const jobKeys = ['millicom', 'higherbit', 'prodoctivity', 'imarket', 'freelancer'] as const;
 
   type JobKey = (typeof jobKeys)[number];
 
-  const projectKeys = ['marfil', 'hemisferio', 'calquen', 'iocupacional', 'ownorbit', 'virtualwallet', 'stockhex'] as const;
+  const projectKeys = ['marfil', 'hemisferio', 'calquen', 'iocupacional', 'ownorbit', 'virtualwallet', 'stockhex', 'nexus'] as const;
 
   type ProjectKey = (typeof projectKeys)[number];
 
   const jobTechnologies: Record<JobKey, string[]> = {
-    // millicom: ['React', 'JavaScript (ES6+)', 'Node.js', 'NestJS', 'Ruby on Rails', 'PostgreSQL', 'Docker', 'REST APIs', 'CI/CD', 'Tailwind CSS', 'VUE.js'],
+    millicom: ['React', 'Vue.js', 'Next.js', 'JavaScript (ES6+)', 'TypeScript', 'Node.js', 'Express', 'NestJS', 'Ruby on Rails', 'PostgreSQL', 'Redis', 'Docker', 'Microservices', 'REST APIs', 'CI/CD', 'Tailwind CSS', 'AWS'],
     higherbit: ['Python', 'Django', 'PostgreSQL', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Jest', 'Vite', 'Docker', 'ECS/ECR', 'RDS', 'S3', 'CloudFront', 'Cognito', 'IAM', 'SES', 'Amplify', 'VPC', 'Secrets Manager', 'PostHog', 'CI/CD', 'Terraform'],
     prodoctivity: ['React', 'TypeScript', 'Node.js', 'Docker', 'MongoDB', 'C#', 'Playwright', 'Microservices', 'OpenAI API', 'RAG', 'Rust', 'MCP'],
     imarket: ['Angular', 'TypeScript', '.NET 8', 'C#', 'Docker', 'PostgreSQL'],
@@ -58,7 +57,7 @@ function AppContent() {
     prodoctivity: 2023,
     imarket: 2024,
     higherbit: 2025,
-    // millicom: 2026,
+    millicom: 2026,
   };
 
   // Screenshot folders under public/. Higher Bit's work is shown through its projects.
@@ -88,20 +87,22 @@ function AppContent() {
     hemisferio: ['Python', 'Django', 'PostgreSQL', 'REST APIs', 'AWS', 'Docker', 'CI/CD'],
     calquen: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Radix UI', 'NestJS', 'Prisma', 'PostgreSQL', 'JWT', 'Python', 'Selenium', 'Flask', 'AWS S3', 'AWS Secrets Manager', 'Docker', 'REST APIs'],
     iocupacional: ['React', 'Next.js', 'TypeScript', 'TanStack Query', 'React Hook Form', 'Zod', 'Tailwind CSS', 'Python', 'Django', 'Django REST Framework', 'PostgreSQL', 'AWS Cognito', 'Docker', 'REST APIs', 'GitHub Actions', 'Railway'],
-    ownorbit: ['Node.js', 'TypeScript', 'Express.js', 'Docker', 'NGINX', 'React', 'React Native', 'Expo', 'Tailwind CSS', 'Jest'],
+    ownorbit: ['Node.js', 'TypeScript', 'Express.js', 'MongoDB', 'RabbitMQ', 'WebSockets', 'Docker', 'NGINX', 'React 19', 'React Native', 'Expo', 'Vite', 'Tailwind CSS', 'pnpm Monorepo', 'GitLab CI/CD', 'Jest'],
     virtualwallet: ['Node.js', 'TypeScript', 'Express.js', 'MongoDB', 'React', 'Docker', 'Microservices', 'REST APIs', 'JWT', 'Postman'],
     stockhex: ['.NET 8', 'ASP.NET Core', 'C#', 'EF Core 8', 'SQL Server 2022', 'JWT', 'BCrypt', 'FluentValidation', 'Serilog', 'xUnit', 'Testcontainers', 'React 19', 'TypeScript', 'Vite', 'TanStack Query', 'Playwright', 'Docker Compose', 'GitHub Actions'],
+    nexus: ['.NET 10', 'C#', 'ASP.NET Core Minimal APIs', 'EF Core 10', 'PostgreSQL 17', 'pgvector', 'Docker', 'xUnit v3', 'OpenAPI', 'GitHub Actions'],
   };
 
   // Source repositories
   const projectLinks: Partial<Record<ProjectKey, string>> = {
     virtualwallet: 'https://github.com/waka-code/wallet',
     stockhex: 'https://github.com/waka-code/StockHex',
+    nexus: 'https://github.com/waka-code/nexus',
   };
 
   // Live sites: landing pages or deployed previews
   const projectSiteLinks: Partial<Record<ProjectKey, string>> = {
-    ownorbit: 'https://preview--renta-pulse.lovable.app/',
+    ownorbit: 'https://owrnorbit-web.onrender.com/#/',
     stockhex: 'https://waka-code.github.io/StockHex/',
   };
 
@@ -131,12 +132,12 @@ function AppContent() {
   const skillCategories = [
     { category: t('skills.categories.coreStack'), skills: ['React.js + TypeScript', 'Next.js', 'Node.js + Express.js', 'MongoDB', 'PostgreSQL', 'Docker', 'CI/CD'] },
     { category: t('skills.categories.frontend'), skills: ['Angular 18', 'Vue.js', 'React Native', 'HTML5/CSS3', 'Tailwind', 'Bootstrap', 'Material UI', 'Vite', 'Jest'] },
-    { category: t('skills.categories.backend'), skills: ['.NET 8 (C#)', 'Python/Django', 'Ruby', 'Rust', 'GraphQL', 'gRPC', 'REST APIs'] },
-    { category: t('skills.categories.databases'), skills: ['PostgreSQL', 'SQL Server', 'MongoDB', 'Firebase'] },
+    { category: t('skills.categories.backend'), skills: ['.NET 8 / .NET 10 (C#)', 'Python/Django', 'NestJS', 'Ruby on Rails', 'Rust', 'GraphQL', 'gRPC', 'REST APIs'] },
+    { category: t('skills.categories.databases'), skills: ['PostgreSQL', 'SQL Server', 'MongoDB', 'Redis', 'pgvector', 'Firebase'] },
     { category: t('skills.categories.cloudDevops'), skills: ['AWS (ECS, RDS, S3, CloudFront, IAM)', 'Docker', 'NGINX', 'Terraform', 'GitHub Actions', 'GitLab CI'] },
-    { category: t('skills.categories.architecture'), skills: ['Microservices', 'Monorepos', 'Hexagonal', 'SOLID', 'REST APIs', 'MVC'] },
-    { category: t('skills.categories.aiEngineering'), skills: ['OpenAI APIs', 'RAG', 'LLM Applications', 'AI Agents', 'Tool Calling', 'MCP (Model Context Protocol)', 'Agent Skills', 'Claude Code'] },
-    { category: t('skills.categories.toolsAi'), skills: ['GitHub', 'Git', 'Postman', 'Swagger', 'PostHog', 'Figma', 'Copilot', 'Cursor', 'Windsurf'] },
+    { category: t('skills.categories.architecture'), skills: ['Microservices', 'Monorepos', 'Clean Architecture', 'Hexagonal', 'Event-Driven (RabbitMQ)', 'SOLID', 'REST APIs', 'MVC'] },
+    { category: t('skills.categories.aiEngineering'), skills: ['OpenAI APIs', 'RAG', 'LLM Applications', 'Document Classification', 'AI Agents', 'Agent Orchestration', 'Tool Calling', 'MCP (Model Context Protocol)', 'Agent Skills', 'Claude Code'] },
+    { category: t('skills.categories.toolsAi'), skills: ['GitHub', 'Git', 'Jira', 'ClickUp', 'Postman', 'Swagger', 'Playwright', 'PostHog', 'Figma', 'Copilot', 'Cursor', 'Windsurf'] },
     { category: t('skills.categories.softSkills'), skills: ['Problem Solving', 'Code Review', 'Leadership', 'Technical Documentation', 'Teamwork', 'Agile (Scrum)'] },
   ];
 
@@ -149,7 +150,7 @@ function AppContent() {
       { language: t('education.languagesList.english'), level: t('education.languagesList.intermediate') },
       { language: t('education.languagesList.french'), level: t('education.languagesList.basic') },
     ],
-    certifications: ['Node.js', 'React', 'MongoDB', `${t('education.aws')}`],
+    certifications: ['Node.js', 'React', 'MongoDB', `${t('education.aws')}`, `${t('education.englishAcademy')}`],
     certificateImages: [
       { name: 'Node.js', image: `${import.meta.env.BASE_URL}certificado/node.jpg` },
       { name: 'MongoDB', image: `${import.meta.env.BASE_URL}certificado/mongo.jpg` },

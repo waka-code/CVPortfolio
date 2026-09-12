@@ -27,7 +27,7 @@
           "In 2022 I joined Alterna Academy, a programming school that marked a clear before and after. University gave me the theory and freelancing gave me the craft, the academy taught me how real software gets built as a team, with the practices and pace the industry demands.",
           "That is where I met Eduardo Burgos, a software engineer with more than 20 years in the field and CEO of Alterna Academy. He was my mentor, he is someone I look up to, and today he is also a good friend. Much of how I think about development — making technical decisions with judgment, reviewing code honestly, teaching whoever comes next — comes straight from him.",
           "Shortly after, in April 2023, I joined ProDoctivity SRL as a fullstack developer: my first formal role inside a product team, working with React, TypeScript, Node, Docker, and microservices. I graduated from UTESA in 2024, and alongside that I added projects at IMarket and Higher Bit Solutions, where I also took on technical leadership.",
-          "I have been at ProDoctivity ever since, today as a senior fullstack developer, and over the last couple of years my work has moved toward applied AI: I built a RAG-based document assistant on OpenAI LLMs, automatic document classification, and a standalone MCP service in Rust wired into the Node backend. Alongside that, between September 2025 and April 2026, I led the technical side of Higher Bit Solutions as a contractor."
+          "I stayed at ProDoctivity until September 2026, the last few years as a senior fullstack developer, and there my work moved toward applied AI: I built a RAG-based document assistant on OpenAI LLMs, automatic document classification, and a standalone MCP service in Rust wired into the Node backend. Alongside that, between September 2025 and April 2026, I led the technical side of Higher Bit Solutions as a contractor. Since March 2026 I have been working at Millicom through Zerviz Technologies, on high-traffic telecom platforms across Latin America."
         ]
       },
       "utesa": {
@@ -121,10 +121,10 @@
         ]
       },
       "higherbit": {
-        "title": "Sr Fullstack Engineer / Tech Lead (Contract)",
+        "title": "Sr. Full Stack Engineer / Tech Lead",
         "company": "Higher Bit Solutions",
-        "period": "Sept 2025 - Apr 2026",
-        "description": "Higher Bit Solutions is a startup delivering custom tech, AI, and automation solutions for business clients. As a Full-Stack Engineer and Technical Lead I built end-to-end systems, led technical decisions, mentored developers, and ensured scalable, secure, high-performance solutions.",
+        "period": "Project-Based Contract · Sept 2025 - April 2026",
+        "description": "Project-based contract at Higher Bit Solutions, a startup focused on custom software, AI, and automation solutions for business clients. As Full-Stack Engineer and Tech Lead I built end-to-end systems, led technical decisions, mentored developers, and ensured scalable, secure, high-performance solutions.",
         "tasks": [
           "Led technical roadmaps and architectural decisions across multiple production systems and client projects",
           "Designed and implemented end-to-end solutions using Django, Node.js, React, Next.js, TypeScript, and PostgreSQL",
@@ -143,18 +143,18 @@
       "prodoctivity": {
         "title": "Sr Fullstack Developer",
         "company": "ProDoctivity SRL",
-        "period": "April 2023 - Present",
+        "period": "April 2023 - Sept 2026",
         "description": "ProDoctivity Cloud is a comprehensive business management solution that transforms traditional operations through process digitization and automation. The platform optimizes document workflows, significantly improving organizational efficiency.",
         "tasks": [
-          "Develop and deliver full-stack features using React, TypeScript, Node.js, Docker, and MongoDB",
-          "Design and implement microservices supporting core ERP business processes and backend workflows",
+          "Developed and delivered full-stack features using React, TypeScript, Node.js, Docker, and MongoDB",
+          "Designed and implemented microservices supporting core ERP business processes and backend workflows",
           "Built a production-grade RAG-based AI document assistant using OpenAI LLMs, letting users upload documents and query their content in natural language",
           "Implemented AI-powered document classification, automatically analyzing uploaded documents and assigning the appropriate documentType",
           "Designed and implemented an independent MCP service in Rust, integrated with the Node.js backend to expose application data and services to AI-powered workflows",
           "Integrated LLM capabilities, RAG, and AI automation into existing business workflows and backend services",
-          "Act as a technical reference for frontend and backend architecture, implementation decisions, and engineering best practices",
-          "Assist team members with troubleshooting, architecture, code reviews, and technical problem-solving",
-          "Supervise and mentor interns through onboarding, code reviews, and continuous feedback"
+          "Acted as a technical reference for frontend and backend architecture, implementation decisions, and engineering best practices",
+          "Assisted team members with troubleshooting, architecture, code reviews, and technical problem-solving",
+          "Supervised and mentored interns through onboarding, code reviews, and continuous feedback"
         ]
       },
       "imarket": {
@@ -268,14 +268,15 @@
         ]
       },
       "ownorbit": {
-        "name": "OwnOrbit (MVP)",
-        "date": "May 2025",
-        "description": "MVP of a scalable property rental management platform developed with a microservices architecture (Node.js, TypeScript, gRPC, Docker), integrating a React/React Native frontend. This is a private commercial project - code cannot be shared publicly.",
+        "name": "OwnOrbit - Property Rental Platform",
+        "date": "May 2025 - Present",
+        "description": "Event-driven microservices platform for property rental management, with web and mobile clients (~36k lines of TypeScript). As Lead Software Engineer I designed the system architecture and built the backend services, the clients, and the deployment infrastructure. This is a private commercial project, so the code cannot be shared publicly, but the landing page and demo are available.",
         "tasks": [
-          "Designed and implemented the global architecture, applying SOLID and Clean Architecture",
-          "Developed Node.js/TypeScript microservices, Dockerized environments, and CI/CD-ready setup",
-          "Built responsive web and mobile interfaces with React, React Native, Expo, and Tailwind CSS",
-          "Established code quality standards (ESLint, Jest, commitlint) and reusable shared packages"
+          "Designed the system architecture (Clean Architecture, SOLID, per-service data ownership) and built the Node.js/TypeScript services behind an NGINX API Gateway centralizing JWT validation, CORS, and rate limiting",
+          "Implemented asynchronous inter-service messaging over RabbitMQ with a dead-letter exchange and bounded retries, plus real-time chat over WebSockets",
+          "Modeled the end-to-end rental flow as a state machine with per-actor authorization, an audit timeline, and MongoDB partial unique indexes enforcing concurrency invariants",
+          "Developed the responsive web (React 19 + Vite + Tailwind v4) and mobile (React Native + Expo) clients with role-based portals for owners, tenants, and lawyers",
+          "Built a pnpm monorepo with shared packages reused across web and mobile, a 6-stage GitLab CI/CD pipeline (including security scan and rollback), and code standards with ESLint, Husky, and commitlint"
         ]
       },
       "virtualwallet": {
@@ -306,6 +307,18 @@
           "Reduced deployment to one command: docker compose up -d --build brings up database, API and frontend, applies migrations and seeds the administrator; nginx serves the SPA and proxies /api (single origin, no CORS to configure) and the API URL is resolved at container startup, so the same image works in any environment",
           "Covered the app with 201 API tests (xUnit, FluentAssertions, WebApplicationFactory, Testcontainers) and 6 E2E suites in real Chromium with Playwright —418 checks—, one of them dedicated to abusing the app: double clicks, back button, refreshes mid-flow, tampered URLs, six tabs at once and six viewport widths between 1920 and 390 px, auditing every screen for console errors, 5xx responses and layout overflow",
           "Set up CI on GitHub Actions that builds with -warnaserror at zero warnings and audits vulnerable dependencies, including transitive ones"
+        ]
+      },
+      "nexus": {
+        "name": "Nexus Expression Engine",
+        "date": "2026",
+        "description": "Business rules engine with an expression language built from scratch: lexer with error recovery, recursive-descent parser, AST, evaluator, and static type checker, with no parser generator and zero third-party dependencies in the core. Architect and sole engineer on the project.",
+        "tasks": [
+          "Built the full expression language from scratch: lexer with error recovery, recursive-descent parser, AST, evaluator, and static type checker, with no parser generator and no third-party dependencies in the core",
+          "Designed a hexagonal modular monolith with module auto-discovery, its dependency rules enforced by executable architecture tests",
+          "Versioned rules append-only in PostgreSQL, with xmin optimistic concurrency and a partial unique index guaranteeing exactly one active version",
+          "Exposed a REST API with RFC 7807 problem details and OpenAPI, with the database up via a single docker compose up",
+          "Set up CI running with zero warnings under TreatWarningsAsErrors and an xUnit v3 test suite"
         ]
       }
     }
@@ -338,10 +351,11 @@
       "spanish": "Spanish",
       "english": "English",
       "native": "Native (C2)",
-      "intermediate": "Intermediate (B1)",
+      "intermediate": "Intermediate (B1 - improving)",
       "french": "French",
       "basic": "Basic (A1)"
-    }
+    },
+    "englishAcademy": "English - Academia Europea (2026 - Present)"
   },
   "footer": {
     "letsConnect": "Ready to get started?",
