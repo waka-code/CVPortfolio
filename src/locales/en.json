@@ -27,10 +27,7 @@
           "In 2022 I joined Alterna Academy, a programming school that marked a clear before and after. University gave me the theory and freelancing gave me the craft, the academy taught me how real software gets built as a team, with the practices and pace the industry demands.",
           "That is where I met Eduardo Burgos, a software engineer with more than 20 years in the field and CEO of Alterna Academy. He was my mentor, he is someone I look up to, and today he is also a good friend. Much of how I think about development — making technical decisions with judgment, reviewing code honestly, teaching whoever comes next — comes straight from him.",
           "Shortly after, in April 2023, I joined ProDoctivity SRL as a fullstack developer: my first formal role inside a product team, working with React, TypeScript, Node, Docker, and microservices. I graduated from UTESA in 2024, and alongside that I added projects at IMarket and Higher Bit Solutions, where I also took on technical leadership.",
-          "I stayed at ProDoctivity until September 2025, the last few years as a senior fullstack developer, and there my work moved toward applied AI: I built a RAG-based document assistant on OpenAI LLMs, automatic document classification, and a standalone MCP service in Rust wired into the Node backend. Alongside that, between September 2025 and April 2026, I led the technical side of Higher Bit Solutions as a contractor."
-        ],
-        "paragraphsDisabled": [
-          "Since March 2026 I have been working at Millicom through Zerviz Technologies, on high-traffic telecom platforms across Latin America."
+          "I stayed at ProDoctivity until September 2025, the last few years as a senior fullstack developer, and there my work moved toward applied AI: I built a RAG-based document assistant on OpenAI LLMs, automatic document classification, and a standalone MCP service in Rust wired into the Node backend. Since September 2025 I have also led the technical side of Higher Bit Solutions as a contractor."
         ]
       },
       "utesa": {
@@ -80,13 +77,6 @@
         "description": "Systems Engineer, after seven years combining study with real work."
       }
     ],
-    "milestonesDisabled": [
-      {
-        "year": 2026,
-        "title": "Joined Millicom",
-        "description": "I closed nearly three years at ProDoctivity to join Millicom through Zerviz Technologies, working on high-traffic telecom platforms across Latin America."
-      }
-    ],
     "tableOfContents": "Contents"
   },
   "experience": {
@@ -107,26 +97,10 @@
     "relatedProjects": "Related projects",
     "notFound": "We couldn't find this experience.",
     "jobs": {
-      "millicom": {
-        "title": "Sr. Fullstack Developer",
-        "company": "Millicom (via Zerviz Technologies)",
-        "period": "March 2026 - Present",
-        "description": "Contracted through Zerviz Technologies, providing services to Millicom, an international telecommunications company delivering mobile, broadband, and digital services in Latin America.",
-        "tasks": [
-          "Delivered high-performance frontend applications using React, Vue.js, and Next.js, improving user experience and reducing load times across key interfaces",
-          "Built and scaled backend services with Node.js and Ruby on Rails, applying clean architecture principles to ensure maintainability and reliability",
-          "Designed and optimized REST APIs within a microservices architecture, enabling scalable and modular system growth",
-          "Integrated multiple third-party services, implementing secure authentication and authorization mechanisms to protect user data",
-          "Improved database performance by designing and optimizing PostgreSQL schemas and queries, supporting high-traffic operations",
-          "Reduced API response times and system latency by implementing Redis-based caching strategies",
-          "Collaborated cross-functionally with product, design, and engineering teams to deliver features aligned with business goals",
-          "Streamlined deployment and release processes by leveraging Docker and CI/CD pipelines, improving delivery speed and reliability"
-        ]
-      },
       "higherbit": {
         "title": "Sr. Full Stack Engineer / Tech Lead",
         "company": "Higher Bit Solutions",
-        "period": "Project-Based Contract · Sept 2025 - April 2026",
+        "period": "Project-Based Contract · Sept 2025 - Present",
         "description": "Project-based contract at Higher Bit Solutions, a startup focused on custom software, AI, and automation solutions for business clients. As Full-Stack Engineer and Tech Lead I built end-to-end systems, led technical decisions, mentored developers, and ensured scalable, secure, high-performance solutions.",
         "tasks": [
           "Led technical roadmaps and architectural decisions across multiple production systems and client projects",

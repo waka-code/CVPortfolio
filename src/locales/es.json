@@ -27,10 +27,7 @@
           "En 2022 entré a Alterna Academy, una academia de programación que marcó un antes y un después. La universidad me dio la base teórica y el freelance me dio oficio, la academia me enseñó cómo se construye software de verdad en equipo, con las prácticas y el ritmo que exige la industria.",
           "Ahí conocí a Eduardo Burgos, ingeniero de software con más de 20 años en el área y CEO de Alterna Academy. Fue mi mentor, es una figura a seguir y hoy también un buen amigo. Buena parte de cómo pienso el desarrollo —tomar decisiones técnicas con criterio, revisar código con honestidad, enseñar a quien viene detrás— viene directamente de él.",
           "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack, mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y en paralelo sumé proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico.",
-          "Estuve en ProDoctivity hasta septiembre de 2025, los últimos años como desarrollador fullstack senior, y ahí mi trabajo se movió hacia la IA aplicada: construí un asistente documental basado en RAG sobre LLMs de OpenAI, clasificación automática de documentos y un servicio MCP independiente en Rust integrado al backend de Node. En paralelo, entre septiembre de 2025 y abril de 2026, llevé el liderazgo técnico en Higher Bit Solutions como contractor."
-        ],
-        "paragraphsDisabled": [
-          "Desde marzo de 2026 trabajo en Millicom a través de Zerviz Technologies, sobre plataformas de telecomunicaciones de alto tráfico en América Latina."
+          "Estuve en ProDoctivity hasta septiembre de 2025, los últimos años como desarrollador fullstack senior, y ahí mi trabajo se movió hacia la IA aplicada: construí un asistente documental basado en RAG sobre LLMs de OpenAI, clasificación automática de documentos y un servicio MCP independiente en Rust integrado al backend de Node. Desde septiembre de 2025 llevo además el liderazgo técnico en Higher Bit Solutions como contractor."
         ]
       },
       "utesa": {
@@ -80,13 +77,6 @@
         "description": "Ingeniero de Sistemas, después de siete años combinando estudio y trabajo real."
       }
     ],
-    "milestonesDisabled": [
-      {
-        "year": 2026,
-        "title": "Entré a Millicom",
-        "description": "Cerré casi tres años en ProDoctivity para sumarme a Millicom a través de Zerviz Technologies, trabajando sobre plataformas de telecomunicaciones de alto tráfico en América Latina."
-      }
-    ],
     "tableOfContents": "Índice"
   },
   "experience": {
@@ -107,26 +97,10 @@
     "relatedProjects": "Proyectos relacionados",
     "notFound": "No encontramos esta experiencia.",
     "jobs": {
-      "millicom": {
-        "title": "Desarrollador Fullstack Sr.",
-        "company": "Millicom (vía Zerviz Technologies)",
-        "period": "Marzo 2026 - Actual",
-        "description": "Contratado por Zerviz Technologies, presto servicios a Millicom, compañía de telecomunicaciones internacional que ofrece servicios móviles, banda ancha y digitales en América Latina.",
-        "tasks": [
-          "Desarrollo aplicaciones frontend de alto rendimiento con React, Vue.js y Next.js, mejorando la experiencia de usuario y reduciendo los tiempos de carga en interfaces clave",
-          "Construyo y escalo servicios backend con Node.js y Ruby on Rails, aplicando principios de arquitectura limpia para asegurar mantenibilidad y confiabilidad",
-          "Diseño y optimizo APIs REST dentro de una arquitectura de microservicios, habilitando un crecimiento escalable y modular del sistema",
-          "Integro múltiples servicios de terceros, implementando mecanismos seguros de autenticación y autorización para proteger los datos de usuario",
-          "Mejoro el rendimiento de base de datos diseñando y optimizando esquemas y consultas PostgreSQL para operaciones de alto tráfico",
-          "Reduzco tiempos de respuesta de API y latencia del sistema implementando estrategias de caché con Redis",
-          "Colaboro de forma transversal con equipos de producto, diseño e ingeniería para entregar funcionalidades alineadas con los objetivos del negocio",
-          "Optimizo procesos de despliegue y liberación aprovechando Docker y pipelines CI/CD, mejorando la velocidad de entrega y la confiabilidad"
-        ]
-      },
       "higherbit": {
         "title": "Ingeniero Fullstack Sr. / Líder Técnico",
         "company": "Higher Bit Solutions",
-        "period": "Contrato por proyecto · Sept 2025 - Abril 2026",
+        "period": "Contrato por proyecto · Sept 2025 - Actual",
         "description": "Contrato por proyecto en Higher Bit Solutions, una startup que ofrece soluciones personalizadas de tecnología, IA y automatización para clientes de negocio. Como Ingeniero Full-Stack y Líder Técnico construí sistemas de extremo a extremo, lideré las decisiones técnicas, mentoreé desarrolladores y aseguré soluciones escalables, seguras y de alto rendimiento.",
         "tasks": [
           "Lideré la hoja de ruta técnica y las decisiones de arquitectura para múltiples sistemas en producción y proyectos de clientes",
