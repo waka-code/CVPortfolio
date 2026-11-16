@@ -27,7 +27,7 @@
           "En 2022 entré a Alterna Academy, una academia de programación que marcó un antes y un después. La universidad me dio la base teórica y el freelance me dio oficio, la academia me enseñó cómo se construye software de verdad en equipo, con las prácticas y el ritmo que exige la industria.",
           "Ahí conocí a Eduardo Burgos, ingeniero de software con más de 20 años en el área y CEO de Alterna Academy. Fue mi mentor, es una figura a seguir y hoy también un buen amigo. Buena parte de cómo pienso el desarrollo —tomar decisiones técnicas con criterio, revisar código con honestidad, enseñar a quien viene detrás— viene directamente de él.",
           "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack, mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y en paralelo sumé proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico.",
-          "Estuve en ProDoctivity hasta septiembre de 2026, los últimos años como desarrollador fullstack senior, y ahí mi trabajo se movió hacia la IA aplicada: construí un asistente documental basado en RAG sobre LLMs de OpenAI, clasificación automática de documentos y un servicio MCP independiente en Rust integrado al backend de Node. En paralelo, entre septiembre de 2025 y abril de 2026, llevé el liderazgo técnico en Higher Bit Solutions como contractor. Desde marzo de 2026 trabajo en Millicom a través de Zerviz Technologies, sobre plataformas de telecomunicaciones de alto tráfico en América Latina."
+          "Estuve en ProDoctivity hasta septiembre de 2025, los últimos años como desarrollador fullstack senior, y ahí mi trabajo se movió hacia la IA aplicada: construí un asistente documental basado en RAG sobre LLMs de OpenAI, clasificación automática de documentos y un servicio MCP independiente en Rust integrado al backend de Node. En paralelo, entre septiembre de 2025 y abril de 2026, llevé el liderazgo técnico en Higher Bit Solutions como contractor. Desde marzo de 2026 trabajo en Millicom a través de Zerviz Technologies, sobre plataformas de telecomunicaciones de alto tráfico en América Latina."
         ]
       },
       "utesa": {
@@ -143,7 +143,7 @@
       "prodoctivity": {
         "title": "Desarrollador Fullstack Sr.",
         "company": "ProDoctivity SRL",
-        "period": "Abril 2023 - Sept 2026",
+        "period": "Abril 2023 - Sept 2025",
         "description": "ProDoctivity Cloud es una solución integral de gestión empresarial que transforma las operaciones tradicionales a través de la digitalización y automatización de procesos. La plataforma optimiza los flujos de trabajo documentales, mejorando significativamente la eficiencia organizacional.",
         "tasks": [
           "Desarrollé y entregué funcionalidades full stack usando React, TypeScript, Node.js, Docker y MongoDB",
@@ -319,6 +319,21 @@
           "Versioné las reglas de forma append-only en PostgreSQL, con concurrencia optimista sobre xmin y un índice único parcial que garantiza exactamente una versión activa",
           "Expuse una API REST con problem details (RFC 7807) y OpenAPI, con la base de datos levantada con un solo docker compose up",
           "Configuré CI con cero warnings bajo TreatWarningsAsErrors y suite de tests en xUnit v3"
+        ]
+      },
+      "fitora": {
+        "name": "Fitora - App de Fitness y Nutrición",
+        "date": "Oct 2026 - Actual",
+        "description": "App de fitness para iPhone y Android que evalúa la condición física del usuario, calcula sus calorías y macros y genera rutinas de entrenamiento personalizadas a partir de reglas explícitas y deterministas y de una biblioteca de ejercicios revisada: la misma entrada produce siempre el mismo plan y cada propuesta se valida antes de llegar al usuario. Construida como monorepo con un dominio en Kotlin puro, una API REST en Spring Boot + PostgreSQL desplegada en Render y una única base de código en React Native + Expo para ambas plataformas. El APK de Android está publicado en Uptodown y la landing es pública; el código fuente es privado.",
+        "tasks": [
+          "Diseñé un monorepo con Arquitectura Hexagonal/Clean que el propio build hace cumplir: el dominio Kotlin falla si declara dependencias de framework, ArchUnit valida las capas del backend y dependency-cruiser las de la app",
+          "Construí el motor de reglas en Kotlin puro: metabolismo basal con Mifflin-St Jeor o Katch-McArdle, gasto diario, objetivo calórico con suelo de seguridad y reparto de macros, calorías de cardio con MET, 1RM estimado (Epley) y un generador de rutinas (PPL, cuerpo completo, torso/pierna, Weider) que filtra por equipo, lesiones y nivel y valida el volumen semanal y la recuperación",
+          "Garanticé la paridad de reglas entre el backend Kotlin y la app TypeScript con casos dorados compartidos (contracts/parity) que se ejecutan en ambos lados, manteniendo al servidor como autoridad",
+          "Desarrollé una sola app React Native + Expo para iPhone y Android con arquitectura por capas (domain, application, data, features), expo-router, i18n (español/inglés) y DTOs de la API validados con Zod",
+          "Implementé el entrenamiento sin conexión: el plan vigente se guarda en SQLite, cada serie se guarda al instante y sobrevive a cierres de la app, y las sesiones terminadas quedan en cola y se sincronizan al volver la conexión",
+          "Integré IA con Gemini solo en el backend, detrás de un puerto por feature, para buscar alimentos en internet y proponer el menú diario, validando cada respuesta con las reglas del dominio; sin ella la app funciona igual",
+          "Reforcé la seguridad: JWT de 15 minutos con refresh token rotativo y detección de reutilización, códigos de 6 dígitos de un solo uso guardados como HMAC con bloqueo tras 5 intentos (ningún token viaja en un enlace), rate limiting, errores RFC 9457, sesión en Keychain/Keystore, consentimiento registrado y eliminación de cuenta",
+          "Desplegué la API Spring Boot con Docker y migraciones Flyway en Render con PostgreSQL gestionado, firmé y publiqué el APK de Android en Uptodown y lancé una landing pública"
         ]
       }
     }

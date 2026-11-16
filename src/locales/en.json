@@ -27,7 +27,7 @@
           "In 2022 I joined Alterna Academy, a programming school that marked a clear before and after. University gave me the theory and freelancing gave me the craft, the academy taught me how real software gets built as a team, with the practices and pace the industry demands.",
           "That is where I met Eduardo Burgos, a software engineer with more than 20 years in the field and CEO of Alterna Academy. He was my mentor, he is someone I look up to, and today he is also a good friend. Much of how I think about development — making technical decisions with judgment, reviewing code honestly, teaching whoever comes next — comes straight from him.",
           "Shortly after, in April 2023, I joined ProDoctivity SRL as a fullstack developer: my first formal role inside a product team, working with React, TypeScript, Node, Docker, and microservices. I graduated from UTESA in 2024, and alongside that I added projects at IMarket and Higher Bit Solutions, where I also took on technical leadership.",
-          "I stayed at ProDoctivity until September 2026, the last few years as a senior fullstack developer, and there my work moved toward applied AI: I built a RAG-based document assistant on OpenAI LLMs, automatic document classification, and a standalone MCP service in Rust wired into the Node backend. Alongside that, between September 2025 and April 2026, I led the technical side of Higher Bit Solutions as a contractor. Since March 2026 I have been working at Millicom through Zerviz Technologies, on high-traffic telecom platforms across Latin America."
+          "I stayed at ProDoctivity until September 2025, the last few years as a senior fullstack developer, and there my work moved toward applied AI: I built a RAG-based document assistant on OpenAI LLMs, automatic document classification, and a standalone MCP service in Rust wired into the Node backend. Alongside that, between September 2025 and April 2026, I led the technical side of Higher Bit Solutions as a contractor. Since March 2026 I have been working at Millicom through Zerviz Technologies, on high-traffic telecom platforms across Latin America."
         ]
       },
       "utesa": {
@@ -143,7 +143,7 @@
       "prodoctivity": {
         "title": "Sr Fullstack Developer",
         "company": "ProDoctivity SRL",
-        "period": "April 2023 - Sept 2026",
+        "period": "April 2023 - Sept 2025",
         "description": "ProDoctivity Cloud is a comprehensive business management solution that transforms traditional operations through process digitization and automation. The platform optimizes document workflows, significantly improving organizational efficiency.",
         "tasks": [
           "Developed and delivered full-stack features using React, TypeScript, Node.js, Docker, and MongoDB",
@@ -319,6 +319,21 @@
           "Versioned rules append-only in PostgreSQL, with xmin optimistic concurrency and a partial unique index guaranteeing exactly one active version",
           "Exposed a REST API with RFC 7807 problem details and OpenAPI, with the database up via a single docker compose up",
           "Set up CI running with zero warnings under TreatWarningsAsErrors and an xUnit v3 test suite"
+        ]
+      },
+      "fitora": {
+        "name": "Fitora - Fitness & Nutrition App",
+        "date": "Oct 2026 - Present",
+        "description": "Fitness app for iPhone and Android that assesses the user's physical condition, calculates calories and macros, and generates personalized training routines from explicit, deterministic rules and a reviewed exercise library: the same input always produces the same plan, and every proposal is validated before it reaches the user. Built as a monorepo with a pure Kotlin domain, a Spring Boot + PostgreSQL REST API deployed on Render, and a single React Native + Expo codebase for both platforms. The Android APK is published on Uptodown and the landing page is public; the source code is private.",
+        "tasks": [
+          "Designed a monorepo under Hexagonal/Clean Architecture enforced by the build: the Kotlin domain fails to compile if it declares framework dependencies, ArchUnit validates the backend layers, and dependency-cruiser validates the app layers",
+          "Built the rules engine in pure Kotlin: BMR with Mifflin-St Jeor or Katch-McArdle, daily expenditure, calorie target with a safety floor and macro split, cardio calories via MET, estimated 1RM (Epley), and a routine generator (PPL, Full Body, Upper/Lower, Weider) that filters by equipment, injuries and level and validates weekly volume and recovery",
+          "Guaranteed rule parity between the Kotlin backend and the TypeScript app with shared golden cases (contracts/parity) run on both sides, keeping the server as the source of truth",
+          "Developed a single React Native + Expo app for iPhone and Android with layered architecture (domain, application, data, features), expo-router, i18n (Spanish/English), and API DTOs validated with Zod",
+          "Implemented offline training: the active plan lives in SQLite, every set is saved instantly and survives app restarts, and completed sessions are queued and synced when the connection returns",
+          "Integrated Gemini AI only on the backend, behind a per-feature port, for internet food search and daily menu proposals, with every response validated against domain rules and the app working fully without it",
+          "Hardened security: 15-minute JWTs with rotating refresh tokens and reuse detection, single-use 6-digit codes stored as HMAC with lockout after 5 attempts (no token ever travels in a link), rate limiting, RFC 9457 errors, session in Keychain/Keystore, recorded consent, and account deletion",
+          "Deployed the Spring Boot API with Docker and Flyway migrations on Render with managed PostgreSQL, signed and published the Android APK on Uptodown, and launched a public landing page"
         ]
       }
     }
