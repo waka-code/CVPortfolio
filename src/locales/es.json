@@ -27,7 +27,10 @@
           "En 2022 entré a Alterna Academy, una academia de programación que marcó un antes y un después. La universidad me dio la base teórica y el freelance me dio oficio, la academia me enseñó cómo se construye software de verdad en equipo, con las prácticas y el ritmo que exige la industria.",
           "Ahí conocí a Eduardo Burgos, ingeniero de software con más de 20 años en el área y CEO de Alterna Academy. Fue mi mentor, es una figura a seguir y hoy también un buen amigo. Buena parte de cómo pienso el desarrollo —tomar decisiones técnicas con criterio, revisar código con honestidad, enseñar a quien viene detrás— viene directamente de él.",
           "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack, mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y en paralelo sumé proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico.",
-          "Estuve en ProDoctivity hasta septiembre de 2025, los últimos años como desarrollador fullstack senior, y ahí mi trabajo se movió hacia la IA aplicada: construí un asistente documental basado en RAG sobre LLMs de OpenAI, clasificación automática de documentos y un servicio MCP independiente en Rust integrado al backend de Node. En paralelo, entre septiembre de 2025 y abril de 2026, llevé el liderazgo técnico en Higher Bit Solutions como contractor. Desde marzo de 2026 trabajo en Millicom a través de Zerviz Technologies, sobre plataformas de telecomunicaciones de alto tráfico en América Latina."
+          "Estuve en ProDoctivity hasta septiembre de 2025, los últimos años como desarrollador fullstack senior, y ahí mi trabajo se movió hacia la IA aplicada: construí un asistente documental basado en RAG sobre LLMs de OpenAI, clasificación automática de documentos y un servicio MCP independiente en Rust integrado al backend de Node. En paralelo, entre septiembre de 2025 y abril de 2026, llevé el liderazgo técnico en Higher Bit Solutions como contractor."
+        ],
+        "paragraphsDisabled": [
+          "Desde marzo de 2026 trabajo en Millicom a través de Zerviz Technologies, sobre plataformas de telecomunicaciones de alto tráfico en América Latina."
         ]
       },
       "utesa": {

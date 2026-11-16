@@ -27,7 +27,10 @@
           "In 2022 I joined Alterna Academy, a programming school that marked a clear before and after. University gave me the theory and freelancing gave me the craft, the academy taught me how real software gets built as a team, with the practices and pace the industry demands.",
           "That is where I met Eduardo Burgos, a software engineer with more than 20 years in the field and CEO of Alterna Academy. He was my mentor, he is someone I look up to, and today he is also a good friend. Much of how I think about development — making technical decisions with judgment, reviewing code honestly, teaching whoever comes next — comes straight from him.",
           "Shortly after, in April 2023, I joined ProDoctivity SRL as a fullstack developer: my first formal role inside a product team, working with React, TypeScript, Node, Docker, and microservices. I graduated from UTESA in 2024, and alongside that I added projects at IMarket and Higher Bit Solutions, where I also took on technical leadership.",
-          "I stayed at ProDoctivity until September 2025, the last few years as a senior fullstack developer, and there my work moved toward applied AI: I built a RAG-based document assistant on OpenAI LLMs, automatic document classification, and a standalone MCP service in Rust wired into the Node backend. Alongside that, between September 2025 and April 2026, I led the technical side of Higher Bit Solutions as a contractor. Since March 2026 I have been working at Millicom through Zerviz Technologies, on high-traffic telecom platforms across Latin America."
+          "I stayed at ProDoctivity until September 2025, the last few years as a senior fullstack developer, and there my work moved toward applied AI: I built a RAG-based document assistant on OpenAI LLMs, automatic document classification, and a standalone MCP service in Rust wired into the Node backend. Alongside that, between September 2025 and April 2026, I led the technical side of Higher Bit Solutions as a contractor."
+        ],
+        "paragraphsDisabled": [
+          "Since March 2026 I have been working at Millicom through Zerviz Technologies, on high-traffic telecom platforms across Latin America."
         ]
       },
       "utesa": {

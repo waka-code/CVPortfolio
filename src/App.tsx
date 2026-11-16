@@ -30,7 +30,8 @@ function AppContent() {
     linkedin: 'https://www.linkedin.com/in/waddimi-saint-louis-b49424230/',
   };
 
-  const jobKeys = ['millicom', 'higherbit', 'prodoctivity', 'imarket', 'freelancer'] as const;
+  // Millicom hidden for now: re-add 'millicom' to jobKeys and uncomment its entries below
+  const jobKeys = [/* 'millicom', */ 'higherbit', 'prodoctivity', 'imarket', 'freelancer'] as const;
 
   type JobKey = (typeof jobKeys)[number];
 
@@ -39,7 +40,7 @@ function AppContent() {
   type ProjectKey = (typeof projectKeys)[number];
 
   const jobTechnologies: Record<JobKey, string[]> = {
-    millicom: ['React', 'Vue.js', 'Next.js', 'JavaScript (ES6+)', 'TypeScript', 'Node.js', 'Express', 'NestJS', 'Ruby on Rails', 'PostgreSQL', 'Redis', 'Docker', 'Microservices', 'REST APIs', 'CI/CD', 'Tailwind CSS', 'AWS'],
+    // millicom: ['React', 'Vue.js', 'Next.js', 'JavaScript (ES6+)', 'TypeScript', 'Node.js', 'Express', 'NestJS', 'Ruby on Rails', 'PostgreSQL', 'Redis', 'Docker', 'Microservices', 'REST APIs', 'CI/CD', 'Tailwind CSS', 'AWS'],
     higherbit: ['Python', 'Django', 'PostgreSQL', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Jest', 'Vite', 'Docker', 'ECS/ECR', 'RDS', 'S3', 'CloudFront', 'Cognito', 'IAM', 'SES', 'Amplify', 'VPC', 'Secrets Manager', 'PostHog', 'CI/CD', 'Terraform'],
     prodoctivity: ['React', 'TypeScript', 'Node.js', 'Docker', 'MongoDB', 'C#', 'Playwright', 'Microservices', 'OpenAI API', 'RAG', 'Rust', 'MCP'],
     imarket: ['Angular', 'TypeScript', '.NET 8', 'C#', 'Docker', 'PostgreSQL'],
@@ -57,7 +58,7 @@ function AppContent() {
     prodoctivity: 2023,
     imarket: 2024,
     higherbit: 2025,
-    millicom: 2026,
+    // millicom: 2026,
   };
 
   // Screenshot folders under public/. Higher Bit's work is shown through its projects.
