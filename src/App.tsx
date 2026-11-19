@@ -35,7 +35,7 @@ function AppContent() {
 
   type JobKey = (typeof jobKeys)[number];
 
-  const projectKeys = ['marfil', 'hemisferio', 'calquen', 'iocupacional', 'ownorbit', 'virtualwallet', 'stockhex', 'nexus', 'fitora'] as const;
+  const projectKeys = ['marfil', 'hemisferio', 'calquen', 'iocupacional', 'ownorbit', 'virtualwallet', 'stockhex', 'nexus', 'fitora', 'aijobhunter'] as const;
 
   type ProjectKey = (typeof projectKeys)[number];
 
@@ -93,6 +93,7 @@ function AppContent() {
     stockhex: ['.NET 8', 'ASP.NET Core', 'C#', 'EF Core 8', 'SQL Server 2022', 'JWT', 'BCrypt', 'FluentValidation', 'Serilog', 'xUnit', 'Testcontainers', 'React 19', 'TypeScript', 'Vite', 'TanStack Query', 'Playwright', 'Docker Compose', 'GitHub Actions'],
     nexus: ['.NET 10', 'C#', 'ASP.NET Core Minimal APIs', 'EF Core 10', 'PostgreSQL 17', 'pgvector', 'Docker', 'xUnit v3', 'OpenAPI', 'GitHub Actions'],
     fitora: ['React Native', 'Expo', 'TypeScript', 'Kotlin', 'Spring Boot 3', 'PostgreSQL', 'Flyway', 'SQLite', 'JWT', 'Zod', 'Gemini API', 'Hexagonal Architecture', 'Docker', 'Render', 'Jest', 'ArchUnit'],
+    aijobhunter: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'next-intl', 'NestJS', 'Prisma 7', 'PostgreSQL 17', 'Redis', 'BullMQ', 'Zod', 'Gemini API', 'Claude API', 'Hexagonal Architecture', 'pnpm Monorepo', 'Turborepo', 'Vitest', 'Testcontainers', 'dependency-cruiser', 'Docker Compose', 'GitHub Actions'],
   };
 
   // Source repositories
@@ -109,7 +110,7 @@ function AppContent() {
     fitora: 'https://waka-code.github.io/fitora-landing/',
   };
 
-  const projectsWithImages: ProjectKey[] = ['marfil', 'hemisferio', 'calquen', 'iocupacional', 'stockhex', 'fitora'];
+  const projectsWithImages: ProjectKey[] = ['marfil', 'hemisferio', 'calquen', 'iocupacional', 'stockhex', 'fitora', 'aijobhunter'];
 
   // Projects with no entry here are personal projects, not company assignments
   const projectCompanies: Partial<Record<ProjectKey, string>> = {
@@ -140,7 +141,7 @@ function AppContent() {
     { category: t('skills.categories.cloudDevops'), skills: ['AWS (ECS, RDS, S3, CloudFront, IAM)', 'Docker', 'NGINX', 'Terraform', 'GitHub Actions', 'GitLab CI'] },
     { category: t('skills.categories.architecture'), skills: ['Microservices', 'Monorepos', 'Clean Architecture', 'Hexagonal', 'Event-Driven (RabbitMQ)', 'SOLID', 'REST APIs', 'MVC'] },
     { category: t('skills.categories.aiEngineering'), skills: ['OpenAI APIs', 'RAG', 'LLM Applications', 'Document Classification', 'AI Agents', 'Agent Orchestration', 'Tool Calling', 'MCP (Model Context Protocol)', 'Agent Skills', 'Claude Code'] },
-    { category: t('skills.categories.toolsAi'), skills: ['GitHub', 'Git', 'Jira', 'ClickUp', 'Postman', 'Swagger', 'Playwright', 'PostHog', 'Figma', 'Copilot', 'Cursor', 'Windsurf'] },
+    { category: t('skills.categories.toolsAi'), skills: ['GitHub', 'Git', 'Jira', 'ClickUp', 'Postman', 'Swagger', 'Playwright', 'PostHog', 'Figma', 'Obsidian (AI second brain)', 'Copilot', 'Cursor', 'Windsurf'] },
     { category: t('skills.categories.softSkills'), skills: ['Problem Solving', 'Code Review', 'Leadership', 'Technical Documentation', 'Teamwork', 'Agile (Scrum)'] },
   ];
 

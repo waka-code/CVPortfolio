@@ -26,7 +26,7 @@
         "paragraphs": [
           "In 2022 I joined Alterna Academy, a programming school that marked a clear before and after. University gave me the theory and freelancing gave me the craft, the academy taught me how real software gets built as a team, with the practices and pace the industry demands.",
           "That is where I met Eduardo Burgos, a software engineer with more than 20 years in the field and CEO of Alterna Academy. He was my mentor, he is someone I look up to, and today he is also a good friend. Much of how I think about development — making technical decisions with judgment, reviewing code honestly, teaching whoever comes next — comes straight from him.",
-          "Shortly after, in April 2023, I joined ProDoctivity SRL as a fullstack developer: my first formal role inside a product team, working with React, TypeScript, Node, Docker, and microservices. I graduated from UTESA in 2024, and alongside that I added projects at IMarket and Higher Bit Solutions, where I also took on technical leadership.",
+          "Shortly after, in April 2023, I joined ProDoctivity SRL as a fullstack developer: my first formal role inside a product team, working with React, TypeScript, Node, Docker, and microservices. I graduated from UTESA in 2024, and alongside that I added projects at IMarket, where I also took on technical leadership.",
           "I stayed at ProDoctivity until September 2025, the last few years as a senior fullstack developer, and there my work moved toward applied AI: I built a RAG-based document assistant on OpenAI LLMs, automatic document classification, and a standalone MCP service in Rust wired into the Node backend. Since September 2025 I have also led the technical side of Higher Bit Solutions as a contractor."
         ]
       },
@@ -312,6 +312,23 @@
           "Hardened security: 15-minute JWTs with rotating refresh tokens and reuse detection, single-use 6-digit codes stored as HMAC with lockout after 5 attempts (no token ever travels in a link), rate limiting, RFC 9457 errors, session in Keychain/Keystore, recorded consent, and account deletion",
           "Deployed the Spring Boot API with Docker and Flyway migrations on Render with managed PostgreSQL, signed and published the Android APK on Uptodown, and launched a public landing page"
         ]
+      },
+      "aijobhunter": {
+        "name": "AI Job Hunter - Personal Job Search Assistant",
+        "date": "Nov 2026 - Present",
+        "description": "Personal-use application (single user, runs on my own machine with Docker; it is not a public product and the code is private). I built it because searching for remote work by hand meant checking the same job boards every day, re-reading offers that did not fit (on-site only, unrealistic English requirements, below my salary floor) and losing track of who I had applied to and who had answered. AI Job Hunter searches authorized sources three times a day, analyzes each offer with AI against my real profile, discards what does not fit before spending tokens, ranks the rest by compatibility, freshness and number of applicants, and tracks every application from the first contact to the offer. It never applies or sends anything on its own: \"Apply now\" only opens the original offer. Built in 10 phases in a TypeScript monorepo (Next.js + NestJS) with hexagonal architecture and more than 60 architecture decisions recorded with their reasoning.",
+        "tasks": [
+          "Why AI only extracts and a deterministic engine scores: the AI reads the offer and extracts facts, but the score (skills 30, experience 20, modality/location 15, salary 15, seniority 10, language 5, contract 5) is computed by pure domain code. That makes it testable, explainable and independent of the model; a criterion with no data (e.g. unpublished salary) is excluded instead of penalized, and any figure the AI returns that is not literally in the offer text is discarded",
+          "Why a \"never invent\" rule in the domain: anything the AI proposes from my CV that does not appear literally in it is dropped and shown to me, and nothing is saved until I confirm it. Prompts alone cannot guarantee this, so it is enforced in code; the same grounding applies to the AI-generated tailored CVs, cover letters, recruiter messages and follow-ups, which are drafts that are never sent automatically",
+          "Why only official sources: jobs come from public APIs, RSS feeds and ATS boards (Get on Board, Remotive, Remote OK, Himalayas, We Work Remotely, Greenhouse, Lever, Ashby) with per-source rate limits and attribution. LinkedIn, Indeed, Wellfound, Arc.dev and Workana prohibit scraping, so they are supported only through manual import; the app never bypasses CAPTCHAs or anti-bot protection, and availability checks respect robots.txt and block SSRF",
+          "Why exclusion filters run before the AI: on-site or hybrid offers, countries without work authorization and blocked companies are filtered with structured data first, so they never consume tokens. Gemini is the default provider because it is free for bulk analysis, Claude can be selected per task, and every AI call goes through a gateway with a 24-hour token budget and usage log",
+          "Designed a hexagonal monorepo (pnpm + Turborepo): business logic lives in a pure TypeScript core package with zero npm dependencies, adapters for Prisma, AI providers and job sources live outside it, the web only imports shared Zod contracts, and dependency-cruiser fails the build if any of these rules is broken",
+          "Built the backend with NestJS, Prisma 7 and PostgreSQL 17: three-way dedupe (source + id, normalized URL, company + title across sources), salaries kept exactly as published and converted to monthly USD with daily exchange rates, filtering, sorting and pagination in parameterized SQL, and RFC 9457 errors in a single format",
+          "Moved long-running work to a background worker with Redis + BullMQ: scheduled searches at 08:00, 13:00 and 18:00 in my time zone, a weekly check of whether open offers are still available, job state persisted so it survives restarts, and a partial unique index that prevents duplicate AI runs",
+          "Built the dashboard with Next.js 16, React 19 and Tailwind 4: daily goal, 10 indicators, \"apply first\" list, application tracking with 15 states, recruiter contact log and response metrics, analytics by period with server-rendered accessible charts (no chart library), company directory with favorites and blocked companies, notifications, and Spanish/English UI",
+          "Secured it as a single-user app: no sign-up endpoint (the owner is created by a script), opaque session cookie stored hashed in Postgres instead of JWT for real logout, argon2 passwords, protected routes by default, API keys only on the server, and contact data never sent to the AI",
+          "Backed it with Vitest unit tests and API integration tests against a real PostgreSQL via Testcontainers (no network access allowed in tests), with connectors tested against trimmed real fixtures, and CI on GitHub Actions"
+        ]
       }
     }
   },
@@ -343,7 +360,7 @@
       "spanish": "Spanish",
       "english": "English",
       "native": "Native (C2)",
-      "intermediate": "Intermediate (B1 - improving)",
+      "intermediate": "Intermediate (B2 - improving)",
       "french": "French",
       "basic": "Basic (A1)"
     },

@@ -26,7 +26,7 @@
         "paragraphs": [
           "En 2022 entré a Alterna Academy, una academia de programación que marcó un antes y un después. La universidad me dio la base teórica y el freelance me dio oficio, la academia me enseñó cómo se construye software de verdad en equipo, con las prácticas y el ritmo que exige la industria.",
           "Ahí conocí a Eduardo Burgos, ingeniero de software con más de 20 años en el área y CEO de Alterna Academy. Fue mi mentor, es una figura a seguir y hoy también un buen amigo. Buena parte de cómo pienso el desarrollo —tomar decisiones técnicas con criterio, revisar código con honestidad, enseñar a quien viene detrás— viene directamente de él.",
-          "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack, mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y en paralelo sumé proyectos en IMarket y Higher Bit Solutions, donde además asumí el liderazgo técnico.",
+          "Poco después, en abril de 2023, entré a ProDoctivity SRL como desarrollador fullstack, mi primer puesto formal dentro de un equipo de producto, trabajando con React, TypeScript, Node, Docker y microservicios. En 2024 me gradué de UTESA, y en paralelo sumé proyectos en IMarket, donde además asumí el liderazgo técnico.",
           "Estuve en ProDoctivity hasta septiembre de 2025, los últimos años como desarrollador fullstack senior, y ahí mi trabajo se movió hacia la IA aplicada: construí un asistente documental basado en RAG sobre LLMs de OpenAI, clasificación automática de documentos y un servicio MCP independiente en Rust integrado al backend de Node. Desde septiembre de 2025 llevo además el liderazgo técnico en Higher Bit Solutions como contractor."
         ]
       },
@@ -312,6 +312,23 @@
           "Reforcé la seguridad: JWT de 15 minutos con refresh token rotativo y detección de reutilización, códigos de 6 dígitos de un solo uso guardados como HMAC con bloqueo tras 5 intentos (ningún token viaja en un enlace), rate limiting, errores RFC 9457, sesión en Keychain/Keystore, consentimiento registrado y eliminación de cuenta",
           "Desplegué la API Spring Boot con Docker y migraciones Flyway en Render con PostgreSQL gestionado, firmé y publiqué el APK de Android en Uptodown y lancé una landing pública"
         ]
+      },
+      "aijobhunter": {
+        "name": "AI Job Hunter - Asistente Personal de Búsqueda de Empleo",
+        "date": "Nov 2026 - Actual",
+        "description": "Aplicación de uso personal (un solo usuario, corre en mi propia máquina con Docker; no es un producto público y el código es privado). La hice porque buscar trabajo remoto a mano significaba revisar los mismos portales todos los días, volver a leer ofertas que no encajaban (solo presenciales, con inglés imposible o por debajo de mi salario mínimo) y perder la cuenta de dónde había postulado y quién me había respondido. AI Job Hunter busca en fuentes autorizadas tres veces al día, analiza cada oferta con IA contra mi perfil real, descarta lo que no encaja antes de gastar tokens, ordena el resto por compatibilidad, frescura y número de postulantes, y da seguimiento a cada postulación desde el primer contacto hasta la oferta. Nunca postula ni envía nada por su cuenta: «Aplicar ahora» solo abre la oferta original. Construida en 10 fases en un monorepo TypeScript (Next.js + NestJS) con arquitectura hexagonal y más de 60 decisiones de arquitectura documentadas con su motivo.",
+        "tasks": [
+          "Por qué la IA solo extrae y el score lo calcula un motor determinista: la IA lee la oferta y extrae hechos, pero el score (habilidades 30, experiencia 20, modalidad/ubicación 15, salario 15, seniority 10, idioma 5, contrato 5) lo calcula código puro del dominio. Así es testeable, explicable e independiente del modelo; un criterio sin datos (p. ej. salario no publicado) se excluye en vez de penalizar, y cualquier cifra que devuelva la IA y no esté literalmente en la oferta se descarta",
+          "Por qué la regla «nunca inventar» vive en el dominio: lo que la IA propone a partir de mi CV y no aparece literalmente en él se descarta y se me muestra, y nada se guarda hasta que yo lo confirmo. Un prompt no lo puede garantizar, por eso se aplica en código; el mismo anclaje rige los CV adaptados, cover letters, mensajes al recruiter y follow-ups generados con IA, que son borradores y nunca se envían solos",
+          "Por qué solo fuentes oficiales: las ofertas llegan de APIs públicas, RSS y boards de ATS (Get on Board, Remotive, Remote OK, Himalayas, We Work Remotely, Greenhouse, Lever, Ashby) con límites por fuente y atribución. LinkedIn, Indeed, Wellfound, Arc.dev y Workana prohíben el scraping, así que solo se admiten por importación manual; la app nunca evade CAPTCHAs ni protecciones anti-bot, y la verificación de disponibilidad respeta robots.txt y bloquea SSRF",
+          "Por qué los filtros excluyentes van antes de la IA: las ofertas presenciales o híbridas, los países sin autorización de trabajo y las empresas bloqueadas se filtran primero con datos estructurados, así nunca consumen tokens. Gemini es el proveedor por defecto porque es gratis para el análisis masivo, Claude se puede elegir por tarea, y toda llamada a IA pasa por un gateway con presupuesto de tokens en 24 h y registro de consumo",
+          "Diseñé un monorepo hexagonal (pnpm + Turborepo): la lógica de negocio vive en un paquete core de TypeScript puro sin dependencias de npm, los adaptadores de Prisma, proveedores de IA y fuentes de empleo viven fuera, la web solo importa contratos Zod compartidos, y dependency-cruiser rompe el build si se viola alguna de estas reglas",
+          "Construí el backend con NestJS, Prisma 7 y PostgreSQL 17: dedupe en tres niveles (fuente + id, URL normalizada, empresa + puesto entre fuentes), salarios guardados tal como se publican y convertidos a USD mensual con tasas diarias, filtrado, orden y paginación en SQL parametrizado, y errores RFC 9457 en un único formato",
+          "Llevé el trabajo largo a un worker en segundo plano con Redis + BullMQ: búsquedas programadas a las 08:00, 13:00 y 18:00 en mi zona horaria, revisión semanal de si las ofertas abiertas siguen disponibles, estado de cada tarea persistido para sobrevivir a reinicios, y un índice único parcial que impide análisis con IA duplicados",
+          "Construí el dashboard con Next.js 16, React 19 y Tailwind 4: meta diaria, 10 indicadores, lista «aplica primero», seguimiento de postulaciones con 15 estados, registro de contactos con recruiters y métricas de respuesta, analytics por periodo con gráficos accesibles renderizados en el servidor (sin librería de gráficos), directorio de empresas con favoritas y bloqueadas, notificaciones e interfaz en español/inglés",
+          "La aseguré como app de un solo usuario: sin endpoint de registro (el propietario se crea con un script), sesión con cookie opaca guardada como hash en Postgres en vez de JWT para tener logout real, contraseñas con argon2, rutas protegidas por defecto, API keys solo en el servidor, y los datos de contacto nunca se envían a la IA",
+          "La respaldé con tests unitarios en Vitest y tests de integración de la API contra un PostgreSQL real con Testcontainers (los tests no pueden usar la red), conectores probados contra fixtures reales recortadas y CI en GitHub Actions"
+        ]
       }
     }
   },
@@ -343,7 +360,7 @@
       "spanish": "Español",
       "english": "Inglés",
       "native": "Nativo (C2)",
-      "intermediate": "Intermedio (B1 - en progreso)",
+      "intermediate": "Intermedio (B2 - en progreso)",
       "french": "Francés",
       "basic": "Básico (A1)"
     },
